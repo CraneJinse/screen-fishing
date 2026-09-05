@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-55",
+  "sourceUrl": "https://www.fishbase.se/summary/Chelmon-rostratus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 20,
+    "lengthUnit": "cm TL",
+    "commonLength": 11,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 20.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Chelmon rostratus"
+}

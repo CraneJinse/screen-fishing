@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-123",
+  "sourceUrl": "https://www.fishbase.se/summary/Lampris-guttatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 101,
+    "lengthUnit": "SL",
+    "commonLength": null,
+    "maximumWeightG": 270000
+  },
+  "excerpt": "Max length : 101 cm SL; max. published weight: 270.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Lampris guttatus"
+}

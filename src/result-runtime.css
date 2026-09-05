@@ -1,0 +1,29 @@
+.result-shell{inset:clamp(6.33px,4.166667vw,8.33px);width:calc(100% - clamp(12.67px,8.333333vw,16.67px));height:calc(100% - clamp(12.67px,8.333333vw,16.67px))}.catch-card{width:100%;height:100%;grid-template-rows:auto minmax(0,1fr) auto auto auto auto;gap:clamp(.9px,.595238vw,1.19px);padding:clamp(6.33px,4.166667vw,8.33px);border-width:2px;box-shadow:inset 0 0 0 2px var(--rarity,#6cb8b7),clamp(3.62px,2.380952vw,4.76px) clamp(3.62px,2.380952vw,4.76px) 0 rgba(13,17,27,.55)}.fish-art{width:clamp(66.95px,44.047619vw,88.1px);height:clamp(66.95px,44.047619vw,88.1px);border-width:2px}.fish-art img{width:96%;height:96%}.catch-card strong{font-size:clamp(10.86px,7.142857vw,14.29px);line-height:1.15}.catch-card>span:not(.rarity):not(.fish-art){font-size:clamp(8.14px,5.357143vw,10.71px);line-height:1.15}.badges{min-height:clamp(9.05px,5.952381vw,11.9px);font-size:clamp(8.14px,5.357143vw,10.71px);white-space:nowrap}.catch-card small{font-size:clamp(7.24px,4.761905vw,9.52px);line-height:1.1}.rarity{padding:clamp(.9px,.595238vw,1.19px) clamp(4.52px,2.97619vw,5.95px);border-width:2px;font-size:clamp(7.24px,4.761905vw,9.52px)}.result-close{top:clamp(2.71px,1.785714vw,3.57px);right:clamp(2.71px,1.785714vw,3.57px);width:clamp(17.19px,11.309524vw,22.62px);height:clamp(17.19px,11.309524vw,22.62px);padding:clamp(.9px,.595238vw,1.19px);border-width:2px;box-shadow:1px 1px 0 rgba(13,17,27,.7)}.result-close img{width:clamp(9.95px,6.547619vw,13.1px);height:clamp(9.95px,6.547619vw,13.1px)}
+.fish-art{position:relative;isolation:isolate}.fish-art #fishImage{position:relative;z-index:1}.fish-art .detail-overlay{display:none;position:absolute;z-index:5;inset:2%;width:96%;height:96%;object-fit:contain;pointer-events:none}.fish-art .pearl-layer{display:none;position:absolute;inset:2%;pointer-events:none;mask-image:var(--mask);-webkit-mask-image:var(--mask);mask-size:100% 100%;-webkit-mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat}.has-pearl-layers .fish-art .pearl-layer{display:block;animation-play-state:paused}.has-pearl-layers .fish-art .spectrum-clouds{z-index:2;background:conic-gradient(from 35deg,#b5a2ff,#ffabd9,#77e7ed,#ffe59a,#b5a2ff);background-size:210% 190%;opacity:.76;mix-blend-mode:color;animation:result-cloud 8.4s steps(32,end) -1.2s alternate infinite}.has-pearl-layers .fish-art .spectrum-ribbons{z-index:3;background:repeating-linear-gradient(118deg,transparent 0 13%,rgba(255,136,221,.76) 18%,rgba(112,238,241,.76) 25%,rgba(255,232,155,.72) 31%,transparent 39%);background-size:250% 250%;opacity:.54;mix-blend-mode:screen;animation:result-ribbon 6.2s steps(28,end) -.75s infinite reverse}.has-pearl-layers .fish-art .pearl-glint{z-index:4;background:linear-gradient(112deg,transparent 25%,transparent 39%,rgba(255,255,255,.94) 47%,rgba(255,239,161,.78) 51%,transparent 68%);background-size:330% 100%;opacity:.72;mix-blend-mode:screen;animation:result-glint 4.8s steps(24,end) -.45s infinite}.has-pearl-layers .fish-art .detail-overlay{display:block}@keyframes result-cloud{from{background-position:0 50%}to{background-position:100% 50%}}@keyframes result-ribbon{from{background-position:0 0}to{background-position:100% 100%}}@keyframes result-glint{from{background-position:140% 0}to{background-position:-60% 0}}@media(prefers-reduced-motion:reduce){.has-pearl-layers .fish-art .pearl-layer{animation:none!important;opacity:.45}}
+.page-hidden .pearl-layer{animation-play-state:paused!important}
+.has-pearl-layers .fish-art .pearl-layer{animation-play-state:running}.page-hidden .pearl-layer{animation-play-state:paused!important}
+.catch-card[data-result-type="random_unhook"] .fish-art{background:repeating-linear-gradient(135deg,#1b2130 0 5px,#29344a 5px 10px)}.catch-card[data-result-type="random_unhook"] .fish-art:after{content:'〰 〰';position:absolute;inset:auto 0 3px;color:#d56f5d;font:900 13px monospace;letter-spacing:2px;z-index:3}.catch-card[data-result-type="random_unhook"] #fishImage{filter:grayscale(.8) opacity(.7)}.catch-card[data-result-type="special"] .fish-art{background:#263c46}
+
+/* Event copy has its own five-row layout. The art yields space to full text. */
+.catch-card [hidden] { display: none !important; }
+.catch-card[data-result-type="special"], .catch-card[data-result-type="random_unhook"] {
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+  gap: 3px;
+}
+.catch-card[data-result-type="special"] .fish-art {
+  align-self: stretch; width: 100%; height: 100%; min-height: 0;
+  max-width: 72px; max-height: 72px; border: 0; box-shadow: none; background: transparent;
+}
+.catch-card[data-result-type="special"] .fish-art #fishImage {
+  position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; object-fit: contain;
+}
+.catch-card[data-result-type="special"] #fishName { line-height: 1.25; }
+.catch-card[data-result-type="special"] #measure {
+  line-height: 1.45; overflow-wrap: anywhere; text-align: left;
+}
+.catch-card[data-result-type="special"] .badges { line-height: 1.3; }
+.catch-card[data-result-type="random_unhook"] .fish-art {
+  min-height: 0; max-height: 100%; align-self: center;
+}
+
+.catch-card[data-result-type='special'] #fishImage { image-rendering: auto; }

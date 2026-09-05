@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-18",
+  "sourceUrl": "https://www.fishbase.se/summary/Pterophyllum_scalare.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 10.5,
+    "lengthUnit": "cm TL",
+    "commonLength": 8,
+    "maximumWeightG": 25
+  },
+  "excerpt": "Max length : 10.5 cm TL male/unsexed; max. published weight: 25.00 g",
+  "evidenceStatus": "captured",
+  "scientificName": "Pterophyllum scalare"
+}

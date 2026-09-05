@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-115",
+  "sourceUrl": "https://www.fishbase.se/summary/epinephelus-itajara.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 250,
+    "lengthUnit": "TL",
+    "commonLength": 150,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 250 cm TL; common length : 150 cm TL",
+  "evidenceStatus": "captured",
+  "scientificName": "Epinephelus itajara"
+}

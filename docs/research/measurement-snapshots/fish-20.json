@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-20",
+  "sourceUrl": "https://www.fishbase.se/summary/Symphysodon-aequifasciatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 13.7,
+    "lengthUnit": "cm SL",
+    "commonLength": 10,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 13.7 cm SL male/unsexed",
+  "evidenceStatus": "captured",
+  "scientificName": "Symphysodon aequifasciatus"
+}

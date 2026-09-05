@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-125",
+  "sourceUrl": "https://www.fishbase.se/summary/Sphyrna_mokarran.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 610,
+    "lengthUnit": "TL",
+    "commonLength": 370,
+    "maximumWeightG": 449500
+  },
+  "excerpt": "Max length : 610 cm TL; common length : 370 cm TL; max. published weight: 449.5 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Sphyrna mokarran"
+}

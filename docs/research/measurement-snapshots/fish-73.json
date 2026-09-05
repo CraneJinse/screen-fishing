@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-73",
+  "sourceUrl": "https://www.fishbase.se/summary/Lactoria-cornuta.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 46,
+    "lengthUnit": "cm TL",
+    "commonLength": 40,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 46.0 cm TL male/unsexed; common length : 40.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Lactoria cornuta"
+}

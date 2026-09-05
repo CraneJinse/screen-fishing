@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-40",
+  "sourceUrl": "https://www.fishbase.se/summary/Zoogoneticus-tequila.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 8,
+    "lengthUnit": "cm TL",
+    "commonLength": 5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 6.0 cm TL male/unsexed; 8.0 cm TL (female).",
+  "evidenceStatus": "captured",
+  "scientificName": "Zoogoneticus tequila"
+}

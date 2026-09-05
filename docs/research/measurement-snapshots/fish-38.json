@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-38",
+  "sourceUrl": "https://www.fishbase.se/summary/Salmo-trutta.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 140,
+    "lengthUnit": "cm SL",
+    "commonLength": 72,
+    "maximumWeightG": 50000
+  },
+  "excerpt": "Max length : 140 cm SL male/unsexed; common length : 72.0 cm TL male/unsexed; max. published weight: 50.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Salmo trutta x Salvelinus fontinalis"
+}

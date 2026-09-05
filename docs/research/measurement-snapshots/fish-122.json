@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-122",
+  "sourceUrl": "https://www.fishbase.se/summary/Regalecus-glesne.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 800,
+    "lengthUnit": "cm TL",
+    "commonLength": 300,
+    "maximumWeightG": 272000
+  },
+  "excerpt": "Max length : 800 cm TL; common length : 300 cm TL; max. published weight: 272.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Regalecus glesne"
+}

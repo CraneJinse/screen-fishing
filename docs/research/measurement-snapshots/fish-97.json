@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-97",
+  "sourceUrl": "https://www.fishbase.se/summary/Alepisaurus-ferox.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 215,
+    "lengthUnit": "cm TL",
+    "commonLength": 120,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 215 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Alepisaurus ferox"
+}

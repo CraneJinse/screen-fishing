@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-58",
+  "sourceUrl": "https://www.fishbase.se/summary/Zanclus-cornutus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 23,
+    "lengthUnit": "cm TL",
+    "commonLength": 21,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 23.0 cm TL male/unsexed; common length : 21.0 cm NG male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Zanclus cornutus"
+}

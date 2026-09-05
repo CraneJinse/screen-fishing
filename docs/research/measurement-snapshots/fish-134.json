@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-134",
+  "sourceUrl": "https://www.fishbase.se/summary/Danio-margaritatus",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 2.1,
+    "lengthUnit": "SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 2.1 cm SL",
+  "evidenceStatus": "captured",
+  "scientificName": "Danio margaritatus"
+}

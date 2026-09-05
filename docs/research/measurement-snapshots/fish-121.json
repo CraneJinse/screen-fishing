@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-121",
+  "sourceUrl": "https://www.fishbase.se/summary/Mobula-birostris.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 910,
+    "lengthUnit": "cm WD",
+    "commonLength": 450,
+    "maximumWeightG": 3000000
+  },
+  "excerpt": "Max length : 910 cm WD; common length : 450 cm WD; max. published weight: 3.0 t",
+  "evidenceStatus": "captured",
+  "scientificName": "Mobula birostris"
+}

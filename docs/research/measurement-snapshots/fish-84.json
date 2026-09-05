@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-84",
+  "sourceUrl": "https://www.fishbase.se/summary/Selene-brevoortii.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 38,
+    "lengthUnit": "cm FL",
+    "commonLength": 25,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 38.0 cm FL male/unsexed; common length : 25.0 cm FL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Selene brevoortii"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-108",
+  "sourceUrl": "https://www.fishbase.se/summary/Semicossyphus-pulcher.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 91,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": 16000
+  },
+  "excerpt": "Max length : 91.0 cm TL male/unsexed; max. published weight: 16.0 kg (Ref. 2850)",
+  "evidenceStatus": "captured",
+  "scientificName": "Semicossyphus pulcher"
+}

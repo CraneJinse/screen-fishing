@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-131",
+  "sourceUrl": "https://www.fishbase.se/summary/Fundulus-heteroclitus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 15,
+    "lengthUnit": "TL",
+    "commonLength": 8.9,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 15.0 cm TL; common length : 8.9 cm TL",
+  "evidenceStatus": "captured",
+  "scientificName": "Fundulus heteroclitus"
+}

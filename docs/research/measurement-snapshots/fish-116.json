@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-116",
+  "sourceUrl": "https://www.fishbase.se/summary/Mola_mola.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 333,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": 1300000
+  },
+  "excerpt": "Max length : 333 cm TL; max. published weight: 1.3 t",
+  "evidenceStatus": "captured",
+  "scientificName": "Mola mola"
+}

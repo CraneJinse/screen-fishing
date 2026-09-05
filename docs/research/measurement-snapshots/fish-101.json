@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-101",
+  "sourceUrl": "https://www.fishbase.se/summary/oplegnathus-fasciatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 80,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": 6400
+  },
+  "excerpt": "Max length : 80.0 cm TL; max. published weight: 6.4 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Oplegnathus fasciatus"
+}

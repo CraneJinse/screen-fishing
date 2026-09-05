@@ -1,0 +1,689 @@
+{
+  "schemaVersion": 1,
+  "waterViewport": {
+    "width": 448,
+    "height": 192,
+    "gridDip": 4
+  },
+  "limits": {
+    "maxFishCount": 8,
+    "bioloadCapacity": 12,
+    "maxDecorInstances": 8,
+    "decorCapacity": 12,
+    "maxCopiesPerItem": 3,
+    "maxOpaqueCoverage": 0.38
+  },
+  "starterItemIds": [
+    "tank-basic",
+    "substrate-river-sand",
+    "rock-round",
+    "plant-grass"
+  ],
+  "defaultLayouts": {
+    "freshwater": {
+      "skinId": "tank-basic",
+      "backgroundId": null,
+      "substrateId": "substrate-river-sand",
+      "effectId": null,
+      "decor": [
+        { "instanceId": "starter-rock-round", "itemId": "rock-round", "x": 0.25, "y": 0.875, "layer": "mid", "scale": 1, "flipX": false },
+        { "instanceId": "starter-plant-grass", "itemId": "plant-grass", "x": 0.75, "y": 0.75, "layer": "front", "scale": 1, "flipX": false }
+      ]
+    },
+    "saltwater": {
+      "skinId": "tank-basic",
+      "backgroundId": null,
+      "substrateId": null,
+      "effectId": null,
+      "decor": []
+    }
+  },
+  "items": [
+    {
+      "id": "tank-basic",
+      "name": "基础玻璃缸",
+      "category": "tank",
+      "habitat": "both",
+      "priceCoins": 0,
+      "purchasePriceCoins": 600,
+      "layer": "frame",
+      "footprint": {
+        "width": 0,
+        "height": 0
+      },
+      "anchor": "frame",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "skin",
+      "asset": "assets/aquarium/catalog/tank-basic.png"
+    },
+    {
+      "id": "tank-black-iron",
+      "purchasePriceCoins": 800,
+      "name": "黑铁框鱼缸",
+      "category": "tank",
+      "habitat": "both",
+      "priceCoins": 800,
+      "layer": "frame",
+      "footprint": {
+        "width": 0,
+        "height": 0
+      },
+      "anchor": "frame",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "skin",
+      "asset": "assets/aquarium/catalog/tank-black-iron.png"
+    },
+    {
+      "id": "tank-oak",
+      "purchasePriceCoins": 1000,
+      "name": "橡木框鱼缸",
+      "category": "tank",
+      "habitat": "both",
+      "priceCoins": 1000,
+      "layer": "frame",
+      "footprint": {
+        "width": 0,
+        "height": 0
+      },
+      "anchor": "frame",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "skin",
+      "asset": "assets/aquarium/catalog/tank-oak.png"
+    },
+    {
+      "id": "tank-porcelain",
+      "purchasePriceCoins": 1200,
+      "name": "白瓷底座鱼缸",
+      "category": "tank",
+      "habitat": "both",
+      "priceCoins": 1200,
+      "layer": "frame",
+      "footprint": {
+        "width": 0,
+        "height": 0
+      },
+      "anchor": "frame",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "skin",
+      "asset": "assets/aquarium/catalog/tank-porcelain.png"
+    },
+    {
+      "id": "tank-panorama",
+      "purchasePriceCoins": 1600,
+      "name": "弧面全景缸",
+      "category": "tank",
+      "habitat": "both",
+      "priceCoins": 1600,
+      "layer": "frame",
+      "footprint": {
+        "width": 0,
+        "height": 0
+      },
+      "anchor": "frame",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "skin",
+      "asset": "assets/aquarium/catalog/tank-panorama.png"
+    },
+    {
+      "id": "substrate-river-sand",
+      "name": "河沙",
+      "category": "substrate",
+      "habitat": "freshwater",
+      "priceCoins": 0,
+      "layer": "substrate",
+      "footprint": {
+        "width": 448,
+        "height": 28
+      },
+      "anchor": "bottom",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "substrate",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/substrate-river-sand.png"
+    },
+    {
+      "id": "substrate-black-sand",
+      "name": "黑砂",
+      "category": "substrate",
+      "habitat": "both",
+      "priceCoins": 120,
+      "layer": "substrate",
+      "footprint": {
+        "width": 448,
+        "height": 28
+      },
+      "anchor": "bottom",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "substrate",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/substrate-black-sand.png"
+    },
+    {
+      "id": "substrate-fine-gravel",
+      "name": "细砾",
+      "category": "substrate",
+      "habitat": "freshwater",
+      "priceCoins": 160,
+      "layer": "substrate",
+      "footprint": {
+        "width": 448,
+        "height": 28
+      },
+      "anchor": "bottom",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "substrate",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/substrate-fine-gravel.png"
+    },
+    {
+      "id": "substrate-white-sand",
+      "name": "白砂",
+      "category": "substrate",
+      "habitat": "both",
+      "priceCoins": 180,
+      "layer": "substrate",
+      "footprint": {
+        "width": 448,
+        "height": 28
+      },
+      "anchor": "bottom",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "substrate",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/substrate-white-sand.png"
+    },
+    {
+      "id": "substrate-rainbow-pebbles",
+      "name": "五彩石底",
+      "category": "substrate",
+      "habitat": "both",
+      "priceCoins": 180,
+      "layer": "substrate",
+      "footprint": {
+        "width": 448,
+        "height": 28
+      },
+      "anchor": "bottom",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "substrate",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/substrate-rainbow-pebbles.png"
+    },
+    {
+      "id": "substrate-coral-sand",
+      "name": "珊瑚砂",
+      "category": "substrate",
+      "habitat": "saltwater",
+      "priceCoins": 180,
+      "layer": "substrate",
+      "footprint": {
+        "width": 448,
+        "height": 28
+      },
+      "anchor": "bottom",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "substrate",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/substrate-coral-sand.png"
+    },
+    {
+      "id": "rock-round",
+      "name": "圆石",
+      "category": "rock",
+      "habitat": "both",
+      "priceCoins": 0,
+      "layer": "mid",
+      "footprint": {
+        "width": 48,
+        "height": 24
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 1,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/rock-round.png"
+    },
+    {
+      "id": "rock-dragon",
+      "name": "龙石",
+      "category": "rock",
+      "habitat": "freshwater",
+      "priceCoins": 420,
+      "layer": "mid",
+      "footprint": {
+        "width": 68,
+        "height": 48
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 2,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/rock-dragon.png"
+    },
+    {
+      "id": "rock-volcanic",
+      "name": "火山石",
+      "category": "rock",
+      "habitat": "both",
+      "priceCoins": 420,
+      "layer": "mid",
+      "footprint": {
+        "width": 64,
+        "height": 44
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 2,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/rock-volcanic.png"
+    },
+    {
+      "id": "rock-slate-cave",
+      "name": "板岩洞",
+      "category": "rock",
+      "habitat": "both",
+      "priceCoins": 700,
+      "layer": "mid",
+      "footprint": {
+        "width": 96,
+        "height": 56
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 3,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/rock-slate-cave.png"
+    },
+    {
+      "id": "rock-coral",
+      "name": "珊瑚石",
+      "category": "rock",
+      "habitat": "saltwater",
+      "priceCoins": 700,
+      "layer": "mid",
+      "footprint": {
+        "width": 84,
+        "height": 64
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 3,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/rock-coral.png"
+    },
+    {
+      "id": "rock-pebble-cluster",
+      "name": "卵石簇",
+      "category": "rock",
+      "habitat": "both",
+      "priceCoins": 80,
+      "layer": "mid",
+      "footprint": {
+        "width": 52,
+        "height": 22
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 1,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/rock-pebble-cluster.png"
+    },
+    {
+      "id": "plant-grass",
+      "name": "苦草",
+      "category": "plant",
+      "habitat": "freshwater",
+      "priceCoins": 0,
+      "layer": "front",
+      "footprint": {
+        "width": 28,
+        "height": 64
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": true,
+      "load": 1,
+      "slot": "decor",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/plant-grass.png"
+    },
+    {
+      "id": "plant-anubias",
+      "name": "水榕",
+      "category": "plant",
+      "habitat": "freshwater",
+      "priceCoins": 180,
+      "layer": "front",
+      "footprint": {
+        "width": 52,
+        "height": 48
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": true,
+      "load": 1,
+      "slot": "decor",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/plant-anubias.png"
+    },
+    {
+      "id": "plant-java-fern",
+      "name": "铁皇冠",
+      "category": "plant",
+      "habitat": "freshwater",
+      "priceCoins": 260,
+      "layer": "back",
+      "footprint": {
+        "width": 48,
+        "height": 72
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": true,
+      "load": 2,
+      "slot": "decor",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/plant-java-fern.png"
+    },
+    {
+      "id": "plant-red-rotala",
+      "name": "红宫廷",
+      "category": "plant",
+      "habitat": "freshwater",
+      "priceCoins": 360,
+      "layer": "back",
+      "footprint": {
+        "width": 44,
+        "height": 84
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": true,
+      "load": 2,
+      "slot": "decor",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/plant-red-rotala.png"
+    },
+    {
+      "id": "plant-moss-ball",
+      "name": "莫丝球",
+      "category": "plant",
+      "habitat": "freshwater",
+      "priceCoins": 120,
+      "layer": "front",
+      "footprint": {
+        "width": 32,
+        "height": 28
+      },
+      "anchor": "bottom-center",
+      "mirrorable": false,
+      "animated": false,
+      "load": 1,
+      "slot": "decor",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/plant-moss-ball.png"
+    },
+    {
+      "id": "plant-kelp",
+      "name": "海带",
+      "category": "plant",
+      "habitat": "saltwater",
+      "priceCoins": 260,
+      "layer": "back",
+      "footprint": {
+        "width": 40,
+        "height": 92
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": true,
+      "load": 2,
+      "slot": "decor",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/plant-kelp.png"
+    },
+    {
+      "id": "plant-sea-fan",
+      "name": "海扇",
+      "category": "plant",
+      "habitat": "saltwater",
+      "priceCoins": 360,
+      "layer": "front",
+      "footprint": {
+        "width": 72,
+        "height": 76
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": true,
+      "load": 2,
+      "slot": "decor",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/plant-sea-fan.png"
+    },
+    {
+      "id": "plant-coral-cluster",
+      "name": "珊瑚簇",
+      "category": "plant",
+      "habitat": "saltwater",
+      "priceCoins": 600,
+      "layer": "front",
+      "footprint": {
+        "width": 80,
+        "height": 64
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": true,
+      "load": 3,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/plant-coral-cluster.png"
+    },
+    {
+      "id": "wood-twig",
+      "name": "枯木枝",
+      "category": "wood",
+      "habitat": "freshwater",
+      "priceCoins": 240,
+      "layer": "mid",
+      "footprint": {
+        "width": 68,
+        "height": 36
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 1,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/wood-twig.png"
+    },
+    {
+      "id": "wood-arch",
+      "name": "拱形沉木",
+      "category": "wood",
+      "habitat": "freshwater",
+      "priceCoins": 360,
+      "layer": "mid",
+      "footprint": {
+        "width": 92,
+        "height": 52
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 2,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/wood-arch.png"
+    },
+    {
+      "id": "wood-spider",
+      "name": "蜘蛛木",
+      "category": "wood",
+      "habitat": "freshwater",
+      "priceCoins": 420,
+      "layer": "mid",
+      "footprint": {
+        "width": 104,
+        "height": 68
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 2,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/wood-spider.png"
+    },
+    {
+      "id": "wood-root",
+      "name": "树根主体",
+      "category": "wood",
+      "habitat": "freshwater",
+      "priceCoins": 700,
+      "layer": "mid",
+      "footprint": {
+        "width": 128,
+        "height": 88
+      },
+      "anchor": "bottom-center",
+      "mirrorable": true,
+      "animated": false,
+      "load": 3,
+      "slot": "decor",
+      "opaque": true,
+      "asset": "assets/aquarium/catalog/wood-root.png"
+    },
+    {
+      "id": "background-gradient",
+      "name": "深浅渐变",
+      "category": "background",
+      "habitat": "both",
+      "priceCoins": 120,
+      "layer": "background",
+      "footprint": {
+        "width": 448,
+        "height": 192
+      },
+      "anchor": "fill",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "background",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/background-gradient.png"
+    },
+    {
+      "id": "background-planted-bank",
+      "name": "水草岸",
+      "category": "background",
+      "habitat": "freshwater",
+      "priceCoins": 240,
+      "layer": "background",
+      "footprint": {
+        "width": 448,
+        "height": 192
+      },
+      "anchor": "fill",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "background",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/background-planted-bank.png"
+    },
+    {
+      "id": "background-coral-reef",
+      "name": "珊瑚礁",
+      "category": "background",
+      "habitat": "saltwater",
+      "priceCoins": 300,
+      "layer": "background",
+      "footprint": {
+        "width": 448,
+        "height": 192
+      },
+      "anchor": "fill",
+      "mirrorable": false,
+      "animated": false,
+      "load": 0,
+      "slot": "background",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/background-coral-reef.png"
+    },
+    {
+      "id": "effect-soft-bubbles",
+      "name": "柔和气泡",
+      "category": "effect",
+      "habitat": "both",
+      "priceCoins": 180,
+      "layer": "effect",
+      "footprint": {
+        "width": 0,
+        "height": 0
+      },
+      "anchor": "fill",
+      "mirrorable": false,
+      "animated": true,
+      "load": 0,
+      "slot": "effect",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/effect-soft-bubbles.png"
+    },
+    {
+      "id": "effect-warm-cool-light",
+      "name": "暖冷灯色",
+      "category": "effect",
+      "habitat": "both",
+      "priceCoins": 180,
+      "layer": "lighting",
+      "footprint": {
+        "width": 0,
+        "height": 0
+      },
+      "anchor": "fill",
+      "mirrorable": false,
+      "animated": true,
+      "load": 0,
+      "slot": "effect",
+      "opaque": false,
+      "asset": "assets/aquarium/catalog/effect-warm-cool-light.png"
+    }
+  ]
+}

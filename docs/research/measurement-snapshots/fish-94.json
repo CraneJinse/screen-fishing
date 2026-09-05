@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-94",
+  "sourceUrl": "https://www.fishbase.se/summary/Solenostomus-paradoxus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 12,
+    "lengthUnit": "cm TL",
+    "commonLength": 8,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 12.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Solenostomus paradoxus"
+}

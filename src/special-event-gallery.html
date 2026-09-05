@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>摸鱼搭子 · 特殊事件新图鉴</title><link rel="stylesheet" href="special-event-gallery.css"></head>
+<body>
+  <header><p class="eyebrow">摸鱼搭子 · 特殊事件</p><h1>从水面带回的小故事</h1>
+    <p>同一只漂流瓶，四种心情。科研遗物与生态物件，也有了各自的纹理与细节。</p>
+    <div class="controls">
+      <label>查看 <select id="mode"><option value="designs">34 款独立设计</option><option value="collection">全部 60 条收藏</option></select></label>
+      <label>系列 <select id="series"><option value="all">全部系列</option><option value="drift_bottle">漂流瓶</option><option value="research_salvage">科研标记</option><option value="eco_cleanup">生态守护</option></select></label>
+      <label>展示尺寸 <select id="size"><option value="64">64 px · 游戏尺寸</option><option value="128" selected>128 px · 细节</option><option value="256">256 px · 原图</option></select></label>
+      <button id="motion" type="button" aria-pressed="true">暂停动画</button>
+      <label class="frame-control">逐帧 <input id="frame" type="range" min="0" max="5" step="1" value="0"><output id="frameLabel">1 / 6</output></label>
+    </div>
+  </header>
+  <main id="gallery"></main><p id="empty" hidden>没有匹配的事件。</p>
+  <footer>静态图在左，上钩动作在右。向下滚动查看所有设计；暂停后拖动逐帧滑块查看动作细节。</footer>
+  <script src="special-events.js"></script><script src="special-event-gallery.js"></script>
+</body></html>

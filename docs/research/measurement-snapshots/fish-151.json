@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-151",
+  "sourceUrl": "https://www.fishbase.se/summary/Synodontis-nigriventris.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 9.6,
+    "lengthUnit": "cm TL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 9.6 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Synodontis nigriventris"
+}

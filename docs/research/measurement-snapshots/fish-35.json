@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-35",
+  "sourceUrl": "https://www.fishbase.se/summary/Channa-argus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 150,
+    "lengthUnit": "cm TL",
+    "commonLength": 60,
+    "maximumWeightG": 8000
+  },
+  "excerpt": "Max length : 150 cm TL male/unsexed; common length : 60.0 cm TL male/unsexed; max. published weight: 8.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Channa argus"
+}

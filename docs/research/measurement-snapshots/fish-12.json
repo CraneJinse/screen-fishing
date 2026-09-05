@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-12",
+  "sourceUrl": "https://www.fishbase.se/summary/Boraras_brigittae.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 3.5,
+    "lengthUnit": "cm TL",
+    "commonLength": 1.8,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 3.5 cm TL male/unsexed; common length : 1.8 cm SL male/unsexed",
+  "evidenceStatus": "captured",
+  "scientificName": "Boraras brigittae"
+}

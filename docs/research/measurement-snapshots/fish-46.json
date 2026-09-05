@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-46",
+  "sourceUrl": "https://www.fishbase.se/summary/Pantodon-buchholzi.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 11.9,
+    "lengthUnit": "cm TL",
+    "commonLength": 7.5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 11.9 cm TL male/unsexed; observed maximum length of 15.0 cm TL in aquarium.",
+  "evidenceStatus": "captured",
+  "scientificName": "Pantodon buchholzi"
+}

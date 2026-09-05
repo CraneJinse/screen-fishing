@@ -1,0 +1,51 @@
+{
+  "fishId": "fish-24",
+  "name": "锦鲤",
+  "variant": "normal",
+  "source": "assets/fish/variants/f1/icons/24-normal.png",
+  "sourceSha256": "ffef6852f8ef7b33a4781050fbb8ded12eb1a041b274cf02e3d3b0a8eef0895c",
+  "sizes": [
+    16,
+    20,
+    24,
+    32,
+    48,
+    64,
+    128,
+    256
+  ],
+  "files": [
+    {
+      "size": 16,
+      "sha256": "ac503dd578a2e3582e9d4b62e7ce1d12a2d94afd6a3a53f34ab7497c69f5c3f5"
+    },
+    {
+      "size": 20,
+      "sha256": "aa7450bd2791d5caf950b8f5a14f4155a273b1926cff18d113d3ad03b6508e14"
+    },
+    {
+      "size": 24,
+      "sha256": "d4a88599d7b368f7a8f59a45f325c78ef493a56ebb7c2d6bfd9d7720171e74a1"
+    },
+    {
+      "size": 32,
+      "sha256": "55644a3f29f8f530c24839ae4de7811d9f8dc249e99ed19ed8469ea553395670"
+    },
+    {
+      "size": 48,
+      "sha256": "45d2c73665172f9966556fcb2e406df6247ec0f602685d18d5663a137ab9248c"
+    },
+    {
+      "size": 64,
+      "sha256": "d2b20f886821694a218c44fcb8228ab50d02a5f064cd7e6b9bc998df65f219c6"
+    },
+    {
+      "size": 128,
+      "sha256": "63db3fbe0035d8aef8ccfeee132bb8c138559e53e0ce706cb02c3181c29ae0d6"
+    },
+    {
+      "size": 256,
+      "sha256": "e6c40681993efb76b31e4aa9298dac4348226ee806be7aed289a0129b45cdbb1"
+    }
+  ]
+}

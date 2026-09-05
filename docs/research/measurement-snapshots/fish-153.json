@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-153",
+  "sourceUrl": "https://www.fishbase.se/summary/Carassius-auratus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 48,
+    "lengthUnit": "cm TL",
+    "commonLength": 10,
+    "maximumWeightG": 1600
+  },
+  "excerpt": "Max length : 48.0 cm TL male/unsexed; common length : 10.0 cm TL male/unsexed; max. published weight: 1.6 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Carassius auratus"
+}

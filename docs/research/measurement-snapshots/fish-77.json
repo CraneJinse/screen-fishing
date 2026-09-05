@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-77",
+  "sourceUrl": "https://www.fishbase.se/summary/Antennarius-maculatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 15,
+    "lengthUnit": "cm TL",
+    "commonLength": 8,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 15.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Antennarius maculatus"
+}

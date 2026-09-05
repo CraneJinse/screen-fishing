@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-168",
+  "sourceUrl": "https://www.fishbase.se/summary/Pervagor_janthinosoma.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 13,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 13.0 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Pervagor janthinosoma"
+}

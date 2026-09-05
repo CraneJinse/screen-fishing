@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-118",
+  "sourceUrl": "https://www.fishbase.se/summary/Makaira-nigricans",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 500,
+    "lengthUnit": "TL",
+    "commonLength": 290,
+    "maximumWeightG": 636000
+  },
+  "excerpt": "Max length : 500 cm TL; common length : 290 cm TL; max. published weight: 636.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Makaira nigricans"
+}

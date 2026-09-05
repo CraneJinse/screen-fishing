@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-83",
+  "sourceUrl": "https://www.fishbase.se/summary/Epinephelus-striatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 122,
+    "lengthUnit": "cm TL",
+    "commonLength": 60,
+    "maximumWeightG": 25000
+  },
+  "excerpt": "Max length : 122 cm TL male/unsexed; max. published weight: 25.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Epinephelus striatus"
+}

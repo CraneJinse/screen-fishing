@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-102",
+  "sourceUrl": "https://www.fishbase.se/summary/Phycodurus_eques.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 35,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 35.0 cm TL",
+  "evidenceStatus": "captured",
+  "scientificName": "Phycodurus eques"
+}

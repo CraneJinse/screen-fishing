@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-19",
+  "sourceUrl": "https://www.fishbase.se/summary/Amphilophus-citrinellus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 24.4,
+    "lengthUnit": "cm SL",
+    "commonLength": 18,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 24.4 cm SL male/unsexed",
+  "evidenceStatus": "captured",
+  "scientificName": "Amphilophus citrinellus"
+}

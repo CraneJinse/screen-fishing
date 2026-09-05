@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-39",
+  "sourceUrl": "https://animaldiversity.org/accounts/Ambystoma_mexicanum/",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 30,
+    "lengthUnit": "cm TL",
+    "commonLength": 23,
+    "maximumWeightG": 110
+  },
+  "excerpt": "Axolotls average 20 cm and can grow to more than 30 cm TL; range mass 60 to 110 g",
+  "evidenceStatus": "captured",
+  "scientificName": "Ambystoma mexicanum"
+}

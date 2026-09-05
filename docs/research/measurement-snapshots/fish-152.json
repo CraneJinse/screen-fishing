@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-152",
+  "sourceUrl": "https://www.fishbase.se/summary/Hydrolycus_scomberoides.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 117,
+    "lengthUnit": "cm TL",
+    "commonLength": null,
+    "maximumWeightG": 17800
+  },
+  "excerpt": "Max length : 117 cm TL male/unsexed; max. published weight: 17.8 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Hydrolycus scomberoides"
+}

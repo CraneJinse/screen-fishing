@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-79",
+  "sourceUrl": "https://www.fishbase.se/summary/Caranx-melampygus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 117,
+    "lengthUnit": "cm FL",
+    "commonLength": 60,
+    "maximumWeightG": 43500
+  },
+  "excerpt": "Max length : 117 cm FL male/unsexed; common length : 60.0 cm TL male/unsexed; max. published weight: 43.5 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Caranx melampygus"
+}

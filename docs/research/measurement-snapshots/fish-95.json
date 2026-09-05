@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-95",
+  "sourceUrl": "https://www.fishbase.se/summary/Lutjanus-campechanus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 100,
+    "lengthUnit": "cm TL",
+    "commonLength": 60,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 100 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Lutjanus campechanus"
+}

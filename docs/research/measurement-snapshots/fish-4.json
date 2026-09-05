@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-4",
+  "sourceUrl": "https://www.fishbase.se/summary/Chromobotia-macracanthus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 30.5,
+    "lengthUnit": "cm TL",
+    "commonLength": 20,
+    "maximumWeightG": 469
+  },
+  "excerpt": "Max length : 30.5 cm TL male/unsexed; max. published weight: 469.00 g",
+  "evidenceStatus": "captured",
+  "scientificName": "Chromobotia macracanthus"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-105",
+  "sourceUrl": "https://www.fishbase.se/summary/Xiphias-gladius.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 455,
+    "lengthUnit": "FL",
+    "commonLength": 300,
+    "maximumWeightG": 650000
+  },
+  "excerpt": "Max length : 455 cm FL; common length : 300 cm TL; max. published weight: 650.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Xiphias gladius"
+}

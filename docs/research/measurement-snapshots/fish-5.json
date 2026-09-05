@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-5",
+  "sourceUrl": "https://www.fishbase.se/summary/Corydoras-paleatus",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 7.1,
+    "lengthUnit": "cm SL",
+    "commonLength": 5,
+    "maximumWeightG": 11.2
+  },
+  "excerpt": "Max length : 6.6 cm SL male/unsexed; 7.1 cm SL female; max. published weight: 11.20 g",
+  "evidenceStatus": "captured",
+  "scientificName": "Corydoras paleatus"
+}

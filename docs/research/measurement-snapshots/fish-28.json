@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-28",
+  "sourceUrl": "https://www.fishbase.se/summary/Phractocephalus-hemioliopterus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 135,
+    "lengthUnit": "cm TL",
+    "commonLength": 60,
+    "maximumWeightG": 44200
+  },
+  "excerpt": "Max length : 135 cm TL male/unsexed; common length : 60.0 cm TL; max. published weight: 44.2 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Phractocephalus hemioliopterus"
+}

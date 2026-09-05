@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-120",
+  "sourceUrl": "https://www.fishbase.se/summary/Anarrhichthys-ocellatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 240,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": 18400
+  },
+  "excerpt": "Max length : 240 cm TL; max. published weight: 18.4 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Anarrhichthys ocellatus"
+}

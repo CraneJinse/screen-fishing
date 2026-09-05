@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-24",
+  "sourceUrl": "https://www.fishbase.se/summary/Cyprinus-carpio.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 129,
+    "lengthUnit": "cm TL",
+    "commonLength": 31,
+    "maximumWeightG": 40100
+  },
+  "excerpt": "Max length : 129 cm TL male/unsexed; common length : 31.0 cm TL; max. published weight: 40.1 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Cyprinus carpio"
+}

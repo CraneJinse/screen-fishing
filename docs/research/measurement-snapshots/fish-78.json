@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-78",
+  "sourceUrl": "https://www.fishbase.se/summary/Genicanthus-personatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 21,
+    "lengthUnit": "cm TL",
+    "commonLength": 12,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 21.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Genicanthus personatus"
+}

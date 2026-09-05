@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-150",
+  "sourceUrl": "https://www.fishbase.se/summary/pseudoplatystoma-fasciatum.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 105,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": 70000
+  },
+  "excerpt": "Max length : 105 cm SL male/unsexed; max. published weight: 70.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Pseudoplatystoma fasciatum"
+}

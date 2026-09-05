@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-124",
+  "sourceUrl": "https://www.fishbase.se/summary/Carcharodon_carcharias.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 640,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 640 cm TL",
+  "evidenceStatus": "captured",
+  "scientificName": "Carcharodon carcharias"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-26",
+  "sourceUrl": "https://www.fishbase.se/summary/Potamotrygon-leopoldi.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 111,
+    "lengthUnit": "cm WD",
+    "commonLength": 70,
+    "maximumWeightG": 17000
+  },
+  "excerpt": "Max length : 111 cm WD male/unsexed; max. published weight: 17.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Potamotrygon leopoldi"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-23",
+  "sourceUrl": "https://www.fishbase.se/summary/Parambassis_ranga.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 9.5,
+    "lengthUnit": "cm TL",
+    "commonLength": 6,
+    "maximumWeightG": 11.53
+  },
+  "excerpt": "Max length : 9.5 cm TL male/unsexed; max. published weight: 11.53 g",
+  "evidenceStatus": "captured",
+  "scientificName": "Parambassis ranga"
+}

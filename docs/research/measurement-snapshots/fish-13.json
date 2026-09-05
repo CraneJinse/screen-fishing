@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-13",
+  "sourceUrl": "https://conchsoc.org/node/5381",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 4,
+    "lengthUnit": "cm shell diameter",
+    "commonLength": 3.5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Planorbarius corneus may reach 35 mm; conservative source-backed maximum recorded here: 4 cm shell diameter",
+  "evidenceStatus": "captured",
+  "scientificName": "Planorbarius corneus"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-66",
+  "sourceUrl": "https://www.fishbase.se/summary/Synchiropus-splendidus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 7,
+    "lengthUnit": "cm TL",
+    "commonLength": 5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 7.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Synchiropus splendidus"
+}

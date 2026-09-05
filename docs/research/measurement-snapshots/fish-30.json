@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-30",
+  "sourceUrl": "https://www.fishbase.se/summary/Lepomis-cyanellus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 31,
+    "lengthUnit": "cm TL",
+    "commonLength": 20,
+    "maximumWeightG": 960
+  },
+  "excerpt": "Max length : 31.0 cm TL male/unsexed; common length : 20.0 cm TL male/unsexed; max. published weight: 960.00 g",
+  "evidenceStatus": "captured",
+  "scientificName": "Lepomis cyanellus"
+}

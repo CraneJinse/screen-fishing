@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>摸鱼搭子桌宠</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="pet-runtime.css"></head>
+<body><main id="petStage" class="pet-stage" aria-label="摸鱼搭子桌宠">
+  <div id="petBody" class="pet-body" role="button" tabindex="0" aria-label="拖动桌宠；中鱼时单击收杆">
+    <div id="sprite" class="sprite" aria-hidden="true"></div><img id="fallbackSprite" class="fallback-sprite" alt="佩琪坐在木船上钓鱼">
+    <div id="catchSprite" class="catch-sprite" hidden aria-hidden="true"></div>
+    <div id="biteSignal" class="bite-signal" hidden aria-hidden="true"></div>
+  </div>
+  <nav id="quickTools" class="quick-tools" aria-label="快捷操作" hidden><button id="quickCast" type="button" title="抛竿" aria-label="抛竿"><img src="../assets/ui/icons/cast.svg" alt=""></button><button id="quickReel" type="button" title="收杆" aria-label="收杆"><img src="../assets/ui/icons/reel.svg" alt=""></button><span class="scene-control"><button id="quickScene" type="button" title="切换垂钓场景" aria-label="切换垂钓场景"><img id="quickSceneIcon" src="../assets/ui/icons/freshwater.svg" alt=""></button><span id="scenePicker" class="scene-picker" hidden><button id="sceneFreshwater" data-habitat="freshwater" type="button" title="淡水垂钓池" aria-label="淡水垂钓池"><img src="../assets/ui/icons/freshwater.svg" alt=""></button><button id="sceneSaltwater" data-habitat="saltwater" type="button" title="咸水垂钓池" aria-label="咸水垂钓池"><img src="../assets/ui/icons/saltwater.svg" alt=""></button></span></span><button id="quickPanel" type="button" title="信息面板" aria-label="信息面板"><img src="../assets/ui/icons/panel.svg" alt=""></button></nav>
+  <output id="petFeedback" class="pet-feedback" aria-live="polite"></output><output id="castTimer" class="cast-timer" hidden aria-live="off">00:00</output>
+</main><script src="game-state.js"></script><script src="fish-variants.js"></script><script src="special-events.js"></script><script src="probability-system.js"></script><script src="achievement-system.js"></script><script src="game-state-runtime.js"></script><script src="sound-cues.js"></script><script src="pet-layout.js"></script><script src="renderer.js"></script></body></html>

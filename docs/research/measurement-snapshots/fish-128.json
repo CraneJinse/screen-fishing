@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-128",
+  "sourceUrl": "https://australian.museum/learn/animals/fishes/coelacanth-latimeria-chalumnae-smith-1939/",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 200,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": 100000
+  },
+  "excerpt": "The species grows to about 2 m (200 cm TL) in length and nearly 100 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Latimeria chalumnae"
+}

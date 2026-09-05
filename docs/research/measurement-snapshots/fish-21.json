@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-21",
+  "sourceUrl": "https://www.fishbase.se/summary/Astronotus-ocellatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 45.7,
+    "lengthUnit": "cm TL",
+    "commonLength": 24,
+    "maximumWeightG": 1600
+  },
+  "excerpt": "Max length : 45.7 cm TL male/unsexed; common length : 24.0 cm TL; max. published weight: 1.6 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Astronotus ocellatus"
+}

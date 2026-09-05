@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-100",
+  "sourceUrl": "https://www.fishbase.se/summary/Scorpaena-scrofa.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 50,
+    "lengthUnit": "cm TL",
+    "commonLength": 30,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 50.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Scorpaena scrofa"
+}

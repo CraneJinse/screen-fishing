@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-126",
+  "sourceUrl": "https://www.cms.int/species/cetorhinus-maximus",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 1000,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Specimens caught today usually fall between 6 to 10 meters (600 to 1000 cm TL) in length.",
+  "evidenceStatus": "captured",
+  "scientificName": "Cetorhinus maximus"
+}

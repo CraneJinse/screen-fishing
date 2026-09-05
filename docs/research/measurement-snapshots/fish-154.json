@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-154",
+  "sourceUrl": "https://www.fishbase.se/summary/Neoceratodus_forsteri.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 170,
+    "lengthUnit": "cm TL",
+    "commonLength": 100,
+    "maximumWeightG": 40000
+  },
+  "excerpt": "Max length : 170 cm TL male/unsexed; common length : 100.0 cm TL male/unsexed; max. published weight: 40.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Neoceratodus forsteri"
+}

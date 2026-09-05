@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-31",
+  "sourceUrl": "https://www.fishbase.se/summary/Periophthalmus-barbarus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 14.7,
+    "lengthUnit": "cm SL",
+    "commonLength": 10,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 14.7 cm SL male/unsexed; maximum reported total length 165 mm; reports up to 250 mm probably misidentifications.",
+  "evidenceStatus": "captured",
+  "scientificName": "Periophthalmus barbarus"
+}

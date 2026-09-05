@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-138",
+  "sourceUrl": "https://www.fishbase.se/summary/Gasteropelecus_sternicla.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 4,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 4.0 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Gasteropelecus sternicla"
+}

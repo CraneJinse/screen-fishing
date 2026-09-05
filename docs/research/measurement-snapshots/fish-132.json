@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-132",
+  "sourceUrl": "https://www.fws.gov/sites/default/files/documents/Ecological-Risk-Screening-Summary-Kuhli-Loach.pdf",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 12,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 12.0 cm TL male/unsexed; [Riehl and Baensch 1991]",
+  "evidenceStatus": "captured",
+  "scientificName": "Pangio kuhlii"
+}

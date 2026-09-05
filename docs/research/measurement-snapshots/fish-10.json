@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-10",
+  "sourceUrl": "https://www.fishbase.se/summary/Betta_splendens.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 6.5,
+    "lengthUnit": "cm TL",
+    "commonLength": 5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 6.5 cm TL male/unsexed",
+  "evidenceStatus": "captured",
+  "scientificName": "Betta splendens"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-2",
+  "sourceUrl": "https://www.fishbase.se/summary/Paracheirodon-innesi.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 2.5,
+    "lengthUnit": "cm SL",
+    "commonLength": 2.5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 2.5 cm SL male/unsexed",
+  "evidenceStatus": "captured",
+  "scientificName": "Paracheirodon innesi"
+}

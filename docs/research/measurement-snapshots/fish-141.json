@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-141",
+  "sourceUrl": "https://www.fishbase.se/summary/Acantopsis-dialuzona.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 25,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": 50
+  },
+  "excerpt": "Max length : 25.0 cm SL male/unsexed; max. published weight: 50.00 g.",
+  "evidenceStatus": "captured",
+  "scientificName": "Acantopsis dialuzona"
+}

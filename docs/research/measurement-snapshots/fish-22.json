@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-22",
+  "sourceUrl": "https://www.fishbase.se/summary/Gnathonemus_petersii.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 35,
+    "lengthUnit": "cm SL",
+    "commonLength": 25,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 35.0 cm SL male/unsexed",
+  "evidenceStatus": "captured",
+  "scientificName": "Gnathonemus petersii"
+}

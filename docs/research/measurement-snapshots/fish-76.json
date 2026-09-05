@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-76",
+  "sourceUrl": "https://www.fishbase.se/summary/Pterois-volitans.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 45.7,
+    "lengthUnit": "cm TL",
+    "commonLength": 25,
+    "maximumWeightG": 1400
+  },
+  "excerpt": "Max length : 45.7 cm TL male/unsexed; max. published weight: 1.4 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Pterois volitans"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-54",
+  "sourceUrl": "https://www.fishbase.se/summary/Cirrhilabrus-exquisitus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 12,
+    "lengthUnit": "cm SL",
+    "commonLength": 8,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 12.0 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Cirrhilabrus exquisitus"
+}

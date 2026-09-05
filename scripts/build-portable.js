@@ -1,0 +1,16 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:child_process');
+if(process.platform!=='win32'||process.arch!=='x64')throw Error('Build on Windows x64.');
+const root=path.resolve(__dirname,'..'),pkg=require('../package.json'),base=path.join(root,'dist');
+if(!/^\d+\.\d+\.\d+$/.test(pkg.version))throw Error('Invalid version');
+const name='ScreenFishing-'+pkg.version+'-windows-x64',out=path.join(base,name),zip=out+'.zip';
+if(path.dirname(out)!==base||fs.existsSync(out)||fs.existsSync(zip))throw Error('Output exists or unsafe path. Back up and move previous output first.');
+fs.mkdirSync(base,{recursive:true});fs.cpSync(path.dirname(require('electron')),out,{recursive:true});fs.renameSync(path.join(out,'electron.exe'),path.join(out,'ScreenFishing.exe'));
+const iconResult=spawnSync('powershell.exe',['-NoProfile','-ExecutionPolicy','Bypass','-File',path.join(root,'scripts/set-executable-icon.ps1'),'-Executable',path.join(out,'ScreenFishing.exe'),'-Icon',path.join(root,'assets/ui/tray/screen-fishing.ico'),'-ProductName',pkg.productName,'-AppVersion',pkg.version],{encoding:'utf8',windowsHide:true,timeout:30000});if(iconResult.status!==0)throw Error(iconResult.stderr||iconResult.stdout);
+const app=path.join(out,'resources/app');fs.mkdirSync(app,{recursive:true});
+for(const name of ['main.js','preload.js','src','assets','data','README.md'])fs.cpSync(path.join(root,name),path.join(app,name),{recursive:true});
+fs.writeFileSync(path.join(app,'package.json'),JSON.stringify({name:pkg.name,productName:pkg.productName,version:pkg.version,main:'main.js',private:true,license:'MIT'},null,2));
+for(const name of ['README.md','ASSET_NOTICE.md','THIRD_PARTY_NOTICES.md','CHANGELOG.md','CONTRIBUTING.md'])fs.copyFileSync(path.join(root,name),path.join(out,name));
+fs.copyFileSync(path.join(root,'LICENSE'),path.join(out,'PROJECT_LICENSE.txt'));fs.cpSync(path.join(root,'docs'),path.join(out,'docs'),{recursive:true});
+fs.writeFileSync(path.join(out,'README.md'),fs.readFileSync(path.join(out,'README.md'),'utf8').replace('(assets/','(resources/app/assets/').replace('[MIT](LICENSE)','[MIT](PROJECT_LICENSE.txt)'));
+const r=spawnSync('tar.exe',['-a','-c','-f',zip,'-C',base,name],{encoding:'utf8'});if(r.status)throw Error(r.stderr);console.log(JSON.stringify({out,zip}));

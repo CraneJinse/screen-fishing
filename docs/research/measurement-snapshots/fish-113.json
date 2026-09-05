@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-113",
+  "sourceUrl": "https://www.fishbase.org/summary/Coryphaena_hippurus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 210,
+    "lengthUnit": "TL",
+    "commonLength": 100,
+    "maximumWeightG": 40000
+  },
+  "excerpt": "Max length : 210 cm TL male/unsexed; common length : 100.0 cm TL male/unsexed; max. published weight: 40.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Coryphaena hippurus"
+}

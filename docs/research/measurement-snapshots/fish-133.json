@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-133",
+  "sourceUrl": "https://www.fishbase.se/summary/64653",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 3.3,
+    "lengthUnit": "SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 3.3 cm SL",
+  "evidenceStatus": "captured",
+  "scientificName": "Hemigrammus rhodostomus"
+}

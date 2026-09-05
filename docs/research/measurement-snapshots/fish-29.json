@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-29",
+  "sourceUrl": "https://www.fishbase.se/summary/Sander-vitreus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 107,
+    "lengthUnit": "cm FL",
+    "commonLength": 54,
+    "maximumWeightG": 11300
+  },
+  "excerpt": "Max length : 107 cm FL male/unsexed; common length : 54.0 cm TL; max. published weight: 11.3 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Sander vitreus"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-111",
+  "sourceUrl": "https://www.fishbase.se/summary/Acanthocybium-solandri.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 250,
+    "lengthUnit": "TL",
+    "commonLength": 170,
+    "maximumWeightG": 83000
+  },
+  "excerpt": "Max length : 250 cm TL; common length : 170 cm FL; max. published weight: 83.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Acanthocybium solandri"
+}

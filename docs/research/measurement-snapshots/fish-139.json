@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-139",
+  "sourceUrl": "https://indiabiodiversity.org/species/show/232133",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 15,
+    "lengthUnit": "cm TL",
+    "commonLength": 7,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max Length 15 cm TL (unsexed); Size 7.0 cm SL (male/unsexed).",
+  "evidenceStatus": "captured",
+  "scientificName": "Dermogenys pusillus"
+}

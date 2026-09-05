@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-57",
+  "sourceUrl": "https://www.fishbase.se/summary/Paracanthurus-hepatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 31,
+    "lengthUnit": "cm TL",
+    "commonLength": 17,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 31.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Paracanthurus hepatus"
+}

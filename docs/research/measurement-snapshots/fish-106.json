@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-106",
+  "sourceUrl": "https://www.fishbase.se/summary/1079",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 250,
+    "lengthUnit": "TL",
+    "commonLength": 130,
+    "maximumWeightG": 161000
+  },
+  "excerpt": "Max length : 250 cm TL; common length : 130 cm TL; max. published weight: 161.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Megalops atlanticus"
+}

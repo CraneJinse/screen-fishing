@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-64",
+  "sourceUrl": "https://www.fishbase.se/summary/Centropyge-loricula.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 15,
+    "lengthUnit": "cm TL",
+    "commonLength": 8,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 15.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Centropyge loricula"
+}

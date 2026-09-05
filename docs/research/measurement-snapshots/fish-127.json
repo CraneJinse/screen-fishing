@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-127",
+  "sourceUrl": "https://www.fishbase.se/summary/Rhincodon-typus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 1700,
+    "lengthUnit": "cm TL",
+    "commonLength": 1000,
+    "maximumWeightG": 34000000
+  },
+  "excerpt": "Max length : 1700 cm TL; common length : 1000 cm TL; max. published weight: 34.0 t",
+  "evidenceStatus": "captured",
+  "scientificName": "Rhincodon typus"
+}

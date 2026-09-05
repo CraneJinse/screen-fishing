@@ -1,0 +1,1642 @@
+{
+  "sampleSize": 200,
+  "summary": {
+    "F2": {
+      "completed": 200,
+      "total": 200,
+      "encounters": {
+        "p10": 41,
+        "median": 81,
+        "p90": 109,
+        "min": 22,
+        "max": 139,
+        "mean": 78.24
+      },
+      "fish": {
+        "p10": 34,
+        "median": 64,
+        "p90": 88,
+        "min": 18,
+        "max": 110,
+        "mean": 62.25
+      },
+      "seconds": {
+        "p10": 17084.14,
+        "median": 34995.407,
+        "p90": 47661.773,
+        "min": 7940.907,
+        "max": 61584.27,
+        "mean": 33674.33745500001
+      }
+    },
+    "S1": {
+      "completed": 200,
+      "total": 200,
+      "encounters": {
+        "p10": 124,
+        "median": 184,
+        "p90": 236,
+        "min": 74,
+        "max": 269,
+        "mean": 183.345
+      },
+      "fish": {
+        "p10": 100,
+        "median": 145,
+        "p90": 186,
+        "min": 60,
+        "max": 213,
+        "mean": 145.41
+      },
+      "seconds": {
+        "p10": 53897.787,
+        "median": 81384.116,
+        "p90": 105572.922,
+        "min": 31088.403,
+        "max": 120252.02,
+        "mean": 81547.31690500003
+      }
+    },
+    "S2": {
+      "completed": 200,
+      "total": 200,
+      "encounters": {
+        "p10": 240,
+        "median": 316,
+        "p90": 389,
+        "min": 150,
+        "max": 455,
+        "mean": 313.775
+      },
+      "fish": {
+        "p10": 189,
+        "median": 251,
+        "p90": 306,
+        "min": 120,
+        "max": 359,
+        "mean": 248.625
+      },
+      "seconds": {
+        "p10": 107767.45,
+        "median": 141989.728,
+        "p90": 174758.81,
+        "min": 66828.128,
+        "max": 206610.449,
+        "mean": 141091.0369599999
+      }
+    },
+    "species152": {
+      "completed": 200,
+      "total": 200,
+      "encounters": {
+        "p10": 1473,
+        "median": 2104,
+        "p90": 3015,
+        "min": 1141,
+        "max": 4969,
+        "mean": 2201.56
+      },
+      "fish": {
+        "p10": 1170,
+        "median": 1668,
+        "p90": 2403,
+        "min": 905,
+        "max": 3949,
+        "mean": 1744.21
+      },
+      "seconds": {
+        "p10": 669405.107,
+        "median": 956475.981,
+        "p90": 1373872.204,
+        "min": 519662.228,
+        "max": 2267259.962,
+        "mean": 1002132.4352800004
+      }
+    },
+    "special60": {
+      "completed": 200,
+      "total": 200,
+      "encounters": {
+        "p10": 574,
+        "median": 646,
+        "p90": 725,
+        "min": 486,
+        "max": 824,
+        "mean": 644.685
+      },
+      "fish": {
+        "p10": 453,
+        "median": 510,
+        "p90": 570,
+        "min": 385,
+        "max": 656,
+        "mean": 510.165
+      },
+      "seconds": {
+        "p10": 258832.888,
+        "median": 291641.002,
+        "p90": 328888.2,
+        "min": 219865.166,
+        "max": 374133.953,
+        "mean": 291937.9588300001
+      }
+    },
+    "achievements71": {
+      "completed": 200,
+      "total": 200,
+      "encounters": {
+        "p10": 2516,
+        "median": 2531,
+        "p90": 3054,
+        "min": 2499,
+        "max": 4969,
+        "mean": 2669.11
+      },
+      "fish": {
+        "p10": 2000,
+        "median": 2000,
+        "p90": 2426,
+        "min": 2000,
+        "max": 3949,
+        "mean": 2114.245
+      },
+      "seconds": {
+        "p10": 1145466.079,
+        "median": 1152791.626,
+        "p90": 1393262.24,
+        "min": 1136791.605,
+        "max": 2267259.962,
+        "mean": 1215361.9611699998
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "seed": 20260905,
+      "policy": "no-selling",
+      "milestones": {
+        "special60": {
+          "encounters": 619,
+          "fish": 489,
+          "seconds": 279016.341
+        }
+      },
+      "encounters": 4000,
+      "fish": 3148,
+      "seconds": 1826067.543,
+      "species": 38,
+      "events": 60,
+      "achievements": 49,
+      "missing": [
+        "species-50",
+        "unique-76",
+        "species-100",
+        "species-125",
+        "all-species",
+        "pack-f2-complete",
+        "pack-s1-complete",
+        "pack-s2-complete",
+        "variant-pairs-200",
+        "length-record",
+        "length-200",
+        "weight-record",
+        "weight-50",
+        "sale-first",
+        "sale-10",
+        "sale-100",
+        "earned-1000",
+        "earned-10000",
+        "earned-50000",
+        "own-f2",
+        "own-s1",
+        "own-s2"
+      ],
+      "unlockedAt": {
+        "first-cast": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "first-catch": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "weight-at-most-10g": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "rare": {
+          "encounters": 2,
+          "fish": 2,
+          "seconds": 70.581
+        },
+        "length-at-most-5": {
+          "encounters": 2,
+          "fish": 2,
+          "seconds": 70.581
+        },
+        "first-alternate": {
+          "encounters": 3,
+          "fish": 3,
+          "seconds": 134.214
+        },
+        "research-1": {
+          "encounters": 4,
+          "fish": 3,
+          "seconds": 211.058
+        },
+        "corners": {
+          "encounters": 4,
+          "fish": 3,
+          "seconds": 211.058
+        },
+        "species-5": {
+          "encounters": 7,
+          "fish": 6,
+          "seconds": 1216.253
+        },
+        "bottles-1": {
+          "encounters": 10,
+          "fish": 8,
+          "seconds": 2419.28
+        },
+        "five-unique-window": {
+          "encounters": 11,
+          "fish": 9,
+          "seconds": 2807.932
+        },
+        "ten-catches": {
+          "encounters": 12,
+          "fish": 10,
+          "seconds": 3242.275
+        },
+        "one-species-two-variants": {
+          "encounters": 15,
+          "fish": 12,
+          "seconds": 4631.176
+        },
+        "species-10": {
+          "encounters": 16,
+          "fish": 13,
+          "seconds": 5125.204
+        },
+        "eco-1": {
+          "encounters": 17,
+          "fish": 13,
+          "seconds": 5615.513
+        },
+        "legendary": {
+          "encounters": 21,
+          "fish": 16,
+          "seconds": 7457.244
+        },
+        "catches-25": {
+          "encounters": 32,
+          "fish": 25,
+          "seconds": 12536.112
+        },
+        "weight-1": {
+          "encounters": 48,
+          "fish": 38,
+          "seconds": 19801.714
+        },
+        "epic": {
+          "encounters": 53,
+          "fish": 42,
+          "seconds": 22132.252
+        },
+        "catches-50": {
+          "encounters": 64,
+          "fish": 50,
+          "seconds": 26884.996
+        },
+        "unique-25": {
+          "encounters": 69,
+          "fish": 54,
+          "seconds": 29051.017
+        },
+        "bottles-10": {
+          "encounters": 107,
+          "fish": 83,
+          "seconds": 46377.282
+        },
+        "hundred-catches": {
+          "encounters": 128,
+          "fish": 100,
+          "seconds": 55901.256
+        },
+        "first-golden": {
+          "encounters": 128,
+          "fish": 100,
+          "seconds": 55901.256
+        },
+        "rare-25": {
+          "encounters": 132,
+          "fish": 103,
+          "seconds": 57853.788
+        },
+        "alternate-species-10": {
+          "encounters": 136,
+          "fish": 106,
+          "seconds": 59630.39
+        },
+        "one-species-three-variants": {
+          "encounters": 147,
+          "fish": 116,
+          "seconds": 64767.326
+        },
+        "eco-10": {
+          "encounters": 148,
+          "fish": 116,
+          "seconds": 65310.067
+        },
+        "length-50": {
+          "encounters": 149,
+          "fish": 117,
+          "seconds": 65751.822
+        },
+        "legendary-5": {
+          "encounters": 150,
+          "fish": 118,
+          "seconds": 66118.213
+        },
+        "special-30": {
+          "encounters": 155,
+          "fish": 121,
+          "seconds": 68494.033
+        },
+        "one-species-10": {
+          "encounters": 188,
+          "fish": 147,
+          "seconds": 83183.615
+        },
+        "mythic": {
+          "encounters": 241,
+          "fish": 191,
+          "seconds": 107408.219
+        },
+        "all-rarities": {
+          "encounters": 241,
+          "fish": 191,
+          "seconds": 107408.219
+        },
+        "first-iridescent": {
+          "encounters": 255,
+          "fish": 201,
+          "seconds": 113822.646
+        },
+        "epic-10": {
+          "encounters": 264,
+          "fish": 209,
+          "seconds": 117949.798
+        },
+        "pack-f1-complete": {
+          "encounters": 312,
+          "fish": 245,
+          "seconds": 139723.728
+        },
+        "catches-250": {
+          "encounters": 318,
+          "fish": 250,
+          "seconds": 142212.095
+        },
+        "golden-species-5": {
+          "encounters": 347,
+          "fish": 273,
+          "seconds": 155743.88
+        },
+        "eco-20": {
+          "encounters": 387,
+          "fish": 303,
+          "seconds": 173603.861
+        },
+        "one-species-30": {
+          "encounters": 496,
+          "fish": 392,
+          "seconds": 222950.321
+        },
+        "research-10": {
+          "encounters": 572,
+          "fish": 452,
+          "seconds": 257606.399
+        },
+        "mythic-3": {
+          "encounters": 607,
+          "fish": 480,
+          "seconds": 273579.758
+        },
+        "bottles-30": {
+          "encounters": 619,
+          "fish": 489,
+          "seconds": 279016.341
+        },
+        "catches-500": {
+          "encounters": 634,
+          "fish": 500,
+          "seconds": 285921.038
+        },
+        "iridescent-species-3": {
+          "encounters": 833,
+          "fish": 657,
+          "seconds": 377323.671
+        },
+        "one-species-four-variants": {
+          "encounters": 1199,
+          "fish": 946,
+          "seconds": 544704.773
+        },
+        "catches-1000": {
+          "encounters": 1266,
+          "fish": 1000,
+          "seconds": 574490.108
+        },
+        "catches-2000": {
+          "encounters": 2534,
+          "fish": 2000,
+          "seconds": 1153117.036
+        }
+      },
+      "missed": 0,
+      "unhook": 39,
+      "verifyCount": 0,
+      "retainedProtected": 36
+    },
+    {
+      "seed": 20260905,
+      "policy": "freshwater-only",
+      "milestones": {
+        "F2": {
+          "encounters": 97,
+          "fish": 76,
+          "seconds": 41624.778
+        },
+        "S1": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 85542.063
+        },
+        "S2": {
+          "encounters": 356,
+          "fish": 279,
+          "seconds": 159629.152
+        },
+        "special60": {
+          "encounters": 619,
+          "fish": 489,
+          "seconds": 279016.341
+        }
+      },
+      "encounters": 4000,
+      "fish": 3148,
+      "seconds": 1826067.543,
+      "species": 76,
+      "events": 60,
+      "achievements": 66,
+      "missing": [
+        "species-100",
+        "species-125",
+        "all-species",
+        "pack-s1-complete",
+        "pack-s2-complete"
+      ],
+      "unlockedAt": {
+        "first-cast": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "first-catch": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "weight-at-most-10g": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "sale-first": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "rare": {
+          "encounters": 2,
+          "fish": 2,
+          "seconds": 70.581
+        },
+        "length-at-most-5": {
+          "encounters": 2,
+          "fish": 2,
+          "seconds": 70.581
+        },
+        "first-alternate": {
+          "encounters": 3,
+          "fish": 3,
+          "seconds": 134.214
+        },
+        "research-1": {
+          "encounters": 4,
+          "fish": 3,
+          "seconds": 211.058
+        },
+        "corners": {
+          "encounters": 4,
+          "fish": 3,
+          "seconds": 211.058
+        },
+        "species-5": {
+          "encounters": 7,
+          "fish": 6,
+          "seconds": 1216.253
+        },
+        "bottles-1": {
+          "encounters": 10,
+          "fish": 8,
+          "seconds": 2419.28
+        },
+        "five-unique-window": {
+          "encounters": 11,
+          "fish": 9,
+          "seconds": 2807.932
+        },
+        "ten-catches": {
+          "encounters": 12,
+          "fish": 10,
+          "seconds": 3242.275
+        },
+        "sale-10": {
+          "encounters": 12,
+          "fish": 10,
+          "seconds": 3242.275
+        },
+        "one-species-two-variants": {
+          "encounters": 15,
+          "fish": 12,
+          "seconds": 4631.176
+        },
+        "species-10": {
+          "encounters": 16,
+          "fish": 13,
+          "seconds": 5125.204
+        },
+        "eco-1": {
+          "encounters": 17,
+          "fish": 13,
+          "seconds": 5615.513
+        },
+        "legendary": {
+          "encounters": 21,
+          "fish": 16,
+          "seconds": 7457.244
+        },
+        "earned-1000": {
+          "encounters": 21,
+          "fish": 16,
+          "seconds": 7457.244
+        },
+        "catches-25": {
+          "encounters": 32,
+          "fish": 25,
+          "seconds": 12536.112
+        },
+        "weight-1": {
+          "encounters": 48,
+          "fish": 38,
+          "seconds": 19801.714
+        },
+        "epic": {
+          "encounters": 53,
+          "fish": 42,
+          "seconds": 22132.252
+        },
+        "catches-50": {
+          "encounters": 64,
+          "fish": 50,
+          "seconds": 26884.996
+        },
+        "unique-25": {
+          "encounters": 69,
+          "fish": 54,
+          "seconds": 29051.017
+        },
+        "own-f2": {
+          "encounters": 97,
+          "fish": 76,
+          "seconds": 41624.778
+        },
+        "length-50": {
+          "encounters": 98,
+          "fish": 77,
+          "seconds": 42140.93
+        },
+        "bottles-10": {
+          "encounters": 107,
+          "fish": 83,
+          "seconds": 46377.282
+        },
+        "hundred-catches": {
+          "encounters": 128,
+          "fish": 100,
+          "seconds": 55901.256
+        },
+        "first-golden": {
+          "encounters": 128,
+          "fish": 100,
+          "seconds": 55901.256
+        },
+        "sale-100": {
+          "encounters": 130,
+          "fish": 101,
+          "seconds": 56981.216
+        },
+        "rare-25": {
+          "encounters": 132,
+          "fish": 103,
+          "seconds": 57853.788
+        },
+        "alternate-species-10": {
+          "encounters": 136,
+          "fish": 106,
+          "seconds": 59630.39
+        },
+        "one-species-three-variants": {
+          "encounters": 147,
+          "fish": 116,
+          "seconds": 64767.326
+        },
+        "eco-10": {
+          "encounters": 148,
+          "fish": 116,
+          "seconds": 65310.067
+        },
+        "legendary-5": {
+          "encounters": 150,
+          "fish": 118,
+          "seconds": 66118.213
+        },
+        "special-30": {
+          "encounters": 155,
+          "fish": 121,
+          "seconds": 68494.033
+        },
+        "length-record": {
+          "encounters": 157,
+          "fish": 123,
+          "seconds": 69314.514
+        },
+        "weight-record": {
+          "encounters": 157,
+          "fish": 123,
+          "seconds": 69314.514
+        },
+        "species-50": {
+          "encounters": 173,
+          "fish": 136,
+          "seconds": 76150.437
+        },
+        "earned-10000": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 85542.063
+        },
+        "own-s1": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 85542.063
+        },
+        "mythic": {
+          "encounters": 241,
+          "fish": 191,
+          "seconds": 107408.219
+        },
+        "all-rarities": {
+          "encounters": 241,
+          "fish": 191,
+          "seconds": 107408.219
+        },
+        "first-iridescent": {
+          "encounters": 255,
+          "fish": 201,
+          "seconds": 113822.646
+        },
+        "epic-10": {
+          "encounters": 264,
+          "fish": 209,
+          "seconds": 117949.798
+        },
+        "one-species-10": {
+          "encounters": 287,
+          "fish": 227,
+          "seconds": 128036.195
+        },
+        "catches-250": {
+          "encounters": 318,
+          "fish": 250,
+          "seconds": 142212.095
+        },
+        "golden-species-5": {
+          "encounters": 341,
+          "fish": 268,
+          "seconds": 152966.859
+        },
+        "own-s2": {
+          "encounters": 356,
+          "fish": 279,
+          "seconds": 159629.152
+        },
+        "length-200": {
+          "encounters": 381,
+          "fish": 299,
+          "seconds": 170942.458
+        },
+        "weight-50": {
+          "encounters": 381,
+          "fish": 299,
+          "seconds": 170942.458
+        },
+        "eco-20": {
+          "encounters": 387,
+          "fish": 303,
+          "seconds": 173603.861
+        },
+        "research-10": {
+          "encounters": 572,
+          "fish": 452,
+          "seconds": 257606.399
+        },
+        "mythic-3": {
+          "encounters": 607,
+          "fish": 480,
+          "seconds": 273579.758
+        },
+        "bottles-30": {
+          "encounters": 619,
+          "fish": 489,
+          "seconds": 279016.341
+        },
+        "catches-500": {
+          "encounters": 634,
+          "fish": 500,
+          "seconds": 285921.038
+        },
+        "pack-f2-complete": {
+          "encounters": 696,
+          "fish": 549,
+          "seconds": 314832.015
+        },
+        "unique-76": {
+          "encounters": 748,
+          "fish": 588,
+          "seconds": 338289.749
+        },
+        "pack-f1-complete": {
+          "encounters": 748,
+          "fish": 588,
+          "seconds": 338289.749
+        },
+        "iridescent-species-3": {
+          "encounters": 833,
+          "fish": 657,
+          "seconds": 377323.671
+        },
+        "earned-50000": {
+          "encounters": 895,
+          "fish": 706,
+          "seconds": 406390.694
+        },
+        "catches-1000": {
+          "encounters": 1266,
+          "fish": 1000,
+          "seconds": 574490.108
+        },
+        "one-species-30": {
+          "encounters": 1306,
+          "fish": 1030,
+          "seconds": 592758.955
+        },
+        "one-species-four-variants": {
+          "encounters": 1400,
+          "fish": 1104,
+          "seconds": 636301.419
+        },
+        "catches-2000": {
+          "encounters": 2534,
+          "fish": 2000,
+          "seconds": 1153117.036
+        },
+        "variant-pairs-200": {
+          "encounters": 3462,
+          "fish": 2728,
+          "seconds": 1578574.914
+        }
+      },
+      "missed": 0,
+      "unhook": 39,
+      "verifyCount": 0,
+      "retainedProtected": 54
+    },
+    {
+      "seed": 20260905,
+      "policy": "stationary",
+      "milestones": {
+        "F2": {
+          "encounters": 97,
+          "fish": 76,
+          "seconds": 41624.778
+        },
+        "S1": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 85542.063
+        },
+        "S2": {
+          "encounters": 326,
+          "fish": 256,
+          "seconds": 146072.851
+        },
+        "special60": {
+          "encounters": 619,
+          "fish": 489,
+          "seconds": 279016.341
+        },
+        "species152": {
+          "encounters": 1403,
+          "fish": 1107,
+          "seconds": 637590.72
+        }
+      },
+      "encounters": 4000,
+      "fish": 3148,
+      "seconds": 1826067.543,
+      "species": 152,
+      "events": 60,
+      "achievements": 70,
+      "missing": [
+        "corners"
+      ],
+      "unlockedAt": {
+        "first-cast": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "first-catch": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "weight-at-most-10g": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "sale-first": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "rare": {
+          "encounters": 2,
+          "fish": 2,
+          "seconds": 70.581
+        },
+        "length-at-most-5": {
+          "encounters": 2,
+          "fish": 2,
+          "seconds": 70.581
+        },
+        "first-alternate": {
+          "encounters": 3,
+          "fish": 3,
+          "seconds": 134.214
+        },
+        "research-1": {
+          "encounters": 4,
+          "fish": 3,
+          "seconds": 211.058
+        },
+        "species-5": {
+          "encounters": 7,
+          "fish": 6,
+          "seconds": 1216.253
+        },
+        "bottles-1": {
+          "encounters": 10,
+          "fish": 8,
+          "seconds": 2419.28
+        },
+        "five-unique-window": {
+          "encounters": 11,
+          "fish": 9,
+          "seconds": 2807.932
+        },
+        "ten-catches": {
+          "encounters": 12,
+          "fish": 10,
+          "seconds": 3242.275
+        },
+        "sale-10": {
+          "encounters": 12,
+          "fish": 10,
+          "seconds": 3242.275
+        },
+        "one-species-two-variants": {
+          "encounters": 15,
+          "fish": 12,
+          "seconds": 4631.176
+        },
+        "species-10": {
+          "encounters": 16,
+          "fish": 13,
+          "seconds": 5125.204
+        },
+        "eco-1": {
+          "encounters": 17,
+          "fish": 13,
+          "seconds": 5615.513
+        },
+        "legendary": {
+          "encounters": 21,
+          "fish": 16,
+          "seconds": 7457.244
+        },
+        "earned-1000": {
+          "encounters": 21,
+          "fish": 16,
+          "seconds": 7457.244
+        },
+        "catches-25": {
+          "encounters": 32,
+          "fish": 25,
+          "seconds": 12536.112
+        },
+        "weight-1": {
+          "encounters": 48,
+          "fish": 38,
+          "seconds": 19801.714
+        },
+        "epic": {
+          "encounters": 53,
+          "fish": 42,
+          "seconds": 22132.252
+        },
+        "catches-50": {
+          "encounters": 64,
+          "fish": 50,
+          "seconds": 26884.996
+        },
+        "unique-25": {
+          "encounters": 69,
+          "fish": 54,
+          "seconds": 29051.017
+        },
+        "own-f2": {
+          "encounters": 97,
+          "fish": 76,
+          "seconds": 41624.778
+        },
+        "length-50": {
+          "encounters": 98,
+          "fish": 77,
+          "seconds": 42140.93
+        },
+        "bottles-10": {
+          "encounters": 107,
+          "fish": 83,
+          "seconds": 46377.282
+        },
+        "hundred-catches": {
+          "encounters": 128,
+          "fish": 100,
+          "seconds": 55901.256
+        },
+        "first-golden": {
+          "encounters": 128,
+          "fish": 100,
+          "seconds": 55901.256
+        },
+        "sale-100": {
+          "encounters": 130,
+          "fish": 101,
+          "seconds": 56981.216
+        },
+        "rare-25": {
+          "encounters": 132,
+          "fish": 103,
+          "seconds": 57853.788
+        },
+        "alternate-species-10": {
+          "encounters": 136,
+          "fish": 106,
+          "seconds": 59630.39
+        },
+        "one-species-three-variants": {
+          "encounters": 147,
+          "fish": 116,
+          "seconds": 64767.326
+        },
+        "eco-10": {
+          "encounters": 148,
+          "fish": 116,
+          "seconds": 65310.067
+        },
+        "legendary-5": {
+          "encounters": 150,
+          "fish": 118,
+          "seconds": 66118.213
+        },
+        "special-30": {
+          "encounters": 155,
+          "fish": 121,
+          "seconds": 68494.033
+        },
+        "length-record": {
+          "encounters": 157,
+          "fish": 123,
+          "seconds": 69314.514
+        },
+        "weight-record": {
+          "encounters": 157,
+          "fish": 123,
+          "seconds": 69314.514
+        },
+        "species-50": {
+          "encounters": 173,
+          "fish": 136,
+          "seconds": 76150.437
+        },
+        "earned-10000": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 85542.063
+        },
+        "own-s1": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 85542.063
+        },
+        "mythic": {
+          "encounters": 241,
+          "fish": 191,
+          "seconds": 107408.219
+        },
+        "all-rarities": {
+          "encounters": 241,
+          "fish": 191,
+          "seconds": 107408.219
+        },
+        "unique-76": {
+          "encounters": 244,
+          "fish": 193,
+          "seconds": 108827.39
+        },
+        "first-iridescent": {
+          "encounters": 255,
+          "fish": 201,
+          "seconds": 113822.646
+        },
+        "epic-10": {
+          "encounters": 264,
+          "fish": 209,
+          "seconds": 117949.798
+        },
+        "catches-250": {
+          "encounters": 318,
+          "fish": 250,
+          "seconds": 142212.095
+        },
+        "own-s2": {
+          "encounters": 326,
+          "fish": 256,
+          "seconds": 146072.851
+        },
+        "one-species-10": {
+          "encounters": 330,
+          "fish": 259,
+          "seconds": 147880.078
+        },
+        "weight-50": {
+          "encounters": 338,
+          "fish": 265,
+          "seconds": 151715.367
+        },
+        "golden-species-5": {
+          "encounters": 341,
+          "fish": 268,
+          "seconds": 152966.859
+        },
+        "length-200": {
+          "encounters": 350,
+          "fish": 275,
+          "seconds": 157014.78
+        },
+        "species-100": {
+          "encounters": 381,
+          "fish": 299,
+          "seconds": 170942.458
+        },
+        "eco-20": {
+          "encounters": 387,
+          "fish": 303,
+          "seconds": 173603.861
+        },
+        "species-125": {
+          "encounters": 561,
+          "fish": 444,
+          "seconds": 252426.727
+        },
+        "research-10": {
+          "encounters": 572,
+          "fish": 452,
+          "seconds": 257606.399
+        },
+        "mythic-3": {
+          "encounters": 607,
+          "fish": 480,
+          "seconds": 273579.758
+        },
+        "bottles-30": {
+          "encounters": 619,
+          "fish": 489,
+          "seconds": 279016.341
+        },
+        "catches-500": {
+          "encounters": 634,
+          "fish": 500,
+          "seconds": 285921.038
+        },
+        "variant-pairs-200": {
+          "encounters": 807,
+          "fish": 637,
+          "seconds": 365395.871
+        },
+        "earned-50000": {
+          "encounters": 811,
+          "fish": 640,
+          "seconds": 367333.912
+        },
+        "iridescent-species-3": {
+          "encounters": 833,
+          "fish": 657,
+          "seconds": 377323.671
+        },
+        "pack-f1-complete": {
+          "encounters": 995,
+          "fish": 783,
+          "seconds": 450901.228
+        },
+        "pack-s1-complete": {
+          "encounters": 1078,
+          "fish": 852,
+          "seconds": 488358.235
+        },
+        "pack-f2-complete": {
+          "encounters": 1124,
+          "fish": 888,
+          "seconds": 509577.335
+        },
+        "catches-1000": {
+          "encounters": 1266,
+          "fish": 1000,
+          "seconds": 574490.108
+        },
+        "one-species-four-variants": {
+          "encounters": 1400,
+          "fish": 1104,
+          "seconds": 636301.419
+        },
+        "all-species": {
+          "encounters": 1403,
+          "fish": 1107,
+          "seconds": 637590.72
+        },
+        "pack-s2-complete": {
+          "encounters": 1403,
+          "fish": 1107,
+          "seconds": 637590.72
+        },
+        "one-species-30": {
+          "encounters": 2072,
+          "fish": 1634,
+          "seconds": 941918.951
+        },
+        "catches-2000": {
+          "encounters": 2534,
+          "fish": 2000,
+          "seconds": 1153117.036
+        }
+      },
+      "missed": 0,
+      "unhook": 39,
+      "verifyCount": 0,
+      "retainedProtected": 65
+    },
+    {
+      "seed": 20260905,
+      "policy": "miss-20pct",
+      "milestones": {
+        "F2": {
+          "encounters": 97,
+          "fish": 76,
+          "seconds": 46724.778
+        },
+        "S1": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 96642.063
+        },
+        "S2": {
+          "encounters": 326,
+          "fish": 256,
+          "seconds": 164672.851
+        },
+        "special60": {
+          "encounters": 619,
+          "fish": 489,
+          "seconds": 313516.341
+        },
+        "species152": {
+          "encounters": 1403,
+          "fish": 1107,
+          "seconds": 713790.72
+        },
+        "achievements71": {
+          "encounters": 2534,
+          "fish": 2000,
+          "seconds": 1295617.036
+        }
+      },
+      "encounters": 2534,
+      "fish": 2000,
+      "seconds": 1295618.814,
+      "species": 152,
+      "events": 60,
+      "achievements": 71,
+      "missing": [],
+      "unlockedAt": {
+        "first-cast": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "first-catch": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "weight-at-most-10g": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "sale-first": {
+          "encounters": 1,
+          "fish": 1,
+          "seconds": 13.148
+        },
+        "rare": {
+          "encounters": 2,
+          "fish": 2,
+          "seconds": 70.581
+        },
+        "length-at-most-5": {
+          "encounters": 2,
+          "fish": 2,
+          "seconds": 70.581
+        },
+        "first-alternate": {
+          "encounters": 3,
+          "fish": 3,
+          "seconds": 134.214
+        },
+        "research-1": {
+          "encounters": 4,
+          "fish": 3,
+          "seconds": 211.058
+        },
+        "corners": {
+          "encounters": 4,
+          "fish": 3,
+          "seconds": 211.058
+        },
+        "species-5": {
+          "encounters": 7,
+          "fish": 6,
+          "seconds": 1516.253
+        },
+        "bottles-1": {
+          "encounters": 10,
+          "fish": 8,
+          "seconds": 3619.28
+        },
+        "five-unique-window": {
+          "encounters": 11,
+          "fish": 9,
+          "seconds": 4007.932
+        },
+        "ten-catches": {
+          "encounters": 12,
+          "fish": 10,
+          "seconds": 4442.275
+        },
+        "sale-10": {
+          "encounters": 12,
+          "fish": 10,
+          "seconds": 4442.275
+        },
+        "one-species-two-variants": {
+          "encounters": 15,
+          "fish": 12,
+          "seconds": 6131.176
+        },
+        "species-10": {
+          "encounters": 16,
+          "fish": 13,
+          "seconds": 6625.204
+        },
+        "eco-1": {
+          "encounters": 17,
+          "fish": 13,
+          "seconds": 7115.513
+        },
+        "legendary": {
+          "encounters": 21,
+          "fish": 16,
+          "seconds": 9257.244
+        },
+        "earned-1000": {
+          "encounters": 21,
+          "fish": 16,
+          "seconds": 9257.244
+        },
+        "catches-25": {
+          "encounters": 32,
+          "fish": 25,
+          "seconds": 14336.112
+        },
+        "weight-1": {
+          "encounters": 48,
+          "fish": 38,
+          "seconds": 21901.714
+        },
+        "epic": {
+          "encounters": 53,
+          "fish": 42,
+          "seconds": 24532.252
+        },
+        "catches-50": {
+          "encounters": 64,
+          "fish": 50,
+          "seconds": 29284.996
+        },
+        "unique-25": {
+          "encounters": 69,
+          "fish": 54,
+          "seconds": 32351.017
+        },
+        "own-f2": {
+          "encounters": 97,
+          "fish": 76,
+          "seconds": 46724.778
+        },
+        "length-50": {
+          "encounters": 98,
+          "fish": 77,
+          "seconds": 47240.93
+        },
+        "bottles-10": {
+          "encounters": 107,
+          "fish": 83,
+          "seconds": 52077.282
+        },
+        "hundred-catches": {
+          "encounters": 128,
+          "fish": 100,
+          "seconds": 63401.256
+        },
+        "first-golden": {
+          "encounters": 128,
+          "fish": 100,
+          "seconds": 63401.256
+        },
+        "sale-100": {
+          "encounters": 130,
+          "fish": 101,
+          "seconds": 64481.216
+        },
+        "rare-25": {
+          "encounters": 132,
+          "fish": 103,
+          "seconds": 65353.788
+        },
+        "alternate-species-10": {
+          "encounters": 136,
+          "fish": 106,
+          "seconds": 67130.39
+        },
+        "one-species-three-variants": {
+          "encounters": 147,
+          "fish": 116,
+          "seconds": 72867.326
+        },
+        "eco-10": {
+          "encounters": 148,
+          "fish": 116,
+          "seconds": 73410.067
+        },
+        "legendary-5": {
+          "encounters": 150,
+          "fish": 118,
+          "seconds": 74218.213
+        },
+        "special-30": {
+          "encounters": 155,
+          "fish": 121,
+          "seconds": 76894.033
+        },
+        "length-record": {
+          "encounters": 157,
+          "fish": 123,
+          "seconds": 78014.514
+        },
+        "weight-record": {
+          "encounters": 157,
+          "fish": 123,
+          "seconds": 78014.514
+        },
+        "species-50": {
+          "encounters": 173,
+          "fish": 136,
+          "seconds": 85750.437
+        },
+        "earned-10000": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 96642.063
+        },
+        "own-s1": {
+          "encounters": 193,
+          "fish": 151,
+          "seconds": 96642.063
+        },
+        "mythic": {
+          "encounters": 241,
+          "fish": 191,
+          "seconds": 121808.219
+        },
+        "all-rarities": {
+          "encounters": 241,
+          "fish": 191,
+          "seconds": 121808.219
+        },
+        "unique-76": {
+          "encounters": 244,
+          "fish": 193,
+          "seconds": 123227.39
+        },
+        "first-iridescent": {
+          "encounters": 255,
+          "fish": 201,
+          "seconds": 128522.646
+        },
+        "epic-10": {
+          "encounters": 264,
+          "fish": 209,
+          "seconds": 133549.798
+        },
+        "catches-250": {
+          "encounters": 318,
+          "fish": 250,
+          "seconds": 160212.095
+        },
+        "own-s2": {
+          "encounters": 326,
+          "fish": 256,
+          "seconds": 164672.851
+        },
+        "one-species-10": {
+          "encounters": 330,
+          "fish": 259,
+          "seconds": 166480.078
+        },
+        "weight-50": {
+          "encounters": 338,
+          "fish": 265,
+          "seconds": 170615.367
+        },
+        "golden-species-5": {
+          "encounters": 341,
+          "fish": 268,
+          "seconds": 172166.859
+        },
+        "length-200": {
+          "encounters": 350,
+          "fish": 275,
+          "seconds": 176514.78
+        },
+        "species-100": {
+          "encounters": 381,
+          "fish": 299,
+          "seconds": 191942.458
+        },
+        "eco-20": {
+          "encounters": 387,
+          "fish": 303,
+          "seconds": 195803.861
+        },
+        "species-125": {
+          "encounters": 561,
+          "fish": 444,
+          "seconds": 284226.727
+        },
+        "research-10": {
+          "encounters": 572,
+          "fish": 452,
+          "seconds": 289706.399
+        },
+        "mythic-3": {
+          "encounters": 607,
+          "fish": 480,
+          "seconds": 307179.758
+        },
+        "bottles-30": {
+          "encounters": 619,
+          "fish": 489,
+          "seconds": 313516.341
+        },
+        "catches-500": {
+          "encounters": 634,
+          "fish": 500,
+          "seconds": 321321.038
+        },
+        "variant-pairs-200": {
+          "encounters": 807,
+          "fish": 637,
+          "seconds": 410695.871
+        },
+        "earned-50000": {
+          "encounters": 811,
+          "fish": 640,
+          "seconds": 412633.912
+        },
+        "iridescent-species-3": {
+          "encounters": 833,
+          "fish": 657,
+          "seconds": 422923.671
+        },
+        "pack-f1-complete": {
+          "encounters": 995,
+          "fish": 783,
+          "seconds": 505801.228
+        },
+        "pack-s1-complete": {
+          "encounters": 1078,
+          "fish": 852,
+          "seconds": 546558.235
+        },
+        "pack-f2-complete": {
+          "encounters": 1124,
+          "fish": 888,
+          "seconds": 568677.335
+        },
+        "catches-1000": {
+          "encounters": 1266,
+          "fish": 1000,
+          "seconds": 642290.108
+        },
+        "one-species-four-variants": {
+          "encounters": 1400,
+          "fish": 1104,
+          "seconds": 712201.419
+        },
+        "all-species": {
+          "encounters": 1403,
+          "fish": 1107,
+          "seconds": 713790.72
+        },
+        "pack-s2-complete": {
+          "encounters": 1403,
+          "fish": 1107,
+          "seconds": 713790.72
+        },
+        "one-species-30": {
+          "encounters": 2072,
+          "fish": 1634,
+          "seconds": 1057118.951
+        },
+        "catches-2000": {
+          "encounters": 2534,
+          "fish": 2000,
+          "seconds": 1295617.036
+        }
+      },
+      "missed": 475,
+      "unhook": 27,
+      "verifyCount": 0,
+      "retainedProtected": 48
+    }
+  ]
+}

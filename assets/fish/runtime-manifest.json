@@ -1,0 +1,1374 @@
+{
+  "schemaVersion": "1.0.0",
+  "assetVersion": "fish-runtime-1.0.0",
+  "entries": [
+    {
+      "fishId": "fish-1",
+      "catalogIndex": 1,
+      "icon": "f1/icons/01-goldfish.png",
+      "airborneStrip": "f1/airborne/001-goldfish.png",
+      "motion": "f1/motion/001-goldfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-2",
+      "catalogIndex": 2,
+      "icon": "f1/icons/02-neon-tetra.png",
+      "airborneStrip": "f1/airborne/002-neon-tetra.png",
+      "motion": "f1/motion/002-neon-tetra.json",
+      "displayClass": "tiny",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-3",
+      "catalogIndex": 3,
+      "icon": "f1/icons/03-blue-grass-guppy.png",
+      "airborneStrip": "f1/airborne/003-blue-grass-guppy.png",
+      "motion": "f1/motion/003-blue-grass-guppy.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-4",
+      "catalogIndex": 4,
+      "icon": "f1/icons/04-clown-loach.png",
+      "airborneStrip": "f1/airborne/004-clown-loach.png",
+      "motion": "f1/motion/004-clown-loach.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-5",
+      "catalogIndex": 5,
+      "icon": "f1/icons/05-corydoras.png",
+      "airborneStrip": "f1/airborne/005-corydoras.png",
+      "motion": "f1/motion/005-corydoras.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-6",
+      "catalogIndex": 6,
+      "icon": "f1/icons/06-swordtail.png",
+      "airborneStrip": "f1/airborne/006-swordtail.png",
+      "motion": "f1/motion/006-swordtail.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-7",
+      "catalogIndex": 7,
+      "icon": "f1/icons/07-wagtail-platy.png",
+      "airborneStrip": "f1/airborne/007-wagtail-platy.png",
+      "motion": "f1/motion/007-wagtail-platy.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-8",
+      "catalogIndex": 8,
+      "icon": "f2/icons/008-acara.png",
+      "airborneStrip": "f2/airborne/008-acara.png",
+      "motion": "f2/motion/008-acara.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-9",
+      "catalogIndex": 9,
+      "icon": "f2/icons/009-bala-shark.png",
+      "airborneStrip": "f2/airborne/009-bala-shark.png",
+      "motion": "f2/motion/009-bala-shark.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-10",
+      "catalogIndex": 10,
+      "icon": "f1/icons/10-betta.png",
+      "airborneStrip": "f1/airborne/010-betta.png",
+      "motion": "f1/motion/010-betta.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-11",
+      "catalogIndex": 11,
+      "icon": "f1/icons/11-dwarf-gourami.png",
+      "airborneStrip": "f1/airborne/011-dwarf-gourami.png",
+      "motion": "f1/motion/011-dwarf-gourami.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-12",
+      "catalogIndex": 12,
+      "icon": "f1/icons/12-chili-rasbora.png",
+      "airborneStrip": "f1/airborne/012-chili-rasbora.png",
+      "motion": "f1/motion/012-chili-rasbora.json",
+      "displayClass": "tiny",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-13",
+      "catalogIndex": 13,
+      "icon": "f1/icons/13-ramshorn-snail.png",
+      "airborneStrip": "f1/airborne/013-ramshorn-snail.png",
+      "motion": "f1/motion/013-ramshorn-snail.json",
+      "displayClass": "tiny",
+      "displayScale": 0.82
+    },
+    {
+      "fishId": "fish-14",
+      "catalogIndex": 14,
+      "icon": "f1/icons/14-hillstream-loach.png",
+      "airborneStrip": "f1/airborne/014-hillstream-loach.png",
+      "motion": "f1/motion/014-hillstream-loach.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-15",
+      "catalogIndex": 15,
+      "icon": "f1/icons/15-peacock-gudgeon.png",
+      "airborneStrip": "f1/airborne/015-peacock-gudgeon.png",
+      "motion": "f1/motion/015-peacock-gudgeon.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-16",
+      "catalogIndex": 16,
+      "icon": "f2/icons/016-pleco.png",
+      "airborneStrip": "f2/airborne/016-pleco.png",
+      "motion": "f2/motion/016-pleco.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-17",
+      "catalogIndex": 17,
+      "icon": "f1/icons/17-cherry-shrimp.png",
+      "airborneStrip": "f1/airborne/017-cherry-shrimp.png",
+      "motion": "f1/motion/017-cherry-shrimp.json",
+      "displayClass": "tiny",
+      "displayScale": 0.86
+    },
+    {
+      "fishId": "fish-18",
+      "catalogIndex": 18,
+      "icon": "f1/icons/18-angelfish.png",
+      "airborneStrip": "f1/airborne/018-angelfish.png",
+      "motion": "f1/motion/018-angelfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-19",
+      "catalogIndex": 19,
+      "icon": "f1/icons/19-flowerhorn-cichlid.png",
+      "airborneStrip": "f1/airborne/019-flowerhorn-cichlid.png",
+      "motion": "f1/motion/019-flowerhorn-cichlid.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-20",
+      "catalogIndex": 20,
+      "icon": "f1/icons/20-discus.png",
+      "airborneStrip": "f1/airborne/020-discus.png",
+      "motion": "f1/motion/020-discus.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-21",
+      "catalogIndex": 21,
+      "icon": "f2/icons/021-oscar.png",
+      "airborneStrip": "f2/airborne/021-oscar.png",
+      "motion": "f2/motion/021-oscar.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-22",
+      "catalogIndex": 22,
+      "icon": "f2/icons/022-elephant-fish.png",
+      "airborneStrip": "f2/airborne/022-elephant-fish.png",
+      "motion": "f2/motion/022-elephant-fish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-23",
+      "catalogIndex": 23,
+      "icon": "f1/icons/23-glassfish.png",
+      "airborneStrip": "f1/airborne/023-glassfish.png",
+      "motion": "f1/motion/023-glassfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-24",
+      "catalogIndex": 24,
+      "icon": "f1/icons/24-koi.png",
+      "airborneStrip": "f1/airborne/024-koi.png",
+      "motion": "f1/motion/024-koi.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-25",
+      "catalogIndex": 25,
+      "icon": "f1/icons/25-whiptail-catfish.png",
+      "airborneStrip": "f1/airborne/025-whiptail-catfish.png",
+      "motion": "f1/motion/025-whiptail-catfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-26",
+      "catalogIndex": 26,
+      "icon": "f1/icons/26-polka-dot-stingray.png",
+      "airborneStrip": "f1/airborne/026-polka-dot-stingray.png",
+      "motion": "f1/motion/026-polka-dot-stingray.json",
+      "displayClass": "flat",
+      "displayScale": 1.04
+    },
+    {
+      "fishId": "fish-27",
+      "catalogIndex": 27,
+      "icon": "f2/icons/027-carp.png",
+      "airborneStrip": "f2/airborne/027-carp.png",
+      "motion": "f2/motion/027-carp.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-28",
+      "catalogIndex": 28,
+      "icon": "f2/icons/028-redtail-catfish.png",
+      "airborneStrip": "f2/airborne/028-redtail-catfish.png",
+      "motion": "f2/motion/028-redtail-catfish.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-29",
+      "catalogIndex": 29,
+      "icon": "f2/icons/029-walleye.png",
+      "airborneStrip": "f2/airborne/029-walleye.png",
+      "motion": "f2/motion/029-walleye.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-30",
+      "catalogIndex": 30,
+      "icon": "f2/icons/030-green-sunfish.png",
+      "airborneStrip": "f2/airborne/030-green-sunfish.png",
+      "motion": "f2/motion/030-green-sunfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-31",
+      "catalogIndex": 31,
+      "icon": "f2/icons/031-mudskipper.png",
+      "airborneStrip": "f2/airborne/031-mudskipper.png",
+      "motion": "f2/motion/031-mudskipper.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-32",
+      "catalogIndex": 32,
+      "icon": "f2/icons/032-northern-pike.png",
+      "airborneStrip": "f2/airborne/032-northern-pike.png",
+      "motion": "f2/motion/032-northern-pike.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-33",
+      "catalogIndex": 33,
+      "icon": "f2/icons/033-perch.png",
+      "airborneStrip": "f2/airborne/033-perch.png",
+      "motion": "f2/motion/033-perch.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-34",
+      "catalogIndex": 34,
+      "icon": "f2/icons/034-rainbow-trout.png",
+      "airborneStrip": "f2/airborne/034-rainbow-trout.png",
+      "motion": "f2/motion/034-rainbow-trout.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-35",
+      "catalogIndex": 35,
+      "icon": "f2/icons/035-snakehead.png",
+      "airborneStrip": "f2/airborne/035-snakehead.png",
+      "motion": "f2/motion/035-snakehead.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-36",
+      "catalogIndex": 36,
+      "icon": "f2/icons/036-sockeye-salmon.png",
+      "airborneStrip": "f2/airborne/036-sockeye-salmon.png",
+      "motion": "f2/motion/036-sockeye-salmon.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-37",
+      "catalogIndex": 37,
+      "icon": "f2/icons/037-bullhead-catfish.png",
+      "airborneStrip": "f2/airborne/037-bullhead-catfish.png",
+      "motion": "f2/motion/037-bullhead-catfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-38",
+      "catalogIndex": 38,
+      "icon": "f2/icons/038-tiger-trout.png",
+      "airborneStrip": "f2/airborne/038-tiger-trout.png",
+      "motion": "f2/motion/038-tiger-trout.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-39",
+      "catalogIndex": 39,
+      "icon": "f1/icons/39-axolotl.png",
+      "airborneStrip": "f1/airborne/039-axolotl.png",
+      "motion": "f1/motion/039-axolotl.json",
+      "displayClass": "small",
+      "displayScale": 0.94
+    },
+    {
+      "fishId": "fish-40",
+      "catalogIndex": 40,
+      "icon": "f1/icons/40-tequila-splitfin.png",
+      "airborneStrip": "f1/airborne/040-tequila-splitfin.png",
+      "motion": "f1/motion/040-tequila-splitfin.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-41",
+      "catalogIndex": 41,
+      "icon": "f2/icons/041-ghost-knifefish.png",
+      "airborneStrip": "f2/airborne/041-ghost-knifefish.png",
+      "motion": "f2/motion/041-ghost-knifefish.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-42",
+      "catalogIndex": 42,
+      "icon": "f2/icons/042-fire-eel.png",
+      "airborneStrip": "f2/airborne/042-fire-eel.png",
+      "motion": "f2/motion/042-fire-eel.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-44",
+      "catalogIndex": 44,
+      "icon": "f2/icons/044-ornate-bichir.png",
+      "airborneStrip": "f2/airborne/044-ornate-bichir.png",
+      "motion": "f2/motion/044-ornate-bichir.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-45",
+      "catalogIndex": 45,
+      "icon": "f2/icons/045-piranha.png",
+      "airborneStrip": "f2/airborne/045-piranha.png",
+      "motion": "f2/motion/045-piranha.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-46",
+      "catalogIndex": 46,
+      "icon": "f1/icons/46-african-butterflyfish.png",
+      "airborneStrip": "f1/airborne/046-african-butterfly-fish.png",
+      "motion": "f1/motion/046-african-butterfly-fish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-47",
+      "catalogIndex": 47,
+      "icon": "f1/icons/47-amazon-leaffish.png",
+      "airborneStrip": "f1/airborne/047-amazon-leaffish.png",
+      "motion": "f1/motion/047-amazon-leaffish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-48",
+      "catalogIndex": 48,
+      "icon": "f2/icons/048-alligator-gar.png",
+      "airborneStrip": "f2/airborne/048-alligator-gar.png",
+      "motion": "f2/motion/048-alligator-gar.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-49",
+      "catalogIndex": 49,
+      "icon": "f2/icons/049-sturgeon.png",
+      "airborneStrip": "f2/airborne/049-sturgeon.png",
+      "motion": "f2/motion/049-sturgeon.json",
+      "displayClass": "large",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-50",
+      "catalogIndex": 50,
+      "icon": "f1/icons/50-arowana.png",
+      "airborneStrip": "f1/airborne/050-arowana.png",
+      "motion": "f1/motion/050-arowana.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-51",
+      "catalogIndex": 51,
+      "icon": "f2/icons/051-arapaima.png",
+      "airborneStrip": "f2/airborne/051-arapaima.png",
+      "motion": "f2/motion/051-arapaima.json",
+      "displayClass": "large",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-52",
+      "catalogIndex": 52,
+      "icon": "f2/icons/052-paddlefish.png",
+      "airborneStrip": "f2/airborne/052-paddlefish.png",
+      "motion": "f2/motion/052-paddlefish.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-53",
+      "catalogIndex": 53,
+      "icon": "s1/icons/053-clownfish.png",
+      "airborneStrip": "s1/airborne/053-clownfish.png",
+      "motion": "s1/motion/053-clownfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-54",
+      "catalogIndex": 54,
+      "icon": "s1/icons/054-exquisite-fairy-wrasse.png",
+      "airborneStrip": "s1/airborne/054-exquisite-fairy-wrasse.png",
+      "motion": "s1/motion/054-exquisite-fairy-wrasse.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-55",
+      "catalogIndex": 55,
+      "icon": "s1/icons/055-copperband-butterflyfish.png",
+      "airborneStrip": "s1/airborne/055-copperband-butterflyfish.png",
+      "motion": "s1/motion/055-copperband-butterflyfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-56",
+      "catalogIndex": 56,
+      "icon": "s1/icons/056-falco-hawkfish.png",
+      "airborneStrip": "s1/airborne/056-falco-hawkfish.png",
+      "motion": "s1/motion/056-falco-hawkfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-57",
+      "catalogIndex": 57,
+      "icon": "s1/icons/057-blue-tang.png",
+      "airborneStrip": "s1/airborne/057-blue-tang.png",
+      "motion": "s1/motion/057-blue-tang.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-58",
+      "catalogIndex": 58,
+      "icon": "s1/icons/058-moorish-idol.png",
+      "airborneStrip": "s1/airborne/058-moorish-idol.png",
+      "motion": "s1/motion/058-moorish-idol.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-60",
+      "catalogIndex": 60,
+      "icon": "s1/icons/060-pufferfish.png",
+      "airborneStrip": "s1/airborne/060-pufferfish.png",
+      "motion": "s1/motion/060-pufferfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-61",
+      "catalogIndex": 61,
+      "icon": "s1/icons/061-ruby-red-dragonet.png",
+      "airborneStrip": "s1/airborne/061-ruby-red-dragonet.png",
+      "motion": "s1/motion/061-ruby-red-dragonet.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-62",
+      "catalogIndex": 62,
+      "icon": "s2/icons/062-spotted-ribbonfish.png",
+      "airborneStrip": "s2/airborne/062-spotted-ribbonfish.png",
+      "motion": "s2/motion/062-spotted-ribbonfish.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-63",
+      "catalogIndex": 63,
+      "icon": "s1/icons/063-triggerfish.png",
+      "airborneStrip": "s1/airborne/063-triggerfish.png",
+      "motion": "s1/motion/063-triggerfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-64",
+      "catalogIndex": 64,
+      "icon": "s1/icons/064-flame-angelfish.png",
+      "airborneStrip": "s1/airborne/064-flame-angelfish.png",
+      "motion": "s1/motion/064-flame-angelfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-65",
+      "catalogIndex": 65,
+      "icon": "s1/icons/065-banggai-cardinalfish.png",
+      "airborneStrip": "s1/airborne/065-banggai-cardinalfish.png",
+      "motion": "s1/motion/065-banggai-cardinalfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-66",
+      "catalogIndex": 66,
+      "icon": "s1/icons/066-mandarinfish.png",
+      "airborneStrip": "s1/airborne/066-mandarinfish.png",
+      "motion": "s1/motion/066-mandarinfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-67",
+      "catalogIndex": 67,
+      "icon": "s1/icons/067-firefish-goby.png",
+      "airborneStrip": "s1/airborne/067-firefish-goby.png",
+      "motion": "s1/motion/067-firefish-goby.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-68",
+      "catalogIndex": 68,
+      "icon": "s1/icons/068-lyretail-anthias.png",
+      "airborneStrip": "s1/airborne/068-lyretail-anthias.png",
+      "motion": "s1/motion/068-lyretail-anthias.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-69",
+      "catalogIndex": 69,
+      "icon": "s1/icons/069-royal-gramma.png",
+      "airborneStrip": "s1/airborne/069-royal-gramma.png",
+      "motion": "s1/motion/069-royal-gramma.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-70",
+      "catalogIndex": 70,
+      "icon": "s2/icons/070-moray-eel.png",
+      "airborneStrip": "s2/airborne/070-moray-eel.png",
+      "motion": "s2/motion/070-moray-eel.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-71",
+      "catalogIndex": 71,
+      "icon": "s1/icons/071-achilles-tang.png",
+      "airborneStrip": "s1/airborne/071-achilles-tang.png",
+      "motion": "s1/motion/071-achilles-tang.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-72",
+      "catalogIndex": 72,
+      "icon": "s1/icons/072-black-tang.png",
+      "airborneStrip": "s1/airborne/072-black-tang.png",
+      "motion": "s1/motion/072-black-tang.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-73",
+      "catalogIndex": 73,
+      "icon": "s1/icons/073-cowfish.png",
+      "airborneStrip": "s1/airborne/073-cowfish.png",
+      "motion": "s1/motion/073-cowfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-76",
+      "catalogIndex": 76,
+      "icon": "s1/icons/076-lionfish.png",
+      "airborneStrip": "s1/airborne/076-lionfish.png",
+      "motion": "s1/motion/076-lionfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-77",
+      "catalogIndex": 77,
+      "icon": "s1/icons/077-frogfish.png",
+      "airborneStrip": "s1/airborne/077-frogfish.png",
+      "motion": "s1/motion/077-frogfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-78",
+      "catalogIndex": 78,
+      "icon": "s1/icons/078-masked-angelfish.png",
+      "airborneStrip": "s1/airborne/078-masked-angelfish.png",
+      "motion": "s1/motion/078-masked-angelfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-79",
+      "catalogIndex": 79,
+      "icon": "s2/icons/079-bluefin-trevally.png",
+      "airborneStrip": "s2/airborne/079-bluefin-trevally.png",
+      "motion": "s2/motion/079-bluefin-trevally.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-80",
+      "catalogIndex": 80,
+      "icon": "s1/icons/080-seahorse.png",
+      "airborneStrip": "s1/airborne/080-seahorse.png",
+      "motion": "s1/motion/080-seahorse.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-81",
+      "catalogIndex": 81,
+      "icon": "s2/icons/081-flounder.png",
+      "airborneStrip": "s2/airborne/081-flounder.png",
+      "motion": "s2/motion/081-flounder.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-82",
+      "catalogIndex": 82,
+      "icon": "s1/icons/082-longfin-batfish.png",
+      "airborneStrip": "s1/airborne/082-longfin-batfish.png",
+      "motion": "s1/motion/082-longfin-batfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-83",
+      "catalogIndex": 83,
+      "icon": "s1/icons/083-nassau-grouper.png",
+      "airborneStrip": "s1/airborne/083-nassau-grouper.png",
+      "motion": "s1/motion/083-nassau-grouper.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-84",
+      "catalogIndex": 84,
+      "icon": "s2/icons/084-pacific-lookdown.png",
+      "airborneStrip": "s2/airborne/084-pacific-lookdown.png",
+      "motion": "s2/motion/084-pacific-lookdown.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-85",
+      "catalogIndex": 85,
+      "icon": "s1/icons/085-bluespine-unicornfish.png",
+      "airborneStrip": "s1/airborne/085-bluespine-unicornfish.png",
+      "motion": "s1/motion/085-bluespine-unicornfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-86",
+      "catalogIndex": 86,
+      "icon": "s1/icons/086-garibaldi.png",
+      "airborneStrip": "s1/airborne/086-garibaldi.png",
+      "motion": "s1/motion/086-garibaldi.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-91",
+      "catalogIndex": 91,
+      "icon": "s2/icons/091-viperfish.png",
+      "airborneStrip": "s2/airborne/091-viperfish.png",
+      "motion": "s2/motion/091-viperfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-92",
+      "catalogIndex": 92,
+      "icon": "s1/icons/092-chinese-trumpetfish.png",
+      "airborneStrip": "s1/airborne/092-chinese-trumpetfish.png",
+      "motion": "s1/motion/092-chinese-trumpetfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-93",
+      "catalogIndex": 93,
+      "icon": "s2/icons/093-lumpfish.png",
+      "airborneStrip": "s2/airborne/093-lumpfish.png",
+      "motion": "s2/motion/093-lumpfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-94",
+      "catalogIndex": 94,
+      "icon": "s1/icons/094-ghost-pipefish.png",
+      "airborneStrip": "s1/airborne/094-ghost-pipefish.png",
+      "motion": "s1/motion/094-ghost-pipefish.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-95",
+      "catalogIndex": 95,
+      "icon": "s2/icons/095-red-snapper.png",
+      "airborneStrip": "s2/airborne/095-red-snapper.png",
+      "motion": "s2/motion/095-red-snapper.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-97",
+      "catalogIndex": 97,
+      "icon": "s2/icons/097-lancetfish.png",
+      "airborneStrip": "s2/airborne/097-lancetfish.png",
+      "motion": "s2/motion/097-lancetfish.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-98",
+      "catalogIndex": 98,
+      "icon": "s2/icons/098-gulper-eel.png",
+      "airborneStrip": "s2/airborne/098-gulper-eel.png",
+      "motion": "s2/motion/098-gulper-eel.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-100",
+      "catalogIndex": 100,
+      "icon": "s2/icons/100-scorpionfish.png",
+      "airborneStrip": "s2/airborne/100-scorpionfish.png",
+      "motion": "s2/motion/100-scorpionfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-101",
+      "catalogIndex": 101,
+      "icon": "s1/icons/101-barred-knifejaw.png",
+      "airborneStrip": "s1/airborne/101-barred-knifejaw.png",
+      "motion": "s1/motion/101-barred-knifejaw.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-102",
+      "catalogIndex": 102,
+      "icon": "s2/icons/102-leafy-seadragon.png",
+      "airborneStrip": "s2/airborne/102-leafy-seadragon.png",
+      "motion": "s2/motion/102-leafy-seadragon.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-103",
+      "catalogIndex": 103,
+      "icon": "s2/icons/103-blobfish.png",
+      "airborneStrip": "s2/airborne/103-blobfish.png",
+      "motion": "s2/motion/103-blobfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-104",
+      "catalogIndex": 104,
+      "icon": "s2/icons/104-saw-shark.png",
+      "airborneStrip": "s2/airborne/104-saw-shark.png",
+      "motion": "s2/motion/104-saw-shark.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-105",
+      "catalogIndex": 105,
+      "icon": "s2/icons/105-swordfish.png",
+      "airborneStrip": "s2/airborne/105-swordfish.png",
+      "motion": "s2/motion/105-swordfish.json",
+      "displayClass": "long",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-106",
+      "catalogIndex": 106,
+      "icon": "s2/icons/106-atlantic-tarpon.png",
+      "airborneStrip": "s2/airborne/106-atlantic-tarpon.png",
+      "motion": "s2/motion/106-atlantic-tarpon.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-107",
+      "catalogIndex": 107,
+      "icon": "s2/icons/107-barracuda.png",
+      "airborneStrip": "s2/airborne/107-barracuda.png",
+      "motion": "s2/motion/107-barracuda.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-108",
+      "catalogIndex": 108,
+      "icon": "s2/icons/108-california-sheephead.png",
+      "airborneStrip": "s2/airborne/108-california-sheephead.png",
+      "motion": "s2/motion/108-california-sheephead.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-109",
+      "catalogIndex": 109,
+      "icon": "s2/icons/109-halibut.png",
+      "airborneStrip": "s2/airborne/109-halibut.png",
+      "motion": "s2/motion/109-halibut.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-110",
+      "catalogIndex": 110,
+      "icon": "s2/icons/110-yellowfin-tuna.png",
+      "airborneStrip": "s2/airborne/110-yellowfin-tuna.png",
+      "motion": "s2/motion/110-yellowfin-tuna.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-111",
+      "catalogIndex": 111,
+      "icon": "s2/icons/111-wahoo.png",
+      "airborneStrip": "s2/airborne/111-wahoo.png",
+      "motion": "s2/motion/111-wahoo.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-112",
+      "catalogIndex": 112,
+      "icon": "s2/icons/112-giant-trevally.png",
+      "airborneStrip": "s2/airborne/112-giant-trevally.png",
+      "motion": "s2/motion/112-giant-trevally.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-113",
+      "catalogIndex": 113,
+      "icon": "s2/icons/113-mahi-mahi.png",
+      "airborneStrip": "s2/airborne/113-mahi-mahi.png",
+      "motion": "s2/motion/113-mahi-mahi.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-115",
+      "catalogIndex": 115,
+      "icon": "s2/icons/115-goliath-grouper.png",
+      "airborneStrip": "s2/airborne/115-goliath-grouper.png",
+      "motion": "s2/motion/115-goliath-grouper.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-116",
+      "catalogIndex": 116,
+      "icon": "s2/icons/116-mola-mola.png",
+      "airborneStrip": "s2/airborne/116-mola-mola.png",
+      "motion": "s2/motion/116-mola-mola.json",
+      "displayClass": "large",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-117",
+      "catalogIndex": 117,
+      "icon": "s1/icons/117-humphead-parrotfish.png",
+      "airborneStrip": "s1/airborne/117-humphead-parrotfish.png",
+      "motion": "s1/motion/117-humphead-parrotfish.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-118",
+      "catalogIndex": 118,
+      "icon": "s2/icons/118-blue-marlin.png",
+      "airborneStrip": "s2/airborne/118-blue-marlin.png",
+      "motion": "s2/motion/118-blue-marlin.json",
+      "displayClass": "long",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-120",
+      "catalogIndex": 120,
+      "icon": "s2/icons/120-wolf-eel.png",
+      "airborneStrip": "s2/airborne/120-wolf-eel.png",
+      "motion": "s2/motion/120-wolf-eel.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-121",
+      "catalogIndex": 121,
+      "icon": "s2/icons/121-manta-ray.png",
+      "airborneStrip": "s2/airborne/121-manta-ray.png",
+      "motion": "s2/motion/121-manta-ray.json",
+      "displayClass": "large",
+      "displayScale": 1.04
+    },
+    {
+      "fishId": "fish-122",
+      "catalogIndex": 122,
+      "icon": "s2/icons/122-oarfish.png",
+      "airborneStrip": "s2/airborne/122-oarfish.png",
+      "motion": "s2/motion/122-oarfish.json",
+      "displayClass": "long",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-123",
+      "catalogIndex": 123,
+      "icon": "s2/icons/123-moonfish.png",
+      "airborneStrip": "s2/airborne/123-moonfish.png",
+      "motion": "s2/motion/123-moonfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-124",
+      "catalogIndex": 124,
+      "icon": "s2/icons/124-great-white-shark.png",
+      "airborneStrip": "s2/airborne/124-great-white-shark.png",
+      "motion": "s2/motion/124-great-white-shark.json",
+      "displayClass": "large",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-125",
+      "catalogIndex": 125,
+      "icon": "s2/icons/125-hammerhead-shark.png",
+      "airborneStrip": "s2/airborne/125-hammerhead-shark.png",
+      "motion": "s2/motion/125-hammerhead-shark.json",
+      "displayClass": "large",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-126",
+      "catalogIndex": 126,
+      "icon": "s2/icons/126-basking-shark.png",
+      "airborneStrip": "s2/airborne/126-basking-shark.png",
+      "motion": "s2/motion/126-basking-shark.json",
+      "displayClass": "large",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-127",
+      "catalogIndex": 127,
+      "icon": "s2/icons/127-whale-shark.png",
+      "airborneStrip": "s2/airborne/127-whale-shark.png",
+      "motion": "s2/motion/127-whale-shark.json",
+      "displayClass": "large",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-128",
+      "catalogIndex": 128,
+      "icon": "s2/icons/128-coelacanth.png",
+      "airborneStrip": "s2/airborne/128-coelacanth.png",
+      "motion": "s2/motion/128-coelacanth.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-131",
+      "catalogIndex": 131,
+      "icon": "f1/icons/131-killifish.png",
+      "airborneStrip": "f1/airborne/131-killifish.png",
+      "motion": "f1/motion/131-killifish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-132",
+      "catalogIndex": 132,
+      "icon": "f1/icons/132-kuhli-loach.png",
+      "airborneStrip": "f1/airborne/132-kuhli-loach.png",
+      "motion": "f1/motion/132-kuhli-loach.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-133",
+      "catalogIndex": 133,
+      "icon": "f1/icons/133-rummy-nose-tetra.png",
+      "airborneStrip": "f1/airborne/133-rummy-nose-tetra.png",
+      "motion": "f1/motion/133-rummy-nose-tetra.json",
+      "displayClass": "tiny",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-134",
+      "catalogIndex": 134,
+      "icon": "f1/icons/134-celestial-pearl-danio.png",
+      "airborneStrip": "f1/airborne/134-celestial-pearl-danio.png",
+      "motion": "f1/motion/134-celestial-pearl-danio.json",
+      "displayClass": "tiny",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-135",
+      "catalogIndex": 135,
+      "icon": "f1/icons/135-pea-puffer.png",
+      "airborneStrip": "f1/airborne/135-pea-puffer.png",
+      "motion": "f1/motion/135-pea-puffer.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-136",
+      "catalogIndex": 136,
+      "icon": "f1/icons/136-rainbowfish.png",
+      "airborneStrip": "f1/airborne/136-rainbowfish.png",
+      "motion": "f1/motion/136-rainbowfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-137",
+      "catalogIndex": 137,
+      "icon": "f2/icons/137-african-cichlid.png",
+      "airborneStrip": "f2/airborne/137-african-cichlid.png",
+      "motion": "f2/motion/137-african-cichlid.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-138",
+      "catalogIndex": 138,
+      "icon": "f1/icons/138-hatchetfish.png",
+      "airborneStrip": "f1/airborne/138-hatchetfish.png",
+      "motion": "f1/motion/138-hatchetfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-139",
+      "catalogIndex": 139,
+      "icon": "f2/icons/139-halfbeak.png",
+      "airborneStrip": "f2/airborne/139-halfbeak.png",
+      "motion": "f2/motion/139-halfbeak.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-140",
+      "catalogIndex": 140,
+      "icon": "f2/icons/140-panda-garras.png",
+      "airborneStrip": "f2/airborne/140-panda-garras.png",
+      "motion": "f2/motion/140-panda-garras.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-141",
+      "catalogIndex": 141,
+      "icon": "f2/icons/141-horse-face-loach.png",
+      "airborneStrip": "f2/airborne/141-horse-face-loach.png",
+      "motion": "f2/motion/141-horse-face-loach.json",
+      "displayClass": "long",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-142",
+      "catalogIndex": 142,
+      "icon": "f1/icons/142-otocinclus.png",
+      "airborneStrip": "f1/airborne/142-otocinclus-catfish.png",
+      "motion": "f1/motion/142-otocinclus-catfish.json",
+      "displayClass": "tiny",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-143",
+      "catalogIndex": 143,
+      "icon": "f2/icons/143-pictus-catfish.png",
+      "airborneStrip": "f2/airborne/143-pictus-catfish.png",
+      "motion": "f2/motion/143-pictus-catfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-144",
+      "catalogIndex": 144,
+      "icon": "f2/icons/144-peacock-bass.png",
+      "airborneStrip": "f2/airborne/144-peacock-bass.png",
+      "motion": "f2/motion/144-peacock-bass.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-145",
+      "catalogIndex": 145,
+      "icon": "f1/icons/145-dwarf-cichlid.png",
+      "airborneStrip": "f1/airborne/145-dwarf-cichlid.png",
+      "motion": "f1/motion/145-dwarf-cichlid.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-146",
+      "catalogIndex": 146,
+      "icon": "f2/icons/146-giant-barb.png",
+      "airborneStrip": "f2/airborne/146-giant-barb.png",
+      "motion": "f2/motion/146-giant-barb.json",
+      "displayClass": "large",
+      "displayScale": 1.08
+    },
+    {
+      "fishId": "fish-147",
+      "catalogIndex": 147,
+      "icon": "f2/icons/147-kijimuna-goby.png",
+      "airborneStrip": "f2/airborne/147-kijimuna-goby.png",
+      "motion": "f2/motion/147-kijimuna-goby.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-148",
+      "catalogIndex": 148,
+      "icon": "f1/icons/148-threadfin-rainbowfish.png",
+      "airborneStrip": "f1/airborne/148-threadfin-rainbowfish.png",
+      "motion": "f1/motion/148-threadfin-rainbowfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-149",
+      "catalogIndex": 149,
+      "icon": "f2/icons/149-ninja-woodcat.png",
+      "airborneStrip": "f2/airborne/149-ninja-woodcat.png",
+      "motion": "f2/motion/149-ninja-woodcat.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-150",
+      "catalogIndex": 150,
+      "icon": "f2/icons/150-tiger-shovelnose-catfish.png",
+      "airborneStrip": "f2/airborne/150-tiger-shovelnose-catfish.png",
+      "motion": "f2/motion/150-tiger-shovelnose-catfish.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-151",
+      "catalogIndex": 151,
+      "icon": "f1/icons/151-upside-down-catfish.png",
+      "airborneStrip": "f1/airborne/151-upside-down-catfish.png",
+      "motion": "f1/motion/151-upside-down-catfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-152",
+      "catalogIndex": 152,
+      "icon": "f2/icons/152-payara.png",
+      "airborneStrip": "f2/airborne/152-payara.png",
+      "motion": "f2/motion/152-payara.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-153",
+      "catalogIndex": 153,
+      "icon": "f1/icons/153-ranchu-goldfish.png",
+      "airborneStrip": "f1/airborne/153-ranchu-goldfish.png",
+      "motion": "f1/motion/153-ranchu-goldfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-154",
+      "catalogIndex": 154,
+      "icon": "f2/icons/154-australian-lungfish.png",
+      "airborneStrip": "f2/airborne/154-australian-lungfish.png",
+      "motion": "f2/motion/154-australian-lungfish.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-155",
+      "catalogIndex": 155,
+      "icon": "f2/icons/155-king-salmon.png",
+      "airborneStrip": "f2/airborne/155-king-salmon.png",
+      "motion": "f2/motion/155-king-salmon.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-157",
+      "catalogIndex": 157,
+      "icon": "s1/icons/157-bluelined-dottyback.png",
+      "airborneStrip": "s1/airborne/157-bluelined-dottyback.png",
+      "motion": "s1/motion/157-bluelined-dottyback.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-160",
+      "catalogIndex": 160,
+      "icon": "s2/icons/160-flame-hawkfish.png",
+      "airborneStrip": "s2/airborne/160-flame-hawkfish.png",
+      "motion": "s2/motion/160-flame-hawkfish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-162",
+      "catalogIndex": 162,
+      "icon": "s1/icons/162-rainbow-goby.png",
+      "airborneStrip": "s1/airborne/162-rainbow-goby.png",
+      "motion": "s1/motion/162-rainbow-goby.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-164",
+      "catalogIndex": 164,
+      "icon": "s2/icons/164-indian-ocean-sweetlips.png",
+      "airborneStrip": "s2/airborne/164-indian-ocean-sweetlips.png",
+      "motion": "s2/motion/164-indian-ocean-sweetlips.json",
+      "displayClass": "large",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-166",
+      "catalogIndex": 166,
+      "icon": "s2/icons/166-harlequin-bass.png",
+      "airborneStrip": "s2/airborne/166-harlequin-bass.png",
+      "motion": "s2/motion/166-harlequin-bass.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-168",
+      "catalogIndex": 168,
+      "icon": "s1/icons/168-horseshoe-filefish.png",
+      "airborneStrip": "s1/airborne/168-horseshoe-filefish.png",
+      "motion": "s1/motion/168-horseshoe-filefish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-171",
+      "catalogIndex": 171,
+      "icon": "s1/icons/171-harlequin-tuskfish.png",
+      "airborneStrip": "s1/airborne/171-harlequin-tuskfish.png",
+      "motion": "s1/motion/171-harlequin-tuskfish.json",
+      "displayClass": "medium",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-176",
+      "catalogIndex": 176,
+      "icon": "s1/icons/176-flasher-wrasse.png",
+      "airborneStrip": "s1/airborne/176-flasher-wrasse.png",
+      "motion": "s1/motion/176-flasher-wrasse.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-177",
+      "catalogIndex": 177,
+      "icon": "s1/icons/177-orange-spotted-filefish.png",
+      "airborneStrip": "s1/airborne/177-orange-spotted-filefish.png",
+      "motion": "s1/motion/177-orange-spotted-filefish.json",
+      "displayClass": "small",
+      "displayScale": 1
+    },
+    {
+      "fishId": "fish-178",
+      "catalogIndex": 178,
+      "icon": "s1/icons/178-emperor-angelfish.png",
+      "airborneStrip": "s1/airborne/178-emperor-angelfish.png",
+      "motion": "s1/motion/178-emperor-angelfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    },
+    {
+      "fishId": "fish-180",
+      "catalogIndex": 180,
+      "icon": "s1/icons/180-royal-angelfish.png",
+      "airborneStrip": "s1/airborne/180-royal-angelfish.png",
+      "motion": "s1/motion/180-royal-angelfish.json",
+      "displayClass": "flat",
+      "displayScale": 1.03
+    }
+  ]
+}

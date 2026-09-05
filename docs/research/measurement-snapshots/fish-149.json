@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-149",
+  "sourceUrl": "https://www.fishbase.se/summary/47710.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 12.6,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 12.6 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Tatia galaxias"
+}

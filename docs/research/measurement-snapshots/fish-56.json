@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-56",
+  "sourceUrl": "https://www.fishbase.se/summary/Cirrhitichthys-falco.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 7,
+    "lengthUnit": "cm TL",
+    "commonLength": 4,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 7.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Cirrhitichthys falco"
+}

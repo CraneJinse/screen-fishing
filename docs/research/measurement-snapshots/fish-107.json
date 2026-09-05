@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-107",
+  "sourceUrl": "https://www.fishbase.se/summary/sphyraena-barracuda",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 200,
+    "lengthUnit": "TL",
+    "commonLength": 140,
+    "maximumWeightG": 50000
+  },
+  "excerpt": "Max length : 200 cm TL; common length : 140 cm TL; max. published weight: 50.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Sphyraena barracuda"
+}

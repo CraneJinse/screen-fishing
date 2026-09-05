@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-45",
+  "sourceUrl": "https://www.fishbase.se/summary/Pygocentrus-nattereri.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 50,
+    "lengthUnit": "cm SL",
+    "commonLength": 24,
+    "maximumWeightG": 3900
+  },
+  "excerpt": "Max length : 50.0 cm SL male/unsexed; max. published weight: 3.9 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Pygocentrus nattereri"
+}

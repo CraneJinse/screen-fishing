@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-144",
+  "sourceUrl": "https://www.fishbase.se/summary/Cichla-ocellaris.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 74,
+    "lengthUnit": "cm TL",
+    "commonLength": null,
+    "maximumWeightG": 6800
+  },
+  "excerpt": "Max length : 74.0 cm TL male/unsexed; max. published weight: 6.8 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Cichla ocellaris"
+}

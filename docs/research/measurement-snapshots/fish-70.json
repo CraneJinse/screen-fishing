@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-70",
+  "sourceUrl": "https://www.fishbase.se/summary/Gymnothorax-moringa.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 150,
+    "lengthUnit": "cm TL",
+    "commonLength": 80,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 150 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Gymnothorax moringa"
+}

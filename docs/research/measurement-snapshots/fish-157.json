@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-157",
+  "sourceUrl": "https://www.fishbase.se/summary/Pseudochromis-cyanotaenia.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 6.2,
+    "lengthUnit": "cm TL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 6.2 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Pseudochromis cyanotaenia"
+}

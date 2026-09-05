@@ -1,0 +1,86 @@
+{
+    "schemaVersion":  "1.0.0",
+    "fishId":  "fish-116",
+    "motionFamily":  "flexible",
+    "frameCount":  4,
+    "frameWidth":  64,
+    "frameHeight":  64,
+    "flightPoseSequence":  [
+                               0,
+                               1,
+                               2,
+                               3,
+                               2,
+                               1,
+                               0,
+                               1,
+                               2,
+                               0
+                           ],
+    "frames":  [
+                   {
+                       "hookAnchor":  {
+                                          "x":  58,
+                                          "y":  27
+                                      },
+                       "visualCenter":  {
+                                            "x":  32,
+                                            "y":  32
+                                        },
+                       "safeBounds":  {
+                                          "y":  2,
+                                          "width":  56,
+                                          "height":  59,
+                                          "x":  4
+                                      }
+                   },
+                   {
+                       "hookAnchor":  {
+                                          "x":  58,
+                                          "y":  27
+                                      },
+                       "visualCenter":  {
+                                            "x":  32,
+                                            "y":  32
+                                        },
+                       "safeBounds":  {
+                                          "y":  2,
+                                          "width":  56,
+                                          "height":  60,
+                                          "x":  4
+                                      }
+                   },
+                   {
+                       "hookAnchor":  {
+                                          "x":  56,
+                                          "y":  27
+                                      },
+                       "visualCenter":  {
+                                            "x":  32,
+                                            "y":  32
+                                        },
+                       "safeBounds":  {
+                                          "y":  2,
+                                          "width":  52,
+                                          "height":  59,
+                                          "x":  6
+                                      }
+                   },
+                   {
+                       "hookAnchor":  {
+                                          "x":  52,
+                                          "y":  27
+                                      },
+                       "visualCenter":  {
+                                            "x":  32,
+                                            "y":  32
+                                        },
+                       "safeBounds":  {
+                                          "y":  2,
+                                          "width":  45,
+                                          "height":  60,
+                                          "x":  9
+                                      }
+                   }
+               ]
+}

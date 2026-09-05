@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-17",
+  "sourceUrl": "https://ask.ifas.ufl.edu/publication/IN1301",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 4,
+    "lengthUnit": "cm",
+    "commonLength": 3,
+    "maximumWeightG": null
+  },
+  "excerpt": "Neocaridina davidi grow to a maximum adult size of 3 to 4 cm in length",
+  "evidenceStatus": "captured",
+  "scientificName": "Neocaridina davidi"
+}

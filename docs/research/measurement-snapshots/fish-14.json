@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-14",
+  "sourceUrl": "https://www.fishbase.se/summary/Sewellia-lineolata",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 5.7,
+    "lengthUnit": "cm SL",
+    "commonLength": 4.5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 5.7 cm SL male/unsexed",
+  "evidenceStatus": "captured",
+  "scientificName": "Sewellia lineolata"
+}

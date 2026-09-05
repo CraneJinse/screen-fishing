@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-51",
+  "sourceUrl": "https://www.fishbase.se/summary/Arapaima-gigas.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 450,
+    "lengthUnit": "cm TL",
+    "commonLength": 200,
+    "maximumWeightG": 200000
+  },
+  "excerpt": "Max length : 450 cm TL male/unsexed; common length : 200 cm TL male/unsexed; max. published weight: 200.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Arapaima gigas"
+}

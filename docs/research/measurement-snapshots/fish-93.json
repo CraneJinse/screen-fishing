@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-93",
+  "sourceUrl": "https://www.fishbase.se/summary/Cyclopterus-lumpus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 61,
+    "lengthUnit": "cm TL",
+    "commonLength": 43,
+    "maximumWeightG": 9500
+  },
+  "excerpt": "Max length : 61.0 cm TL male/unsexed; max. published weight: 9.5 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Cyclopterus lumpus"
+}

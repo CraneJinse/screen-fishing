@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-176",
+  "sourceUrl": "https://www.fishbase.se/summary/Paracheilinus-carpenteri.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 8,
+    "lengthUnit": "cm TL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 8.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Paracheilinus carpenteri"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-137",
+  "sourceUrl": "https://www.fishbase.se/summary/Pseudotropheus-zebra.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 11.3,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 11.3 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Pseudotropheus zebra"
+}

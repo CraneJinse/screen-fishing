@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-110",
+  "sourceUrl": "https://www.fishbase.se/summary/Thunnus-albacares",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 239,
+    "lengthUnit": "FL",
+    "commonLength": 150,
+    "maximumWeightG": 200000
+  },
+  "excerpt": "Max length : 239 cm FL; common length : 150 cm FL; max. published weight: 200.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Thunnus albacares"
+}

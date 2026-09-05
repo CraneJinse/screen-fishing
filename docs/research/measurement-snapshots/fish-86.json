@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-86",
+  "sourceUrl": "https://www.fishbase.se/summary/Hypsypops-rubicundus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 38,
+    "lengthUnit": "cm TL",
+    "commonLength": 25,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 38.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Hypsypops rubicundus"
+}

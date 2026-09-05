@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-47",
+  "sourceUrl": "https://www.fishbase.se/summary/Monocirrhus-polyacanthus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 8,
+    "lengthUnit": "cm SL",
+    "commonLength": 5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 8.0 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Monocirrhus polyacanthus"
+}

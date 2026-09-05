@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-6",
+  "sourceUrl": "https://www.fishbase.se/summary/Xiphophorus-helleri",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 14,
+    "lengthUnit": "cm TL",
+    "commonLength": 8,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 14.0 cm TL male/unsexed; 16.0 cm TL female",
+  "evidenceStatus": "captured",
+  "scientificName": "Xiphophorus hellerii"
+}

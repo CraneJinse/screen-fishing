@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-48",
+  "sourceUrl": "https://www.fishbase.se/summary/Atractosteus-spatula.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 260,
+    "lengthUnit": "cm TL",
+    "commonLength": 200,
+    "maximumWeightG": 137000
+  },
+  "excerpt": "Max length : 260 cm TL male/unsexed; common length : 200 cm TL male/unsexed; max. published weight: 137.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Atractosteus spatula"
+}

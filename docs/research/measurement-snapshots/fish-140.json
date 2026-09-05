@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-140",
+  "sourceUrl": "https://www.fishbase.se/summary/Garra-flavatra.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 6.2,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 6.2 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Garra flavatra"
+}

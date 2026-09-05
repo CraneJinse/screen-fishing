@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-49",
+  "sourceUrl": "https://www.fishbase.se/summary/Acipenser-baerii.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 200,
+    "lengthUnit": "cm TL",
+    "commonLength": 120,
+    "maximumWeightG": 210000
+  },
+  "excerpt": "Max length : 200 cm TL male/unsexed; max. published weight: 210.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Acipenser baerii"
+}

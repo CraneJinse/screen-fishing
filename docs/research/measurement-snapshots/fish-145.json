@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-145",
+  "sourceUrl": "https://www.fishbase.se/summary/Apistogramma_cacatuoides.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 5,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 5.0 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Apistogramma cacatuoides"
+}

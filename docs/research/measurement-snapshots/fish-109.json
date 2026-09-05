@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-109",
+  "sourceUrl": "https://fishbase.se/summary/Hippoglossus-hippoglossus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 470,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": 320000
+  },
+  "excerpt": "Max length : 470 cm TL male/unsexed; max. published weight: 320.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Hippoglossus hippoglossus"
+}

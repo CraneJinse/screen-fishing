@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-72",
+  "sourceUrl": "https://www.fishbase.se/summary/Zebrasoma-rostratum.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 21,
+    "lengthUnit": "cm TL",
+    "commonLength": 14,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 21.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Zebrasoma rostratum"
+}

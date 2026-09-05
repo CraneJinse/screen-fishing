@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-148",
+  "sourceUrl": "https://www.fishbase.se/summary/Iriatherina-werneri.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 4,
+    "lengthUnit": "cm SL",
+    "commonLength": 3,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 4.0 cm SL male/unsexed; 3.0 cm SL (female); common length : 3.0 cm SL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Iriatherina werneri"
+}

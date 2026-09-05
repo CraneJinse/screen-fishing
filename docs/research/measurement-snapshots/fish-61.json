@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-61",
+  "sourceUrl": "https://www.fishbase.se/summary/Synchiropus-sycorax.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 4,
+    "lengthUnit": "cm SL",
+    "commonLength": 2.7,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 4.0 cm SL male/unsexed; 2.7 cm SL female.",
+  "evidenceStatus": "captured",
+  "scientificName": "Synchiropus sycorax"
+}

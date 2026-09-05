@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-112",
+  "sourceUrl": "https://www.fishbase.se/summary/Caranx_ignobilis.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 170,
+    "lengthUnit": "TL",
+    "commonLength": 100,
+    "maximumWeightG": 80000
+  },
+  "excerpt": "Max length : 170 cm TL; common length : 100.0 cm TL; max. published weight: 80.0 kg",
+  "evidenceStatus": "captured",
+  "scientificName": "Caranx ignobilis"
+}

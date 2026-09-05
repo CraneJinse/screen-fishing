@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-7",
+  "sourceUrl": "https://www.fishbase.se/summary/Xiphophorus-maculatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 6,
+    "lengthUnit": "cm TL",
+    "commonLength": 2.4,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 4.0 cm TL male/unsexed; 6.0 cm TL female; common length : 2.4 cm TL",
+  "evidenceStatus": "captured",
+  "scientificName": "Xiphophorus maculatus"
+}

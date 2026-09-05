@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-155",
+  "sourceUrl": "https://www.fishbase.se/summary/Oncorhynchus-tshawytscha.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 150,
+    "lengthUnit": "cm TL",
+    "commonLength": 70,
+    "maximumWeightG": 61400
+  },
+  "excerpt": "Max length : 150 cm TL male/unsexed; common length : 70.0 cm TL male/unsexed; max. published weight: 61.4 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Oncorhynchus tshawytscha"
+}

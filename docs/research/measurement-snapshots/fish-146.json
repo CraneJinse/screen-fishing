@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-146",
+  "sourceUrl": "https://www.fishbase.se/summary/Catlocarpio-siamensis.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 300,
+    "lengthUnit": "cm TL",
+    "commonLength": null,
+    "maximumWeightG": 300000
+  },
+  "excerpt": "Max length : 300 cm TL male/unsexed; max. published weight: 300.0 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Catlocarpio siamensis"
+}

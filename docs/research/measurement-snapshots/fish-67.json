@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-67",
+  "sourceUrl": "https://www.fishbase.se/summary/Nemateleotris-magnifica.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 9,
+    "lengthUnit": "cm TL",
+    "commonLength": 6,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 9.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Nemateleotris magnifica"
+}

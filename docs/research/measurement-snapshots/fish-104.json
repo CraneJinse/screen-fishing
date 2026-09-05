@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-104",
+  "sourceUrl": "https://www.fishbase.se/summary/Pristiophorus-cirratus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 137,
+    "lengthUnit": "TL",
+    "commonLength": 125,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 137 cm TL; common length : 125 cm TL",
+  "evidenceStatus": "captured",
+  "scientificName": "Pristiophorus cirratus"
+}

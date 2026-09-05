@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-103",
+  "sourceUrl": "https://www.fishbase.se/summary/psychrolutes-marcidus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 30,
+    "lengthUnit": "TL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 30.0 cm TL",
+  "evidenceStatus": "captured",
+  "scientificName": "Psychrolutes marcidus"
+}

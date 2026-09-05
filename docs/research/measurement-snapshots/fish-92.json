@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-92",
+  "sourceUrl": "https://www.fishbase.se/summary/Aulostomus-chinensis.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 80,
+    "lengthUnit": "cm TL",
+    "commonLength": 60,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 80.0 cm TL male/unsexed; common length : 60.0 cm TL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Aulostomus chinensis"
+}

@@ -1,0 +1,434 @@
+{
+  "schemaVersion": "2.0.0",
+  "style": "individually-generated-detailed-pixel-art",
+  "size": 256,
+  "count": 71,
+  "entries": [
+    {
+      "achievementId": "first-cast",
+      "icon": "achievements-v2/first-cast.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "first-catch",
+      "icon": "achievements-v2/first-catch.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "ten-catches",
+      "icon": "achievements-v2/ten-catches.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "catches-25",
+      "icon": "achievements-v2/catches-25.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "catches-50",
+      "icon": "achievements-v2/catches-50.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "hundred-catches",
+      "icon": "achievements-v2/hundred-catches.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "catches-250",
+      "icon": "achievements-v2/catches-250.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "catches-500",
+      "icon": "achievements-v2/catches-500.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "catches-1000",
+      "icon": "achievements-v2/catches-1000.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "catches-2000",
+      "icon": "achievements-v2/catches-2000.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "species-5",
+      "icon": "achievements-v2/species-5.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "species-10",
+      "icon": "achievements-v2/species-10.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "unique-25",
+      "icon": "achievements-v2/unique-25.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "species-50",
+      "icon": "achievements-v2/species-50.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "unique-76",
+      "icon": "achievements-v2/unique-76.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "species-100",
+      "icon": "achievements-v2/species-100.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "species-125",
+      "icon": "achievements-v2/species-125.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "all-species",
+      "icon": "achievements-v2/all-species.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "one-species-10",
+      "icon": "achievements-v2/one-species-10.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "one-species-30",
+      "icon": "achievements-v2/one-species-30.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "rare",
+      "icon": "achievements-v2/rare.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "epic",
+      "icon": "achievements-v2/epic.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "legendary",
+      "icon": "achievements-v2/legendary.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "mythic",
+      "icon": "achievements-v2/mythic.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "rare-25",
+      "icon": "achievements-v2/rare-25.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "epic-10",
+      "icon": "achievements-v2/epic-10.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "legendary-5",
+      "icon": "achievements-v2/legendary-5.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "mythic-3",
+      "icon": "achievements-v2/mythic-3.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "all-rarities",
+      "icon": "achievements-v2/all-rarities.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "pack-f1-complete",
+      "icon": "achievements-v2/pack-f1-complete.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "pack-f2-complete",
+      "icon": "achievements-v2/pack-f2-complete.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "pack-s1-complete",
+      "icon": "achievements-v2/pack-s1-complete.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "pack-s2-complete",
+      "icon": "achievements-v2/pack-s2-complete.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "first-alternate",
+      "icon": "achievements-v2/first-alternate.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "first-golden",
+      "icon": "achievements-v2/first-golden.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "first-iridescent",
+      "icon": "achievements-v2/first-iridescent.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "alternate-species-10",
+      "icon": "achievements-v2/alternate-species-10.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "golden-species-5",
+      "icon": "achievements-v2/golden-species-5.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "iridescent-species-3",
+      "icon": "achievements-v2/iridescent-species-3.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "one-species-two-variants",
+      "icon": "achievements-v2/one-species-two-variants.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "one-species-three-variants",
+      "icon": "achievements-v2/one-species-three-variants.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "one-species-four-variants",
+      "icon": "achievements-v2/one-species-four-variants.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "variant-pairs-200",
+      "icon": "achievements-v2/variant-pairs-200.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "length-50",
+      "icon": "achievements-v2/length-50.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "length-record",
+      "icon": "achievements-v2/length-record.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "length-200",
+      "icon": "achievements-v2/length-200.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "weight-1",
+      "icon": "achievements-v2/weight-1.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "weight-record",
+      "icon": "achievements-v2/weight-record.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "weight-50",
+      "icon": "achievements-v2/weight-50.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "length-at-most-5",
+      "icon": "achievements-v2/length-at-most-5.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "weight-at-most-10g",
+      "icon": "achievements-v2/weight-at-most-10g.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "bottles-1",
+      "icon": "achievements-v2/bottles-1.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "bottles-10",
+      "icon": "achievements-v2/bottles-10.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "bottles-30",
+      "icon": "achievements-v2/bottles-30.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "research-1",
+      "icon": "achievements-v2/research-1.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "research-10",
+      "icon": "achievements-v2/research-10.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "eco-1",
+      "icon": "achievements-v2/eco-1.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "eco-10",
+      "icon": "achievements-v2/eco-10.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "eco-20",
+      "icon": "achievements-v2/eco-20.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "special-30",
+      "icon": "achievements-v2/special-30.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "sale-first",
+      "icon": "achievements-v2/sale-first.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "sale-10",
+      "icon": "achievements-v2/sale-10.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "sale-100",
+      "icon": "achievements-v2/sale-100.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "earned-1000",
+      "icon": "achievements-v2/earned-1000.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "earned-10000",
+      "icon": "achievements-v2/earned-10000.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "earned-50000",
+      "icon": "achievements-v2/earned-50000.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "own-f2",
+      "icon": "achievements-v2/own-f2.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "own-s1",
+      "icon": "achievements-v2/own-s1.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "own-s2",
+      "icon": "achievements-v2/own-s2.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "corners",
+      "icon": "achievements-v2/corners.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "achievementId": "five-unique-window",
+      "icon": "achievements-v2/five-unique-window.png",
+      "width": 256,
+      "height": 256
+    }
+  ]
+}

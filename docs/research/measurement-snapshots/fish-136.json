@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-136",
+  "sourceUrl": "https://www.fishbase.se/summary/Melanotaenia-boesemani.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 9,
+    "lengthUnit": "cm SL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 9.0 cm SL male/unsexed; 7.0 cm SL (female).",
+  "evidenceStatus": "captured",
+  "scientificName": "Melanotaenia boesemani"
+}

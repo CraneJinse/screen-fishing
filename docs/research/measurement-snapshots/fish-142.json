@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-142",
+  "sourceUrl": "https://www.fishbase.se/summary/Otocinclus-vittatus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 3.3,
+    "lengthUnit": "cm TL",
+    "commonLength": null,
+    "maximumWeightG": 0.73
+  },
+  "excerpt": "Max length : 3.3 cm TL male/unsexed; max. published weight: 0.73 g.",
+  "evidenceStatus": "captured",
+  "scientificName": "Otocinclus vittatus"
+}

@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-135",
+  "sourceUrl": "https://www.fishbase.se/summary/Carinotetraodon-travancoricus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 3.5,
+    "lengthUnit": "cm TL",
+    "commonLength": 2.5,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 3.5 cm TL male/unsexed; Reaches less than 2.5 cm TL.",
+  "evidenceStatus": "captured",
+  "scientificName": "Carinotetraodon travancoricus"
+}

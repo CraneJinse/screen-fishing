@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-65",
+  "sourceUrl": "https://www.fishbase.se/summary/Pterapogon-kauderni.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 8.6,
+    "lengthUnit": "cm TL",
+    "commonLength": 6,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 8.6 cm TL (female); max. published weight: 0.00 g.",
+  "evidenceStatus": "captured",
+  "scientificName": "Pterapogon kauderni"
+}

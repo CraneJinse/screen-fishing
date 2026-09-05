@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-52",
+  "sourceUrl": "https://www.fishbase.se/summary/Polyodon-spathula.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 221,
+    "lengthUnit": "cm TL",
+    "commonLength": 120,
+    "maximumWeightG": 90700
+  },
+  "excerpt": "Max length : 221 cm TL male/unsexed; common length : 120 cm TL male/unsexed; max. published weight: 90.7 kg.",
+  "evidenceStatus": "captured",
+  "scientificName": "Polyodon spathula"
+}

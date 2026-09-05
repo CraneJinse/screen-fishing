@@ -1,0 +1,14 @@
+{
+  "fishId": "fish-166",
+  "sourceUrl": "https://www.fishbase.se/summary/Serranus-tigrinus.html",
+  "accessedAt": "2026-09-03",
+  "extracted": {
+    "maxLength": 29,
+    "lengthUnit": "cm FL",
+    "commonLength": null,
+    "maximumWeightG": null
+  },
+  "excerpt": "Max length : 29.0 cm FL male/unsexed.",
+  "evidenceStatus": "captured",
+  "scientificName": "Serranus tigrinus"
+}
