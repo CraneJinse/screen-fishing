@@ -1,0 +1,16 @@
+{
+  "format": "screen-fishing-character",
+  "schemaVersion": 1,
+  "id": "skeleton-pirate-design-01",
+  "name": "亡灵船长",
+  "description": "可爱骷髅海盗，驾着幽灵木船，手持脊骨钓竿。",
+  "author": "本地定制",
+  "status": "ready",
+  "preview": "preview.png",
+  "actionManifest": "action-manifest.json",
+  "design": {
+    "character": "戴棕色三角帽、穿青绿外套的可爱骷髅，眼中泛着幽光。",
+    "boat": "残破的深色木船，萦绕绿色鬼火，船尾插着骷髅弯刀。",
+    "rod": "一节节明显脊骨串接的骨竿，深棕握柄、旧黄铜线轮；连续线漂钩饵。"
+  }
+}

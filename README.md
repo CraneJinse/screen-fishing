@@ -4,11 +4,11 @@
 
 ![锦鲤](assets/ui/tray/screen-fishing-256.png)
 
-当前版本：1.11.1 公开测试版。152种鱼、4个鱼包、60项特殊事件、71项成就；纯本地存档，无账号、无内购。
+当前版本：1.11.2 公开测试版。152种鱼、4个鱼包、60项特殊事件、71项成就；纯本地存档，无账号、无内购。
 
 ## 直接游玩
 
-在 [下载页面（Releases）](https://github.com/CraneJinse/screen-fishing/releases/tag/v1.11.1) 下载 [ScreenFishing-1.11.1-windows-x64.zip](https://github.com/CraneJinse/screen-fishing/releases/download/v1.11.1/ScreenFishing-1.11.1-windows-x64.zip)，完整解压到可写文件夹，双击 ScreenFishing.exe。不要直接在压缩包内运行，也不要只复制 exe。Windows x64 运行包已带 Electron，无需自行安装 Node.js。
+在 [下载页面（Releases）](https://github.com/CraneJinse/screen-fishing/releases/tag/v1.11.2) 下载 [ScreenFishing-1.11.2-windows-x64.zip](https://github.com/CraneJinse/screen-fishing/releases/download/v1.11.2/ScreenFishing-1.11.2-windows-x64.zip)，完整解压到可写文件夹，双击 ScreenFishing.exe。不要直接在压缩包内运行，也不要只复制 exe。Windows x64 运行包已带 Electron，无需自行安装 Node.js。
 
 GitHub 的 Source code 压缩包是开发源码，需要按下面步骤构建。当前未提供安装器、自动更新或代码签名；不要关闭系统防护，确认下载来源后再决定运行。
 
@@ -62,6 +62,12 @@ npm start
 
 ## 定制角色
 
-信息面板提供“角色库”，内置经典搭子和柠檬，新存档也可直接切换；支持完整自定义角色套装导入。设计按人物、船、鱼竿顺序进行；未完成动画的草稿显示“制作中”。定制外观不改变钓鱼计时与收藏进度。
+信息面板提供“角色库”，内置经典搭子、柠檬和亡灵船长，新存档也可直接切换；支持完整自定义角色套装导入。设计按人物、船、鱼竿顺序进行；未完成动画的草稿显示“制作中”。定制外观不改变钓鱼计时与收藏进度。
 
 [角色设计skill安装与使用](docs/CHARACTER_DESIGN_SKILL.md) · [角色库设计](docs/specifications/characters/CHARACTER_LIBRARY_V1.md)
+
+### 新搭子：亡灵船长
+
+![亡灵船长](assets/characters/skeleton-pirate-design-01/preview.png)
+
+骷髅海盗、幽灵木船与脊骨钓竿，已包含完整22组动作。打开信息面板→角色库→使用角色即可切换，无需额外导入。

@@ -11,6 +11,8 @@ const delay = n => new Promise(r => setTimeout(r, n));
 async function run() {
   fs.mkdirSync(output, { recursive: true });
   const library = new CharacterLibrary({ root: path.join(disposable, 'characters'), appRoot: root });
+  const bundledIds = require('../assets/characters/catalog.json').ids;
+  const standardCount = 1 + bundledIds.length;
   const fixture = path.join(disposable, 'fixture'); fs.mkdirSync(fixture);
   fs.cpSync(path.join(root, 'assets/pet/v1-runtime/actions'), path.join(fixture, 'actions'), { recursive: true });
   fs.writeFileSync(path.join(fixture, 'action-manifest.json'), JSON.stringify(library.template));
@@ -34,16 +36,18 @@ async function run() {
   });
   await panel.loadFile(path.join(root, 'src/panel.html')); await pet.loadFile(path.join(root, 'src/index.html')); await delay(800);
   await panel.webContents.executeJavaScript('document.querySelector("[data-page=characters]").click()'); await delay(200);
-  await panel.webContents.executeJavaScript('document.querySelector("[data-character-id=design-04]").click()'); await delay(600);
-  assert.equal(library.selectedId, 'design-04');
-  assert.equal(JSON.stringify(state), before);
-  const lemon = await pet.webContents.executeJavaScript('({id:document.body.dataset.character,url:document.querySelector("#sprite").style.backgroundImage,visible:!document.querySelector("#sprite").hidden})');
-  assert.equal(lemon.id, 'design-04'); assert(lemon.visible && lemon.url.includes('design-04'));
+  const bundledSwitches = [];
+  for (const id of bundledIds) {
+    await panel.webContents.executeJavaScript('document.querySelector('+JSON.stringify('[data-character-id="'+id+'"]').replace(/</g,'\u003c')+').click()'); await delay(600);
+    assert.equal(library.selectedId, id); assert.equal(JSON.stringify(state), before);
+    const appearance = await pet.webContents.executeJavaScript('({id:document.body.dataset.character,url:document.querySelector("#sprite").style.backgroundImage,visible:!document.querySelector("#sprite").hidden})');
+    assert.equal(appearance.id, id); assert(appearance.visible && appearance.url.includes(id)); bundledSwitches.push(appearance);
+  }
   const layouts = [];
   for (const [width, height] of [[480,420],[640,560],[960,720]]) {
     panel.setSize(width, height); await delay(120);
     const layout = await panel.webContents.executeJavaScript(`(() => { const cards=[...document.querySelectorAll('.character-card')], controls=[...document.querySelectorAll('.character-tools button')]; return {width:innerWidth, count:cards.length, fits:cards.every(c=>{const r=c.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth})&&document.documentElement.scrollWidth===innerWidth, buttons:controls.every(b=>b.getBoundingClientRect().height>=32),draftDisabled:document.querySelector('[data-character-id="qa-draft"]').disabled}; })()`);
-    assert(layout.fits && layout.buttons && layout.count === 4 && layout.draftDisabled); layouts.push(layout);
+    assert(layout.fits && layout.buttons && layout.count === standardCount + 2 && layout.draftDisabled); layouts.push(layout);
   }
   await panel.webContents.executeJavaScript('document.querySelector("[data-character-id=qa-copy]").click()'); await delay(600);
   assert.equal(library.selectedId, 'qa-copy');
@@ -57,19 +61,19 @@ async function run() {
     await panel.webContents.executeJavaScript(`window.desktopPond.characterAction('select',${JSON.stringify(next)})`); await delay(240);
     assert.equal(JSON.stringify(state), phaseBefore); phases.push(phase);
   }
-  await panel.webContents.executeJavaScript('document.querySelector("[data-character=import]").click()'); await delay(150); assert.equal(library.snapshot().entries.length, 4);
+  await panel.webContents.executeJavaScript('document.querySelector("[data-character=import]").click()'); await delay(150); assert.equal(library.snapshot().entries.length, standardCount + 2);
   await panel.webContents.executeJavaScript('document.querySelector("[data-character=folder]").click()'); await delay(100);
   assert.equal(await panel.webContents.executeJavaScript('document.querySelector("#toast").textContent'), '验证失败提示');
   fs.writeFileSync(path.join(output, 'library.png'), (await panel.capturePage()).toPNG());
-  library.packs.delete('qa-copy'); library.packs.delete('qa-draft'); library.select('design-04');
-  panel.webContents.send('game:update', snapshot()); await delay(300);
-  assert.equal(library.snapshot().entries.length, 2);
+  library.packs.delete('qa-copy'); library.packs.delete('qa-draft'); library.select(bundledIds[bundledIds.length - 1]);
+  panel.setSize(960, 940); panel.webContents.send('game:update', snapshot()); await delay(2400);
+  assert.equal(library.snapshot().entries.length, standardCount);
   fs.writeFileSync(path.join(output, 'bundled-characters.png'), (await panel.capturePage()).toPNG());
   library.select('classic'); library.packs.clear(); panel.webContents.send('game:update', snapshot()); await delay(2400);
   assert(await panel.webContents.executeJavaScript('document.querySelector("#toast").hidden'));
   fs.writeFileSync(path.join(output, 'library-default.png'), (await panel.capturePage()).toPNG());
   assert.deepEqual(errors, []);
-  const report = { ok: true, layouts, rendererSwitched: custom, statePreserved: true, phases, importCancel: true, errorFeedback: true, fixtureOnly: true };
+  const report = { ok: true, layouts, bundledSwitches, rendererSwitched: custom, statePreserved: true, phases, importCancel: true, errorFeedback: true, fixtureOnly: true };
   fs.writeFileSync(path.join(output, 'report.json'), JSON.stringify(report, null, 2)); console.log(JSON.stringify(report));
   panel.destroy(); pet.destroy(); app.quit();
 }
