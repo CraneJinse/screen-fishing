@@ -1,0 +1,2277 @@
+{
+  "schemaVersion": "1.0.0",
+  "assetVersion": "design-04-final-candidate-v4",
+  "canvas": {
+    "width": 192,
+    "height": 208,
+    "pixelRatio": 2
+  },
+  "defaultAction": "idle",
+  "actions": {
+    "idle": {
+      "file": "actions/idle.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 180,
+      "loop": true,
+      "animationMeta": {
+        "type": "idle_blink",
+        "baseFrameSequence": [
+          0,
+          1,
+          2,
+          3,
+          5
+        ],
+        "blinkFrameSequences": [
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "blinkIntervalMs": {
+          "min": 8000,
+          "max": 15000
+        },
+        "doubleBlinkChance": 0.12,
+        "doubleBlinkGapMs": {
+          "min": 180,
+          "max": 300
+        },
+        "notes": "Keep the closed-eye frame out of the base loop. Renderer schedules randomized 8-15 second blinks."
+      },
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "idle_yawn": {
+      "file": "actions/idle_yawn.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 225,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "click_react": {
+      "file": "actions/click_react.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 4,
+      "frameDurationMs": 160,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "menu_greet": {
+      "file": "actions/menu_greet.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 4,
+      "frameDurationMs": 170,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "drag_idle": {
+      "file": "actions/drag_idle.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 100,
+      "loop": true,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "drag_fishing": {
+      "file": "actions/drag_fishing.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 100,
+      "loop": true,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "cast": {
+      "file": "actions/cast.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 138,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "waiting": {
+      "file": "actions/waiting.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 283,
+      "loop": true,
+      "animationMeta": {
+        "type": "idle_blink",
+        "baseFrameSequence": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "blinkFrameSequences": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "blinkIntervalMs": {
+          "min": 8000,
+          "max": 15000
+        },
+        "doubleBlinkChance": 0.12,
+        "doubleBlinkGapMs": {
+          "min": 180,
+          "max": 300
+        },
+        "notes": "Renderer should keep open-eye base frames between randomized blink sequences; do not use the legacy six-frame loop as a fixed blink cadence."
+      },
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "bite_intro": {
+      "file": "actions/bite_intro.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 120,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [
+            "bite_started"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "bite_loop": {
+      "file": "actions/bite_loop.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 135,
+      "loop": true,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "bite_urgent": {
+      "file": "actions/bite_urgent.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 110,
+      "loop": true,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [
+            "urgent_started"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "reel_pull": {
+      "file": "actions/reel_pull.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 131,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 168,
+            "y": 151,
+            "rotationDeg": -55,
+            "scale": 0.86,
+            "pose": 0,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 166,
+            "y": 142,
+            "rotationDeg": -45,
+            "scale": 0.86,
+            "pose": 1,
+            "z": "front"
+          },
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "catch_flight": {
+      "file": "actions/catch_flight.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 10,
+      "frameDurationMs": 100,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": {
+            "x": 166,
+            "y": 139,
+            "rotationDeg": -58,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "front"
+          },
+          "events": [
+            "fish_breach"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 164,
+            "y": 113,
+            "rotationDeg": -48,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 159,
+            "y": 88,
+            "rotationDeg": -35,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 153,
+            "y": 65,
+            "rotationDeg": -20,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 147,
+            "y": 50,
+            "rotationDeg": -4,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 141,
+            "y": 48,
+            "rotationDeg": 12,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 137,
+            "y": 62,
+            "rotationDeg": 28,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 134,
+            "y": 87,
+            "rotationDeg": 45,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 132,
+            "y": 118,
+            "rotationDeg": 62,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "front"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 148,
+            "rotationDeg": 78,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "front"
+          },
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "catch_land": {
+      "file": "actions/catch_land.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 100,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 151,
+            "rotationDeg": 78,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 88,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [
+            "catch_committed",
+            "result_card_show",
+            "fish_landed"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 156,
+            "rotationDeg": 82,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 88,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "fish_escape": {
+      "file": "actions/fish_escape.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 144,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": {
+            "x": 166,
+            "y": 142,
+            "rotationDeg": 45,
+            "scale": 0.82,
+            "pose": 0,
+            "z": "behind"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 174,
+            "y": 151,
+            "rotationDeg": 63,
+            "scale": 0.82,
+            "pose": 1,
+            "z": "behind"
+          },
+          "events": [
+            "escape_committed"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 181,
+            "y": 165,
+            "rotationDeg": 81,
+            "scale": 0.82,
+            "pose": 2,
+            "z": "behind"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "sad_recover": {
+      "file": "actions/sad_recover.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 267,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "empty_reel": {
+      "file": "actions/empty_reel.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 192,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": null,
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "celebrate_common": {
+      "file": "actions/celebrate_common.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 6,
+      "frameDurationMs": 213,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [
+            "celebration_started"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "celebrate_rare": {
+      "file": "actions/celebrate_rare.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 170,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [
+            "celebration_started"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "celebrate_epic": {
+      "file": "actions/celebrate_epic.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 178,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [
+            "celebration_started"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "celebrate_legendary": {
+      "file": "actions/celebrate_legendary.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 188,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [
+            "celebration_started"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    },
+    "celebrate_mythic": {
+      "file": "actions/celebrate_mythic.png",
+      "frameWidth": 384,
+      "frameHeight": 416,
+      "frameCount": 8,
+      "frameDurationMs": 210,
+      "loop": false,
+      "frames": [
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [
+            "celebration_started"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 0,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 1,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 2,
+            "z": "boat"
+          },
+          "events": [],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        },
+        {
+          "fishAnchor": {
+            "x": 133,
+            "y": 158,
+            "rotationDeg": 90,
+            "scale": 0.9,
+            "pose": 3,
+            "z": "boat"
+          },
+          "events": [
+            "action_finished"
+          ],
+          "hitRect": {
+            "x": 14,
+            "y": 58,
+            "width": 164,
+            "height": 144
+          }
+        }
+      ]
+    }
+  }
+}

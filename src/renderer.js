@@ -20,11 +20,12 @@
   let requestedAction = '';
   const actionImages = new Map();
   const decodedActionImages = new Set();
+  let actionBundleKey = '';
   let petToolSide = 'right';
   let petBodyLeft = 0;
   let petBodyTop = 0;
   let petToolLeft = 216;
-  const rootAsset = (relative) => `../${relative.replace(/\\/g, '/')}`;
+  const rootAsset = (relative) => relative.startsWith('file:') ? relative : `../${relative.replace(/\\/g, '/')}`;
   const manifest = (id) => snapshot?.assets?.manifests?.find((item) => item.id === id);
   function actionForState(state) {
     if (visualOverride) return visualOverride.actionId;
@@ -97,6 +98,11 @@
     const state = snapshot.state;
     const actionId = actionForState(state);
     const bundle = manifest('pet');
+    if (bundle?.basePath !== actionBundleKey) {
+      actionBundleKey = bundle?.basePath;
+      actionImages.clear(); decodedActionImages.clear();
+      document.body.dataset.character = snapshot.characters?.selectedId || 'classic';
+    }
     const action = bundle?.data?.actions?.[actionId] || bundle?.data?.actions?.[bundle?.data?.defaultAction];
     requestedAction = actionId;
     preloadAllActions(bundle);

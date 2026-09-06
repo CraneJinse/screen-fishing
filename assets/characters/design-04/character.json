@@ -1,0 +1,16 @@
+{
+  "format": "screen-fishing-character",
+  "schemaVersion": 1,
+  "id": "design-04",
+  "name": "柠檬",
+  "description": "高马尾运动女孩与柠檬黄快艇。",
+  "author": "本地定制",
+  "status": "ready",
+  "preview": "preview.png",
+  "actionManifest": "action-manifest.json",
+  "design": {
+    "character": "高马尾女孩，白色涂鸦短外套、柠檬黄运动背心、蓝色长裤，颈挂耳机。",
+    "boat": "白蓝柠檬黄运动快艇，红蓝图案、青色风挡、黑色方向盘。",
+    "rod": "蓝黑长竿与蓝银纺车轮，单根细线和黄白蓝浮漂。"
+  }
+}

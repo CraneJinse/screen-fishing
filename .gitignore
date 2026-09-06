@@ -10,3 +10,11 @@ user-data/
 *.key
 .DS_Store
 Thumbs.db
+.screen-fishing-dev/
+character-designs/
+games/
+__pycache__/
+*.pyc
+
+.agents/
+.screen-fishing-dev/

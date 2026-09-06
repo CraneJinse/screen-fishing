@@ -154,7 +154,10 @@ try {
 
   process.stdout.write(`SAVE_STARTUP_VERIFY:${JSON.stringify({ ok: true, scenarios: ['missing', 'backup-recovery', 'blocked-no-overwrite', 'stale-instance-refresh'] })}\n`);
 } finally {
-  fs.rmSync(suite, { recursive: true, force: true });
+  assert.equal(path.dirname(path.resolve(suite)), path.resolve(os.tmpdir()));
+  assert(path.basename(suite).startsWith('screen-fishing-startup-suite-'));
+  // Chromium may release its cache handles shortly after the main process exits.
+  fs.rmSync(suite, { recursive: true, force: true, maxRetries: 8, retryDelay: 150 });
 }
 })().catch((error) => {
   process.stderr.write(`${error.stack || error.message}\n`);

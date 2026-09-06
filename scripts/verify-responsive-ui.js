@@ -99,7 +99,7 @@ async function run() {
       assert.equal(metrics.buttonFont, '14px', `${page} button font changed`);
       assert.equal(metrics.overflow.length, 0, `${page} ${width}: overflowing ${metrics.overflow}`);
       assert.ok(metrics.scrollOverflow <= 1, `${page} ${width}: horizontal scroll ${metrics.scrollOverflow}`);
-      if (page === 'home') assert.equal(await panel.webContents.executeJavaScript("document.querySelectorAll('.home-card').length === 8 && !document.querySelector('[data-action=hide-pet]')"), true);
+      if (page === 'home') assert.equal(await panel.webContents.executeJavaScript("document.querySelectorAll('.home-card').length === 9 && !!document.querySelector('[data-page=characters]') && !document.querySelector('[data-action=hide-pet]')"), true);
       if (page === 'special-events') { assert.equal(metrics.iconWidth, 88); assert.equal(metrics.titleFont, '18px'); }
       if (['special-events', 'warehouse', 'home'].includes(page) && [480, 960, 1280].includes(width)) await capture(panel, `${page}-${width}x${height}`);
       if (page === 'encyclopedia') {

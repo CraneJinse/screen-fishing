@@ -4,6 +4,7 @@
   let snapshot;
   let routeStack = [{ page: 'home' }];
   let toastTimer;
+  let characterBusy = false;
   let pendingScale = null;
   let scalePreviewPromise = null;
   let inventoryDisplayFilter = 'all';
@@ -159,7 +160,7 @@
   function renderHome() {
     const state = snapshot.state;
     return `${header('安静钓一会儿', '', `<strong class="page-balance">${escapeHtml(coinText(state.wallet?.balance))}</strong>`)}<section class="stats-strip home-stats">${statsCard(`${state.stats.uniqueSpeciesCount}/152`, '已发现')}${statsCard(state.stats.totalCatchCount, '总捕获')}${statsCard(state.history[0]?.name || '—', '最近收获')}</section><section class="home-grid">
-      ${homeButton('encyclopedia', 'catalog', '鱼类图鉴')}${homeButton('warehouse', 'warehouse', '鱼类仓库')}${homeButton('shop', 'shop', '商店')}${homeButton('special-events', 'special-event', '特殊事件')}${homeButton('achievements', 'achievements', '成就')}${homeButton('history', 'history', '历史收获')}${homeButton('settings', 'settings', '设置')}${homeButton('help', 'help', '玩法帮助')}
+      ${homeButton('encyclopedia', 'catalog', '鱼类图鉴')}${homeButton('warehouse', 'warehouse', '鱼类仓库')}${homeButton('shop', 'shop', '商店')}${homeButton('special-events', 'special-event', '特殊事件')}${homeButton('achievements', 'achievements', '成就')}${homeButton('characters', 'characters', '角色库')}${homeButton('history', 'history', '历史收获')}${homeButton('settings', 'settings', '设置')}${homeButton('help', 'help', '玩法帮助')}
     </section>`;
   }
   function homeButton(page, icon, title) { return `<button class="home-card" data-page="${page}" type="button"><span class="home-icon"><img src="../assets/ui/icons/${icon}.svg" alt=""></span><strong>${title}</strong></button>`; }
@@ -724,6 +725,16 @@
     return `${header('玩法帮助')}<article class="detail-card"><h2>随时玩，随时停</h2><p>右键单击人物或船体，打开抛竿、收杆、垂钓场景和面板四个快捷按钮。10 秒没有操作会自动隐藏。未购买咸水鱼包时，咸水场景不可选。</p><p>鱼上钩后，直接左键单击桌宠即可快速收杆。前 30 秒播放上钩提醒，之后恢复平缓持竿动画，静止的黄色叹号表示可以收杆。鱼获和特殊事件会保留，不会因为没及时点击而逃脱。</p><p>新存档首杆从抛竿到中鱼共 10 秒；第 2–5 杆等待 30–90 秒；第 6 杆起等待 5–10 分钟。重开游戏不会重置新手阶段。</p><p>按住左键移动超过 6 像素即可拖动桌宠；拖动不会触发收杆，也不会拉长水面波纹。</p><div class="facts">${fact('显示/隐藏', shortcuts.pet || '未注册')}${fact('打开面板', shortcuts.panel || '未注册')}${fact('关闭/返回', 'Esc')}${fact('隐私', '纯本地，不读取屏幕与其他应用')}</div></article>`;
   }
   function empty(message) { return `<div class="empty-state"><p>${escapeHtml(message)}</p></div>`; }
+  function renderCharacters() {
+    const library = snapshot.characters;
+    const controls = `<div class="character-tools"><button type="button" class="pixel-button" data-character="import" ${characterBusy ? 'disabled' : ''}>导入角色</button><button type="button" class="pixel-button" data-character="refresh" ${characterBusy ? 'disabled' : ''}>刷新</button><button type="button" class="pixel-button" data-character="folder" ${characterBusy ? 'disabled' : ''}>打开角色目录</button></div>`;
+    const cards = (library?.entries || []).map(entry => {
+      const selected = entry.id === library.selectedId, ready = entry.status === 'ready';
+      const label = selected ? '正在使用' : ready ? '使用角色' : entry.status === 'draft' ? '制作中' : '不可用';
+      return `<article class="character-card ${selected ? 'is-selected' : ''}" data-character-card="${escapeHtml(entry.id)}">${entry.previewStrip ? `<div class="character-preview" role="img" aria-label="${escapeHtml(entry.name)}" style="background-image:url(&quot;${escapeHtml(entry.preview)}&quot;);background-size:${entry.previewStrip * 100}% 100%;background-repeat:no-repeat"></div>` : entry.preview ? `<img class="character-preview" src="${escapeHtml(entry.preview)}" alt="${escapeHtml(entry.name)}">` : '<div class="character-preview character-placeholder">待完成</div>'}<div class="character-copy"><h2>${escapeHtml(entry.name)}</h2><p>${escapeHtml(entry.error || entry.description || '人物、船与钓组的完整外观套装')}</p>${entry.design ? `<dl>${[['character','人物'],['boat','船'],['rod','鱼竿']].map(([key,label]) => `<div><dt>${label}</dt><dd>${escapeHtml(entry.design[key])}</dd></div>`).join('')}</dl>` : ''}</div><button type="button" class="pixel-button character-select" data-character="select" data-character-id="${escapeHtml(entry.id)}" ${selected || !ready || characterBusy ? 'disabled' : ''}>${label}</button></article>`;
+    }).join('');
+    return `${header('角色库', '换一位搭子，继续安静钓鱼')}${controls}${library?.notice ? `<p class="character-notice" role="status">${escapeHtml(library.notice)}</p>` : ''}<section class="character-list">${cards || empty('角色库尚未读取，请点击刷新重试。')}</section><p class="character-hint">想定制自己的搭子？在 Codex 中调用 screen-fishing-character-designer，依次设计人物、船和鱼竿。完成后回到这里刷新即可选择。</p>`;
+  }
   function render() {
     if (!snapshot) { $('app').innerHTML = empty('正在读取本地存档……'); return; }
     $('saveState').textContent = snapshot.app?.persistenceError ? '存档未保存' : (snapshot.app?.persistenceNotice ? '备份已恢复' : '本地存档');
@@ -741,6 +752,7 @@
       : route.page === 'special-events' ? renderSpecialEvents()
       : route.page === 'special-event-detail' ? renderSpecialEventDetail(route.seriesId)
       : route.page === 'achievements' ? renderAchievements()
+      : route.page === 'characters' ? renderCharacters()
       : route.page === 'history' ? renderHistory()
       : route.page === 'catch-detail' ? renderCatchDetail(route.catchId)
       : route.page === 'settings' ? renderSettings()
@@ -997,6 +1009,17 @@
   }
   $('app').addEventListener('click', async (event) => {
     const target = event.target.closest('button'); if (!target) return;
+    if (target.dataset.character) {
+      if (characterBusy) return;
+      characterBusy = true; render();
+      try {
+        const result = await window.desktopPond.characterAction(target.dataset.character, target.dataset.characterId);
+        if (!result?.ok) toast(result?.error || '角色操作失败，请重试', true);
+        else if (!result.canceled) { if (result.snapshot) snapshot = result.snapshot; toast(target.dataset.character === 'select' ? '已切换角色，钓鱼进度保持不变' : target.dataset.character === 'import' ? '角色已导入' : '角色库已更新'); }
+      } catch { toast('角色操作失败，请重试', true); }
+      finally { characterBusy = false; render(); }
+      return;
+    }
     if (target.dataset.action === 'back') return back();
     if (target.dataset.action === 'list-sort') {
       const ui = listUi[target.dataset.listScope]; const mode = target.dataset.sortMode;

@@ -11,6 +11,7 @@ const aquariumRuntimeEnabled = process.env.POND_SMOKE_TEST === '1'
   || process.env.POND_AQUARIUM_SMOKE_TEST === '1';
 const desktopPond = {
   getSnapshot: () => ipcRenderer.invoke('game:get'),
+  characterAction: (action, id) => ipcRenderer.invoke('characters:action', action, id),
   action: (action, payload) => ipcRenderer.invoke('game:action', action, payload),
   economyAction: (action, payload) => ipcRenderer.invoke('game:economy', action, payload),
   updateSettings: (patch) => ipcRenderer.invoke('game:settings', patch),

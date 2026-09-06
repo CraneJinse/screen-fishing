@@ -9,7 +9,7 @@ fs.mkdirSync(base,{recursive:true});fs.cpSync(path.dirname(require('electron')),
 const iconResult=spawnSync('powershell.exe',['-NoProfile','-ExecutionPolicy','Bypass','-File',path.join(root,'scripts/set-executable-icon.ps1'),'-Executable',path.join(out,'ScreenFishing.exe'),'-Icon',path.join(root,'assets/ui/tray/screen-fishing.ico'),'-ProductName',pkg.productName,'-AppVersion',pkg.version],{encoding:'utf8',windowsHide:true,timeout:30000});if(iconResult.status!==0)throw Error(iconResult.stderr||iconResult.stdout);
 const app=path.join(out,'resources/app');fs.mkdirSync(app,{recursive:true});
 for(const name of ['main.js','preload.js','src','assets','data','README.md'])fs.cpSync(path.join(root,name),path.join(app,name),{recursive:true});
-fs.writeFileSync(path.join(app,'package.json'),JSON.stringify({name:pkg.name,productName:pkg.productName,version:pkg.version,main:'main.js',private:true,license:'MIT'},null,2));
+fs.writeFileSync(path.join(app,'package.json'),JSON.stringify({name:pkg.name,productName:pkg.productName,version:pkg.version,characterLibraryVersion:pkg.characterLibraryVersion,main:'main.js',private:true,license:'MIT'},null,2));
 for(const name of ['README.md','ASSET_NOTICE.md','THIRD_PARTY_NOTICES.md','CHANGELOG.md','CONTRIBUTING.md'])fs.copyFileSync(path.join(root,name),path.join(out,name));
 fs.copyFileSync(path.join(root,'LICENSE'),path.join(out,'PROJECT_LICENSE.txt'));fs.cpSync(path.join(root,'docs'),path.join(out,'docs'),{recursive:true});
 fs.writeFileSync(path.join(out,'README.md'),fs.readFileSync(path.join(out,'README.md'),'utf8').replace('(assets/','(resources/app/assets/').replace('[MIT](LICENSE)','[MIT](PROJECT_LICENSE.txt)'));

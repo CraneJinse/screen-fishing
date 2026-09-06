@@ -1,4 +1,5 @@
-const { app, BrowserWindow, Menu, Tray, globalShortcut, ipcMain, nativeImage, screen, dialog, powerMonitor } = require('electron');
+const { app, BrowserWindow, Menu, Tray, globalShortcut, ipcMain, nativeImage, screen, dialog, powerMonitor, shell } = require('electron');
+const { CharacterLibrary } = require('./src/character-library');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -80,6 +81,7 @@ let lastResultCatchId = null;
 // Ephemeral UI-only result for outcomes that intentionally do not enter fish history.
 let resultCardOverride = null;
 let assets;
+let characterLibrary;
 let measurementMap = {};
 let panelDialogOpen = false;
 let persistenceError = null;
@@ -568,13 +570,14 @@ function sendTo(win, channel, value) {
   }
 }
 function assetSnapshot() {
-  return assets || { manifests: [], fallbackPet: 'assets/pet/v4-design-gate/canonical-seated-fishing.png', diagnostics: { fallbacks: ['not-loaded'] } };
+  return (characterLibrary && assets ? characterLibrary.assets(assets) : assets) || { manifests: [], fallbackPet: 'assets/pet/v4-design-gate/canonical-seated-fishing.png', diagnostics: { fallbacks: ['not-loaded'] } };
 }
 function publicSnapshot() {
   return {
     state: gameState, catalog: Game.FISH, packs: Game.PACKS, rarities: Game.RARITIES,
     rarityNames: Game.rarityNames, achievements: Game.ACHIEVEMENTS, assets: assetSnapshot(), aquariumCatalog: AQUARIUM_RUNTIME_ENABLED ? (Game.AQUARIUM_CATALOG || null) : null,
     resultCard: resultCardOverride,
+    characters: characterLibrary?.snapshot(),
     specialEventCatalog: SpecialEvents.runtimeRegistry(),
     app: { persistenceError, persistenceNotice, saveLoadSource, features: { aquarium: AQUARIUM_RUNTIME_ENABLED }, shortcuts: {
       pet: ShortcutSettings.displayAccelerator(currentShortcuts.pet),
@@ -590,6 +593,23 @@ function publicSnapshot() {
 function broadcastAll() {
   const snapshot = publicSnapshot();
   for (const win of [petWindow, panelWindow, resultWindow, aquariumWindow]) sendTo(win, 'game:update', snapshot);
+}
+async function characterAction(event, action, id) {
+  if (!panelWindow || event.sender !== panelWindow.webContents || !characterLibrary) return { ok: false, error: '角色库尚未就绪' };
+  try {
+    if (action === 'refresh') characterLibrary.reload();
+    else if (action === 'select') characterLibrary.select(id);
+    else if (action === 'folder') {
+      const error = await shell.openPath(characterLibrary.root); if (error) throw Error('角色目录打开失败');
+    } else if (action === 'import') {
+      if (panelDialogOpen) return { ok: false, error: '请先关闭当前文件对话框' };
+      panelDialogOpen = true;
+      const result = await dialog.showOpenDialog(panelWindow, { title: '导入角色包文件夹', properties: ['openDirectory'] }).finally(() => { panelDialogOpen = false; });
+      if (result.canceled) return { ok: true, canceled: true };
+      characterLibrary.import(result.filePaths[0]);
+    } else throw Error('不支持的角色操作');
+    broadcastAll(); return { ok: true, snapshot: publicSnapshot() };
+  } catch (error) { return { ok: false, error: error.message }; }
 }
 function dispatch(action, payload = {}) {
   if (['achievement-track', 'achievement-title', 'achievement-acknowledge'].includes(action)) {
@@ -1037,6 +1057,7 @@ function registerIpc() {
     return publicSnapshot();
   });
   ipcMain.handle('game:action', (_event, action, payload) => dispatch(action, payload));
+  ipcMain.handle('characters:action', characterAction);
   ipcMain.handle('game:economy', (_event, action, payload) => economyAction(action, payload));
   if (AQUARIUM_RUNTIME_ENABLED) ipcMain.handle('game:aquarium', (_event, action, payload) => aquariumAction(action, payload));
   ipcMain.handle('game:settings', (_event, patch) => applySettingPatch(patch));
@@ -1308,7 +1329,7 @@ function runSmokeTest() {
         const titles = cards.map((card) => card.querySelector('strong')?.textContent.trim());
         return document.querySelectorAll('.home-stats .stat').length === 3
           && !document.querySelector('.home-stats').textContent.includes('水草浅湾')
-          && cards.length === 8 && !document.querySelector('[data-action=hide-pet]') && cards.every((card) => !card.querySelector('small'))
+          && cards.length === 9 && titles.includes('角色库') && !document.querySelector('[data-action=hide-pet]') && cards.every((card) => !card.querySelector('small'))
           && titles.indexOf('特殊事件') + 1 === titles.indexOf('成就')
           && document.querySelector('.page-balance')?.textContent.includes('金币')
           && !document.querySelector('.page-header small');
@@ -2102,6 +2123,7 @@ function runPackageVerify() {
       applicationName: app.getName(),
       panelTitle: panelWindow.getTitle(),
       panelHeading: await panelWindow.webContents.executeJavaScript("document.querySelector('.app-header strong')?.textContent || document.querySelector('header strong')?.textContent || ''"),
+      characterLibrary: { version: characterLibrary?.snapshot().version, selectedId: characterLibrary?.selectedId, builtinAvailable: characterLibrary?.snapshot().entries.some(entry => entry.id === 'classic' && entry.status === 'ready') },
       features: { aquarium: AQUARIUM_ENABLED },
       windowCount: windows.length,
       loadedWindows: windows.filter((window) => !window.webContents.isLoadingMainFrame()).length,
@@ -2130,6 +2152,7 @@ function runPackageVerify() {
       && result.packageVersion === PACKAGE_VERSION
       && result.applicationName === APP_DISPLAY_NAME && result.panelTitle === APP_DISPLAY_NAME
       && result.panelHeading === APP_DISPLAY_NAME
+      && result.characterLibrary.version === 1 && result.characterLibrary.builtinAvailable
       && result.windowCount === 3 && result.loadedWindows === 3 && result.petVisible
       && result.features.aquarium === false
       && result.shortcuts.pet && result.shortcuts.panel && !result.shortcuts.aquarium
@@ -2452,6 +2475,7 @@ if (hasSingleInstanceLock) app.whenReady().then(async () => {
     return;
   }
   assets = AssetRuntime.buildAssetSnapshot(__dirname, Game.FISH);
+  characterLibrary = new CharacterLibrary({ root: path.join(app.getPath('userData'), 'characters'), appRoot: __dirname });
   measurementMap = loadMeasurementMap();
   const migratedMeasurements = Game.repairLegacyMeasurements(gameState, measurementMap);
   if (JSON.stringify(migratedMeasurements) !== JSON.stringify(gameState)) { gameState = migratedMeasurements; saveGame(); }

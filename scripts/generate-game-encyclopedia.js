@@ -132,6 +132,12 @@ const docs = `# 《摸鱼搭子》游戏百科全书
 
 ## 2. 当前版本边界
 
+### 角色库（1.11.1）
+
+信息面板提供角色库：内置经典搭子与柠檬，可导入自定义角色、刷新与整套切换。新存档默认经典搭子，两位角色均可立即使用。人物、船、鱼竿依次设计后组合为22组152帧完整动画；草稿显示“制作中”，不能切换。外观选择独立保存，不修改钓鱼规则、计时或收藏进度。内置角色在assets/characters中随游戏分发，自定义便携角色位于user-data/characters，源码角色位于.screen-fishing-dev/characters。升级时优先保留用户同ID角色，缺失或损坏角色回退默认外观。
+
+角色设计skill为screen-fishing-character-designer：首次调用时检测项目，有需要并获得同意后从官方GitHub下载兼容游戏；按人物→船→鱼竿咨询和确认，完成动画与验收后自动入库。普通skill安装本身不会运行检测程序。
+
 ### 2.1 已实现（${require('../package.json').version}）
 
 - 三窗口：桌宠、信息面板和鱼获卡；桌面鱼缸窗口不创建。
@@ -397,7 +403,5 @@ if (measurements.entries.length !== 152) throw new Error(`Expected 152 measureme
 if (actionRows.length !== 22) throw new Error(`Expected 22 pet actions, received ${actionRows.length}`);
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-const publicDocs=docs.replace(/## 15\.[\s\S]*?(?=## 16\.)/, '## 15. 历史鱼缸功能\n\n当前版本不启用鱼缸，公开目录不包含旧版鱼缸美术和历史发布包。旧存档兼容逻辑保留在src/fishing-core.js。\n\n').replace(/常用命令：[^\n]+/, '常用命令：npm run check、npm test、npm run verify:progression、npm run verify:ui、npm run verify:achievements、npm run build。').replace(/5\. 鱼类概率和异色合同[^\n]+/, '5. 当前概率、事件和异色规则以src/probability-system.js、src/special-events.js、src/fish-variants.js及对应测试为准。').replace(/6\. 1\.5\.5 鱼缸[^\n]+/, '6. 历史鱼缸封存包未包含在本仓库；当前只提供兼容旧存档所需逻辑。');
-fs.writeFileSync(outputPath, publicDocs.trim()+'\n', 'utf8');
-
+fs.writeFileSync(outputPath, `${docs.trim()}\n`, 'utf8');
 console.log(`game encyclopedia generated: ${path.relative(root, outputPath)}; fish=${game.FISH.length}; actions=${actionRows.length}; achievements=${achievementRows.length}`);
