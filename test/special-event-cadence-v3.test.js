@@ -94,7 +94,7 @@ test('迁移旧pending保留V2选定来源，重启和结算不把鱼获标成V3
   const old = { ...G.createInitialState(0), probabilityVersion: 2, fishingState: 'catch_land',
     pendingCatch: { fishId: 'fish-1', variant: 'normal', catchId: 'legacy-v2', measurementRolls: [0.5, 0.5] } };
   const restored = G.normalizeState(JSON.parse(JSON.stringify(old)), 10);
-  assert.equal(restored.probabilityVersion, 3);
+  assert.equal(restored.probabilityVersion, 4);
   assert.equal(restored.pendingCatch.probabilityVersion, 2);
   assert.equal(restored.pendingCatch.fishId, old.pendingCatch.fishId);
   const again = G.normalizeState(JSON.parse(JSON.stringify(restored)), 20);
@@ -111,13 +111,13 @@ test('pending显式版本优先于外层版本，最早无版本旧档标记来�
   assert.equal(legacy.pendingCatch.probabilityVersion, 1);
 });
 
-test('V3新鱼类与特殊pending记录选定来源，特殊和脱钩结算继续使用原来源', (t) => {
+test('V4新鱼类与特殊pending记录选定来源，特殊和脱钩结算继续使用原来源', (t) => {
   t.mock.method(Events, 'runtimeRegistry', () => Events.REGISTRY);
   const waiting = { ...G.createInitialState(0), fishingState: 'waiting', stateEndsAt: 10 };
   const fish = G.tick(waiting, 10, seeded(2));
-  assert.equal(fish.pendingCatch.probabilityVersion, 3);
+  assert.equal(fish.pendingCatch.probabilityVersion, 4);
   const special = G.tick({ ...waiting, specialEventPity: { nonSpecialStreak: 6, nextSpecialAt: 7 } }, 10, seeded(2));
-  assert.equal(special.pendingCatch.probabilityVersion, 3);
+  assert.equal(special.pendingCatch.probabilityVersion, 4);
   const oldSpecial = { ...special, probabilityVersion: 3, fishingState: 'catch_land', pendingCatch: { ...special.pendingCatch, probabilityVersion: 2 } };
   assert.equal(G.commitCatch(oldSpecial, () => { throw Error('must not reroll special'); }, 20).currentResult.probabilityVersion, 2);
   const oldUnhook = { ...fish, fishingState: 'bite_loop', pendingCatch: { ...fish.pendingCatch, randomUnhook: true, probabilityVersion: 2 } };

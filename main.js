@@ -28,9 +28,10 @@ const AQUARIUM_ENABLED = false;
 const AQUARIUM_RUNTIME_ENABLED = AQUARIUM_ENABLED || IS_SMOKE || IS_SOAK || IS_AQUARIUM_SMOKE;
 const AquariumWindow = AQUARIUM_RUNTIME_ENABLED ? require('./src/aquarium-window') : null;
 let storageLocation = null;
-if (IS_SMOKE) {
+if (IS_SMOKE || IS_PACKAGE_VERIFY) {
   process.on('unhandledRejection', (error) => {
-    process.stderr.write(`POND_SMOKE_UNHANDLED:${error?.stack || error}\n`);
+    const prefix = IS_PACKAGE_VERIFY ? 'POND_PACKAGE_VERIFY_UNHANDLED' : 'POND_SMOKE_UNHANDLED';
+    process.stderr.write(`${prefix}:${error?.stack || error}\n`);
     app.exit(1);
   });
 }
@@ -59,7 +60,7 @@ const RESULT_AUTO_HIDE_MS = 10000;
 const SAVE_READ_RETRY_DELAYS_MS = [75, 175, 350, 700];
 const PET_PRESENTATION_RECOVERY_DELAYS_MS = [250, 1400];
 const LAUNCH_SIGNAL_POLL_MS = 500;
-const SMOKE_SHORTCUTS = { pet: 'CommandOrControl+Alt+Shift+9', panel: 'CommandOrControl+Alt+Shift+8' };
+const SMOKE_SHORTCUTS = { pet: 'CommandOrControl+Alt+Shift+9', panel: 'CommandOrControl+Alt+Shift+8', fishing: 'CommandOrControl+Alt+Shift+7' };
 const AQUARIUM_SHORTCUT_DEFAULT = 'CommandOrControl+Shift+A';
 const AQUARIUM_SMOKE_SHORTCUT = 'CommandOrControl+Alt+Shift+6';
 const TICK_MS = 100;
@@ -75,8 +76,9 @@ let windowSaveTimer;
 let isQuitting = false;
 let shortcutRegistered = false;
 let panelShortcutRegistered = false;
+let fishingShortcutRegistered = false;
 let aquariumShortcutRegistered = false;
-let currentShortcuts = { pet: null, panel: null, aquarium: null };
+let currentShortcuts = { pet: null, panel: null, fishing: null, aquarium: null };
 let lastResultCatchId = null;
 // Ephemeral UI-only result for outcomes that intentionally do not enter fish history.
 let resultCardOverride = null;
@@ -582,10 +584,11 @@ function publicSnapshot() {
     app: { persistenceError, persistenceNotice, saveLoadSource, features: { aquarium: AQUARIUM_RUNTIME_ENABLED }, shortcuts: {
       pet: ShortcutSettings.displayAccelerator(currentShortcuts.pet),
       panel: ShortcutSettings.displayAccelerator(currentShortcuts.panel),
+      fishing: ShortcutSettings.displayAccelerator(currentShortcuts.fishing),
       aquarium: ShortcutSettings.displayAccelerator(currentShortcuts.aquarium),
-      petAccelerator: currentShortcuts.pet, panelAccelerator: currentShortcuts.panel,
+      petAccelerator: currentShortcuts.pet, panelAccelerator: currentShortcuts.panel, fishingAccelerator: currentShortcuts.fishing,
       aquariumAccelerator: currentShortcuts.aquarium,
-      petRegistered: shortcutRegistered, panelRegistered: panelShortcutRegistered,
+      petRegistered: shortcutRegistered, panelRegistered: panelShortcutRegistered, fishingRegistered: fishingShortcutRegistered,
       aquariumRegistered: aquariumShortcutRegistered
     } }
   };
@@ -640,6 +643,8 @@ function economyAction(action, payload = {}) {
   let result;
   if (action === 'switch-habitat') result = Game.switchHabitat(gameState, payload.habitat);
   else if (action === 'purchase-pack') result = Game.purchasePack(gameState, payload.packId);
+  else if (action === 'purchase-equipment') result = Game.purchaseEquipment(gameState, payload.equipmentId);
+  else if (action === 'equip-bait') result = Game.equipBait(gameState, payload.baitId ?? null);
   else if (action === 'sell-inventory') result = Game.sellInventory(gameState, payload.inventoryIds);
   else if (action === 'set-inventory-lock') result = Game.setInventoryLocked(gameState, payload.inventoryId, payload.locked);
   else return { ok: false, reason: 'unknown-action', snapshot: publicSnapshot() };
@@ -695,7 +700,7 @@ function aquariumAction(action, payload = {}) {
 }
 function applySettingPatch(patch, { persist = true, broadcast = true } = {}) {
   const previousScale = gameState.settings.petScale;
-  const { petShortcut: _petShortcut, panelShortcut: _panelShortcut, ...safePatch } = patch || {};
+  const { petShortcut: _petShortcut, panelShortcut: _panelShortcut, fishingShortcut: _fishingShortcut, ...safePatch } = patch || {};
   gameState = Game.applySettings(gameState, safePatch);
   if (Object.hasOwn(safePatch, 'alwaysOnTop')) petWindow?.setAlwaysOnTop(Boolean(gameState.settings.alwaysOnTop), 'floating');
   if (Object.hasOwn(safePatch, 'launchAtLogin')) app.setLoginItemSettings({ openAtLogin: Boolean(gameState.settings.launchAtLogin), path: process.execPath });
@@ -716,20 +721,28 @@ function applySettingPatch(patch, { persist = true, broadcast = true } = {}) {
   if (broadcast) broadcastAll(); else sendTo(petWindow, 'game:update', publicSnapshot());
   return publicSnapshot();
 }
-function shortcutHandler(kind) { return kind === 'pet' ? togglePet : kind === 'panel' ? togglePanel : toggleAquarium; }
-function shortcutSettingKey(kind) { return kind === 'pet' ? 'petShortcut' : kind === 'panel' ? 'panelShortcut' : 'shortcut'; }
+function runFishingShortcut() {
+  if (gameState.fishingState === 'idle') return dispatch('cast');
+  if (['casting', 'waiting'].includes(gameState.fishingState)) return dispatch('early-reel');
+  if (['bite_intro', 'bite_loop', 'bite_urgent', 'bite_ready'].includes(gameState.fishingState)) return dispatch('reel');
+  return { ok: false, reason: 'fishing-action-busy', snapshot: publicSnapshot() };
+}
+function shortcutHandler(kind) { return kind === 'pet' ? togglePet : kind === 'panel' ? togglePanel : kind === 'fishing' ? runFishingShortcut : toggleAquarium; }
+function shortcutSettingKey(kind) { return kind === 'pet' ? 'petShortcut' : kind === 'panel' ? 'panelShortcut' : kind === 'fishing' ? 'fishingShortcut' : 'shortcut'; }
 function setShortcutRegistered(kind, value) {
   if (kind === 'pet') shortcutRegistered = value;
   else if (kind === 'panel') panelShortcutRegistered = value;
+  else if (kind === 'fishing') fishingShortcutRegistered = value;
   else aquariumShortcutRegistered = value;
 }
 function registerInitialShortcuts() {
   const desired = (IS_SMOKE || IS_PACKAGE_VERIFY || IS_SOAK || IS_AQUARIUM_SMOKE) ? { ...SMOKE_SHORTCUTS, aquarium: AQUARIUM_SMOKE_SHORTCUT } : {
     pet: ShortcutSettings.normalizeAccelerator(gameState.settings.petShortcut) || Game.defaultSettings.petShortcut,
     panel: ShortcutSettings.normalizeAccelerator(gameState.settings.panelShortcut) || Game.defaultSettings.panelShortcut,
+    fishing: ShortcutSettings.normalizeAccelerator(gameState.settings.fishingShortcut) || Game.defaultSettings.fishingShortcut,
     aquarium: ShortcutSettings.normalizeAccelerator(aquariumSettings().shortcut) || AQUARIUM_SHORTCUT_DEFAULT
   };
-  const kinds = AQUARIUM_RUNTIME_ENABLED ? ['pet', 'panel', 'aquarium'] : ['pet', 'panel'];
+  const kinds = AQUARIUM_RUNTIME_ENABLED ? ['pet', 'panel', 'fishing', 'aquarium'] : ['pet', 'panel', 'fishing'];
   for (const kind of kinds) {
     currentShortcuts[kind] = desired[kind];
     setShortcutRegistered(kind, globalShortcut.register(desired[kind], shortcutHandler(kind)));
@@ -1215,9 +1228,9 @@ function runSmokeTest() {
     gameState = timerState;
     broadcastAll();
     const oldPetShortcut = currentShortcuts.pet;
-    const shortcutUpdate = updateShortcut('pet', 'CommandOrControl+Alt+Shift+7');
-    const shortcutUpdateApplied = shortcutUpdate.ok && globalShortcut.isRegistered('CommandOrControl+Alt+Shift+7') && !globalShortcut.isRegistered(oldPetShortcut);
-    const shortcutDuplicateRejected = !updateShortcut('pet', currentShortcuts.panel).ok && globalShortcut.isRegistered('CommandOrControl+Alt+Shift+7');
+    const shortcutUpdate = updateShortcut('pet', 'CommandOrControl+Alt+Shift+5');
+    const shortcutUpdateApplied = shortcutUpdate.ok && globalShortcut.isRegistered('CommandOrControl+Alt+Shift+5') && !globalShortcut.isRegistered(oldPetShortcut);
+    const shortcutDuplicateRejected = !updateShortcut('pet', currentShortcuts.panel).ok && globalShortcut.isRegistered('CommandOrControl+Alt+Shift+5');
     const navigationFish = Game.FISH[0];
     const navigationRareFish = Game.FISH.find((fish) => fish.rarity === 'rare');
     const navigationAt = Date.now();
@@ -1297,6 +1310,7 @@ function runSmokeTest() {
     let warehouseSaleFlow = false;
     let shopContract = false;
     let settingsPackSelectorRemoved = false;
+    let equipmentSettingsContract = false;
     let historyWeightPreserved = false;
     let sceneMenuContract = false;
     let habitatSwitchWorks = false;
@@ -1332,7 +1346,9 @@ function runSmokeTest() {
           && cards.length === 9 && titles.includes('角色库') && !document.querySelector('[data-action=hide-pet]') && cards.every((card) => !card.querySelector('small'))
           && titles.indexOf('特殊事件') + 1 === titles.indexOf('成就')
           && document.querySelector('.page-balance')?.textContent.includes('金币')
-          && !document.querySelector('.page-header small');
+          && document.querySelector('.page-header h1')?.textContent.trim() === '个人记录'
+          && document.querySelector('.page-header small')?.textContent.includes('最长记录')
+          && document.querySelector('.page-header small')?.textContent.includes('最沉记录');
       })()`, true);
       sendTo(panelWindow, 'panel:navigate', { page: 'encyclopedia' });
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -1578,24 +1594,40 @@ function runSmokeTest() {
       await panelWindow.webContents.executeJavaScript("document.querySelector('[data-modal-action=confirm-sale]').click()", true);
       await new Promise((resolve) => setTimeout(resolve, 180));
       warehouseSaleFlow = saleConfirmationComplete && gameState.inventory.length === 16 && gameState.wallet.balance > 20000;
+      gameState = { ...gameState, wallet: { ...gameState.wallet, balance: 50000 } };
+      broadcastAll();
       sendTo(panelWindow, 'panel:navigate', { page: 'shop' });
       await new Promise((resolve) => setTimeout(resolve, 100));
       const shopBefore = await panelWindow.webContents.executeJavaScript(`(() => {
         const f2 = document.querySelector('[data-buy-pack=F2]');
         const s1 = document.querySelector('[data-buy-pack=S1]');
         const s2 = document.querySelector('[data-buy-pack=S2]');
-        return { cards: document.querySelectorAll('.shop-card').length, owned: document.querySelectorAll('.shop-card.owned').length,
+        const autoRod=document.querySelector('[data-buy-equipment=auto-cast-rod]');
+        const fresh=document.querySelector('[data-buy-equipment=bait-fresh]');
+        const moon=document.querySelector('[data-buy-equipment=bait-moon]');
+        const star=document.querySelector('[data-buy-equipment=bait-star]');
+        return { cards: document.querySelectorAll('.shop-card').length, sections:document.querySelectorAll('.shop-section').length, owned: document.querySelectorAll('.shop-card.owned').length,
           buys: document.querySelectorAll('[data-buy-pack]').length, f2Enabled: !f2.disabled,
+          equipmentBuys:document.querySelectorAll('[data-buy-equipment]').length, firstEquipmentEnabled:!autoRod.disabled&&!fresh.disabled,
+          laterEquipmentDisabled:moon.disabled&&star.disabled, squareIcons:[...document.querySelectorAll('.shop-icon-frame')].every(n=>Math.abs(n.getBoundingClientRect().width-n.getBoundingClientRect().height)<1),
+          vertical:[...document.querySelectorAll('.shop-card')].every(n=>n.querySelector('.shop-icon-frame').getBoundingClientRect().bottom<=n.querySelector('h3').getBoundingClientRect().top+1),
           laterDisabled: s1.disabled && s2.disabled, prerequisiteText: s1.textContent.includes('需先解锁') && s2.textContent.includes('需先解锁') };
       })()`, true);
       await panelWindow.webContents.executeJavaScript("document.querySelector('[data-buy-pack=F2]').click(); document.querySelector('[data-modal-action=confirm-pack]').click()", true);
       await new Promise((resolve) => setTimeout(resolve, 180));
       await panelWindow.webContents.executeJavaScript("document.querySelector('[data-buy-pack=S1]').click(); document.querySelector('[data-modal-action=confirm-pack]').click()", true);
       await new Promise((resolve) => setTimeout(resolve, 180));
-      shopContract = shopBefore.cards === 4 && shopBefore.owned === 1 && shopBefore.buys === 3
+      for (const equipmentId of ['auto-cast-rod','bait-fresh','bait-moon','bait-star']) {
+        await panelWindow.webContents.executeJavaScript(`document.querySelector('[data-buy-equipment=${equipmentId}]').click(); document.querySelector('[data-modal-action=confirm-equipment]').click()`, true);
+        await new Promise((resolve) => setTimeout(resolve, 140));
+      }
+      shopContract = shopBefore.cards === 8 && shopBefore.sections === 2 && shopBefore.owned === 1 && shopBefore.buys === 3
+        && shopBefore.equipmentBuys === 4 && shopBefore.firstEquipmentEnabled && shopBefore.laterEquipmentDisabled && shopBefore.squareIcons && shopBefore.vertical
         && shopBefore.f2Enabled && shopBefore.laterDisabled && shopBefore.prerequisiteText
         && gameState.ownedPacks.includes('F2') && gameState.ownedPacks.includes('S1')
-        && gameState.wallet.totalSpent === Game.getPackPrice('F2') + Game.getPackPrice('S1');
+        && Game.EQUIPMENT_ORDER.every((id)=>gameState.equipment.ownedIds.includes(id))
+        && gameState.equipment.activeBaitId === 'bait-star' && gameState.settings.autoCastEnabled
+        && gameState.wallet.totalSpent === Game.getPackPrice('F2') + Game.getPackPrice('S1') + Game.EQUIPMENT_ORDER.reduce((sum,id)=>sum+Game.EQUIPMENT_DEFINITIONS[id].priceCoins,0);
       await panelWindow.webContents.executeJavaScript("document.querySelector('[data-action=shop-tab][data-tab=aquarium]').click()", true);
       await new Promise((resolve) => setTimeout(resolve, 60));
       const tanksBeforePurchase = gameState.aquarium.tankInstances.length;
@@ -1699,6 +1731,7 @@ function runSmokeTest() {
       sendTo(panelWindow, 'panel:navigate', { page: 'settings' });
       await new Promise((resolve) => setTimeout(resolve, 100));
       settingsPackSelectorRemoved = await panelWindow.webContents.executeJavaScript("!document.getElementById('activePack') && !document.getElementById('app').textContent.includes('启用鱼包')", true);
+      equipmentSettingsContract = await panelWindow.webContents.executeJavaScript("!document.getElementById('autoCastEnabled').disabled && document.getElementById('autoCastEnabled').checked && document.getElementById('fishingShortcut').value.length > 0", true);
       const sliderContract = await panelWindow.webContents.executeJavaScript(`(() => {
         const slider = document.getElementById('petScale');
         slider.value = '0.91';
@@ -2060,14 +2093,14 @@ function runSmokeTest() {
       panelCreated: Boolean(panelWindow && !panelWindow.isDestroyed()), panelVisible: panelWindow.isVisible(), panelResizable: panelWindow.isResizable(),
       panelFreeResizeValid,
       resultCreated: Boolean(resultWindow && !resultWindow.isDestroyed()), resultAutoHidden, resultNonOverlapping: !intersects(petBodyBounds(), resultWindow.getBounds()), resultAboveAndCentered, resultCompact, resultFishArtEnlarged, resultLayoutScalesWithWindow,
-      resultDidNotTakeFocus, resultCloseButtonWorks, resultClickOpenedPanel, resultHiddenAfterDetail, shortcutRegistered, panelShortcutRegistered, shortcutUpdateApplied, shortcutDuplicateRejected, edgeLayoutFlipped, edgeContinuousDrag, dragSizeInvariant, scaleSliderContinuous, noBlankDuringActionSwitch,
+      resultDidNotTakeFocus, resultCloseButtonWorks, resultClickOpenedPanel, resultHiddenAfterDetail, shortcutRegistered, panelShortcutRegistered, fishingShortcutRegistered, shortcutUpdateApplied, shortcutDuplicateRejected, edgeLayoutFlipped, edgeContinuousDrag, dragSizeInvariant, scaleSliderContinuous, noBlankDuringActionSwitch,
       resultRemainsVisibleAfterFiveSeconds, resultTenSecondTimeout: RESULT_AUTO_HIDE_MS === 10000,
       trayIconDecoded: !createTrayIcon().isEmpty(), trayCreated: Boolean(tray && !tray.isDestroyed()),
       menuActionOverride, menuActionStartsAtFirstFrame, menuActionAdvanced, clickActionStartsAtFirstFrame, clickActionAdvanced, passiveClickFeedbackRemoved, visualOverridePreservedTimers, deprecatedSettingsRemoved,
       castTimerVisible, castTimerToggleApplied, panelFirstOpenRendered, panelPersistsAfterBlur,
       screenshotsCaptured, homeAndCatalogScreenshots, visualMatrixScreenshots, catalogKeyboardNavigation, catalogNavigationRestored,
       homeStatsCompact, catalogGrouped, catalogLongFishFit, catalogRarityLabelsColored, warehouseContract, warehouseScrollPreserved, warehouseSaleFlow, shopContract,
-      settingsPackSelectorRemoved, historyWeightPreserved, sceneMenuContract, habitatSwitchWorks,
+      settingsPackSelectorRemoved, equipmentSettingsContract, historyWeightPreserved, sceneMenuContract, habitatSwitchWorks,
       variantManifestContract, variantCatalogContract, variantDetailContract, variantWarehouseContract, variantLockContract, variantAirborneContract, variantResultContract,
       variantVisualScreenshots, sharedToolbarContract, sharedSortDirectionContract, catalogSearchFocusPreserved, catalogVariantFilterContract,
       specialAnimationContract, specialFrameSequenceContract, specialHighResolutionContract, specialFishStyleResetContract, specialBottleAnimationContract,
@@ -2104,13 +2137,32 @@ function runPackageVerify() {
       for (const [width, height] of [[480,420],[640,560],[1100,600]]) {
         panelWindow.setSize(width, height);
         await new Promise((resolve) => setTimeout(resolve, 140));
-        warehouseToolbarDebug.push(await panelWindow.webContents.executeJavaScript(`(() => {
+        warehouseToolbarDebug.push(await panelWindow.webContents.executeJavaScript(`(async () => {
+          const main = document.getElementById('app');
+          if(!main)return {valid:false,error:'missing-main'};
+          main.scrollTop = 0;
+          await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
           const controls = ['[data-action="list-sort-toggle"]','[data-action="list-filter-toggle"]','.list-search','[data-action="toggle-bulk"]'].map(s=>document.querySelector(s));
           if(controls.some(n=>!n))return {valid:false};
           const rects=controls.map(n=>n.getBoundingClientRect());
           const inside=rects.every(r=>r.left>=0&&r.right<=innerWidth&&r.width>0&&r.height>=32);
           const overlap=rects.some((a,i)=>rects.slice(i+1).some(b=>a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top));
-          return {valid:inside&&!overlap&&getComputedStyle(document.body).fontSize==='14px',width:innerWidth,height:innerHeight};
+          document.querySelector('[data-action="list-sort-toggle"]').click();
+          await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+          const header = document.querySelector('.page-header');
+          if(!header)return {valid:false,error:'missing-header'};
+          const maxScroll = Math.max(0, main.scrollHeight - main.clientHeight);
+          main.scrollTop = Math.min(maxScroll, Math.max(80, header.offsetHeight + 16));
+          await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+          const headerRect = header.getBoundingClientRect();
+          let headerProtected = true;
+          for(let y=Math.ceil(headerRect.top+3);headerProtected&&y<=Math.floor(headerRect.bottom-3);y+=7){
+            for(let x=Math.ceil(headerRect.left+3);x<=Math.floor(headerRect.right-14);x+=11){
+              const top=document.elementFromPoint(x,y);
+              if(top&&top!==header&&!header.contains(top)){headerProtected=false;break;}
+            }
+          }
+          return {valid:inside&&!overlap&&headerProtected&&getComputedStyle(document.body).fontSize==='14px',headerProtected,width:innerWidth,height:innerHeight};
         })()`, true));
       }
     } catch (error) { warehouseToolbarDebug.push({valid:false,error:error.message}); }
@@ -2128,7 +2180,7 @@ function runPackageVerify() {
       windowCount: windows.length,
       loadedWindows: windows.filter((window) => !window.webContents.isLoadingMainFrame()).length,
       petVisible: Boolean(petWindow?.isVisible()),
-      shortcuts: { pet: shortcutRegistered, panel: panelShortcutRegistered, aquarium: aquariumShortcutRegistered },
+      shortcuts: { pet: shortcutRegistered, panel: panelShortcutRegistered, fishing: fishingShortcutRegistered, aquarium: aquariumShortcutRegistered },
       assets: {
         noFallbacks: Array.isArray(assets?.diagnostics?.fallbacks) && assets.diagnostics.fallbacks.length === 0,
         petValid: assets?.diagnostics?.action?.valid === true,
@@ -2155,7 +2207,7 @@ function runPackageVerify() {
       && result.characterLibrary.version === 1 && result.characterLibrary.builtinAvailable
       && result.windowCount === 3 && result.loadedWindows === 3 && result.petVisible
       && result.features.aquarium === false
-      && result.shortcuts.pet && result.shortcuts.panel && !result.shortcuts.aquarium
+      && result.shortcuts.pet && result.shortcuts.panel && result.shortcuts.fishing && !result.shortcuts.aquarium
       && result.assets.noFallbacks && result.assets.petValid
       && result.assets.petActions === 22 && result.assets.petFrames === 152
       && result.assets.fishValid
@@ -2165,7 +2217,7 @@ function runPackageVerify() {
       && result.assets.variantCoverage?.variants === 608
       && result.assets.aquariumFishEntries === 0
       && result.assets.specialEventEntries === 60
-      && result.assets.uiIcons === 19 && result.assets.achievementIcons === 71
+      && result.assets.uiIcons === 23 && result.assets.achievementIcons === 71
       && result.measurementEntries === 152
       && result.warehouseToolbarResponsive;
     process.stdout.write(`POND_PACKAGE_VERIFY:${JSON.stringify(result)}\n`);

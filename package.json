@@ -1,28 +1,27 @@
 {
   "name": "screen-fishing",
-  "version": "1.11.2",
+  "version": "1.12.1",
   "private": true,
   "description": "A quiet pixel fishing desktop pet for short, interruption-friendly breaks.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "node --test --test-concurrency=1 test/*.test.js",
+    "test": "node --test --test-concurrency=1",
     "check": "node scripts/check.js",
     "build": "node scripts/build-portable.js",
     "verify:ui": "electron scripts/verify-responsive-ui.js",
     "verify:achievements": "electron scripts/verify-achievement-ui.js --require-art",
+    "verify:characters": "electron scripts/verify-character-ui.js",
     "verify:save": "node scripts/verify-save-startup.js",
     "verify:progression": "node scripts/verify-progression-state-machine.js",
     "simulate": "node scripts/simulate-release-progression.js 200",
-    "docs:encyclopedia": "node scripts/generate-game-encyclopedia.js",
-    "verify:pace": "electron scripts/verify-fishing-pace-ui.js",
-    "verify:characters": "electron scripts/verify-character-ui.js"
+    "docs:encyclopedia": "node scripts/generate-game-encyclopedia.js"
   },
   "devDependencies": {
     "electron": "44.1.1",
     "pngjs": "^7.0.0"
   },
-  "license": "MIT",
   "productName": "摸鱼搭子",
-  "characterLibraryVersion": 1
+  "characterLibraryVersion": 1,
+  "license": "MIT"
 }

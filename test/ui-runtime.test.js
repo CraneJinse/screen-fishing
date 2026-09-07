@@ -11,6 +11,8 @@ test('快捷键输入被规范化且拒绝重复或无效组合', () => {
   assert.equal(Shortcuts.normalizeAccelerator('Alt+F12'), 'Alt+F12');
   assert.equal(Shortcuts.normalizeAccelerator('M'), null);
   assert.equal(Shortcuts.validateShortcutChange('pet', 'Ctrl+Shift+F', { pet: 'CommandOrControl+Shift+M', panel: 'CommandOrControl+Shift+F' }).ok, false);
+  assert.equal(Shortcuts.validateShortcutChange('fishing', 'Ctrl+Shift+Space', { pet: 'CommandOrControl+Shift+M', panel: 'CommandOrControl+Shift+F', fishing: null }).ok, true);
+  assert.equal(Shortcuts.validateShortcutChange('fishing', 'Ctrl+Shift+M', { pet: 'CommandOrControl+Shift+M', panel: 'CommandOrControl+Shift+F', fishing: null }).ok, false);
 });
 
 test('四列图鉴方向键保持在有效索引内', () => {

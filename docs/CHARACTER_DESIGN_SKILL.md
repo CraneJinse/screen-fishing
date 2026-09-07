@@ -1,8 +1,8 @@
 # 角色设计skill
 
-游戏1.11.2内置经典搭子、柠檬和亡灵船长，打开信息面板→角色库即可切换，不需要安装skill。
+游戏1.12.1内置经典搭子、柠檬和亡灵船长，打开信息面板→角色库即可切换，不需要安装skill。
 
-需要自己设计角色时，使用独立仓库[screen-fishing-character-designer](https://github.com/CraneJinse/screen-fishing-character-designer)。当前版本0.6.1，支持本游戏1.11.0及以上。
+需要自己设计角色时，使用独立仓库[screen-fishing-character-designer](https://github.com/CraneJinse/screen-fishing-character-designer)。当前版本0.6.4，支持本游戏1.11.0及以上。
 
 在skill仓库Releases下载ZIP和校验文件，将screen-fishing-character-designer文件夹放到当前项目/.agents/skills/，入口为.agents/skills/screen-fishing-character-designer/SKILL.md。安装在项目下即可，不需要全局安装。下一轮对话调用$screen-fishing-character-designer，未刷新时重新打开项目。
 

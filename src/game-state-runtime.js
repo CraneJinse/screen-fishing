@@ -33,12 +33,37 @@
       priceCoins: PACK_PRICES[id], prerequisitePack: PACK_PREREQUISITES[id]
     })];
   })));
+  const AUTO_CAST_ROD_ID = 'auto-cast-rod';
+  const BAIT_ORDER = Object.freeze(['bait-fresh', 'bait-moon', 'bait-star']);
+  const EQUIPMENT_ORDER = Object.freeze([AUTO_CAST_ROD_ID, ...BAIT_ORDER]);
+  const EQUIPMENT_DEFINITIONS = Object.freeze({
+    [AUTO_CAST_ROD_ID]: Object.freeze({
+      id: AUTO_CAST_ROD_ID, name: '自动抛竿鱼竿', type: 'rod', priceCoins: 1000,
+      prerequisiteId: null, icon: 'auto-cast-rod.svg',
+      description: '收杆完成后自动再次抛竿，可在设置中关闭。'
+    }),
+    'bait-fresh': Object.freeze({
+      id: 'bait-fresh', name: '鲜香饵团', type: 'bait', priceCoins: 2000,
+      prerequisiteId: null, icon: 'bait-fresh.svg',
+      description: '明显减少普通鱼，提高稀有鱼与异色鱼概率。'
+    }),
+    'bait-moon': Object.freeze({
+      id: 'bait-moon', name: '月光磷虾', type: 'bait', priceCoins: 5000,
+      prerequisiteId: 'bait-fresh', icon: 'bait-moon.svg',
+      description: '进一步提高稀有鱼、纯金与炫彩鱼概率。'
+    }),
+    'bait-star': Object.freeze({
+      id: 'bait-star', name: '星虹秘饵', type: 'bait', priceCoins: 10000,
+      prerequisiteId: 'bait-moon', icon: 'bait-star.svg',
+      description: '最高等级钓饵，大幅提高高稀有度和异色概率。'
+    })
+  });
   const STATES = [
     'idle', 'casting', 'waiting', 'bite_intro', 'bite_loop', 'bite_urgent', 'bite_ready',
     'reel_pull', 'catch_flight', 'catch_land', 'celebrating', 'escaping',
     'sad_recover', 'empty_reel'
   ];
-  const SAVE_SCHEMA_VERSION = 13;
+  const SAVE_SCHEMA_VERSION = 14;
   const PROBABILITY_VERSION = probability.PROBABILITY_VERSION || 2;
   const VARIANT_VERSION = 1;
   const ECONOMY_VERSION = 2;
@@ -54,7 +79,8 @@
   const defaultSettings = Object.freeze({
     muted: true, sounds: false, alwaysOnTop: true, launchAtLogin: false,
     petScale: 1,
-    petShortcut: 'CommandOrControl+Shift+M', panelShortcut: 'CommandOrControl+Shift+F', showCastTimer: true
+    petShortcut: 'CommandOrControl+Shift+M', panelShortcut: 'CommandOrControl+Shift+F',
+    fishingShortcut: 'CommandOrControl+Shift+Space', showCastTimer: true, autoCastEnabled: false
   });
   const ACHIEVEMENTS = achievementSystem.ACHIEVEMENTS;
   const ACHIEVEMENT_SERIES = achievementSystem.ACHIEVEMENT_SERIES;
@@ -110,6 +136,9 @@
       inventory: [],
       wallet: { balance: 0, totalEarned: 0, totalSpent: 0 },
       ownedPacks: ['F1'],
+      equipment: { ownedIds: [], activeBaitId: null },
+      castBaitId: null,
+      autoCastPending: false,
       activeHabitat: 'freshwater',
       aquarium: aquariumState ? aquariumState.createInitialAquariumState() : null,
       achievements: [],
@@ -132,6 +161,15 @@
     if (grams < 100) return `${grams.toFixed(1)} g`;
     if (grams < 1000) return `${Math.round(grams)} g`;
     return `${weightKg.toFixed(2)} kg`;
+  }
+
+  function personalRecordSummary(state) {
+    const longestCm = Number(state?.stats?.largestLengthCm);
+    const heaviestKg = Number(state?.stats?.largestWeightKg);
+    return {
+      longest: Number.isFinite(longestCm) && longestCm > 0 ? `${longestCm.toFixed(1)} cm` : '—',
+      heaviest: Number.isFinite(heaviestKg) && heaviestKg > 0 ? formatWeight(heaviestKg) : '—'
+    };
   }
 
   function parseDisplayedWeight(weight) {
@@ -244,6 +282,14 @@
     return PACK_ORDER.slice(0, furthest + 1);
   }
 
+  function normalizeEquipment(value) {
+    const source = value && typeof value === 'object' ? value : {};
+    const ownedSet = new Set((Array.isArray(source.ownedIds) ? source.ownedIds : []).filter((id) => EQUIPMENT_DEFINITIONS[id]));
+    const ownedIds = EQUIPMENT_ORDER.filter((id) => ownedSet.has(id));
+    const requestedBait = probability.normalizeBaitId(source.activeBaitId);
+    return { ownedIds, activeBaitId: requestedBait && ownedSet.has(requestedBait) ? requestedBait : null };
+  }
+
   function normalizeState(value, now = Date.now()) {
     const base = createInitialState(now);
     if (!value || typeof value !== 'object') return base;
@@ -258,7 +304,7 @@
     if (value.pendingCatch && typeof value.pendingCatch === 'object' && !Array.isArray(value.pendingCatch)) {
       const validVersion = (version) => Number.isSafeInteger(Number(version)) && Number(version) > 0;
       // Capture provenance before upgrading the enclosing state version. An
-      // already selected V2 catch must not be relabelled V3 when it is landed.
+      // already selected catch must not be relabelled when it is landed.
       const selectedVersion = validVersion(value.pendingCatch.probabilityVersion) ? Number(value.pendingCatch.probabilityVersion)
         : validVersion(value.probabilityVersion) ? Number(value.probabilityVersion) : 1;
       state.pendingCatch = { ...value.pendingCatch, probabilityVersion: selectedVersion };
@@ -270,15 +316,24 @@
     state.firstCast = Object.hasOwn(value, 'firstCast') ? value.firstCast !== false : state.castCount < 1;
     state.castWaitDurationMs = value.castWaitDurationMs == null ? null : Math.max(0, finite(value.castWaitDurationMs));
     state.introductoryCast = value.introductoryCast === true && state.castCount === 1 && state.catches === 0;
+    state.equipment = normalizeEquipment(value.equipment);
+    const selectedCastBait = probability.normalizeBaitId(value.castBaitId);
+    state.castBaitId = selectedCastBait && state.equipment.ownedIds.includes(selectedCastBait) ? selectedCastBait : null;
+    if (state.pendingCatch) {
+      const selectedCatchBait = probability.normalizeBaitId(state.pendingCatch.baitId);
+      state.pendingCatch = { ...state.pendingCatch, baitId: selectedCatchBait && state.equipment.ownedIds.includes(selectedCatchBait) ? selectedCatchBait : null };
+    }
     const storedSettings = value.settings && typeof value.settings === 'object' ? value.settings : {};
     state.settings = Object.fromEntries(Object.entries(defaultSettings).map(([key, fallback]) => [
       key, Object.hasOwn(storedSettings, key) ? storedSettings[key] : fallback
     ]));
     state.settings.showCastTimer = Boolean(state.settings.showCastTimer);
+    state.settings.autoCastEnabled = Boolean(state.settings.autoCastEnabled) && state.equipment.ownedIds.includes(AUTO_CAST_ROD_ID);
     state.settings.petScale = Math.min(1.35, Math.max(0.75, finite(state.settings.petScale, 1)));
-    for (const key of ['petShortcut', 'panelShortcut']) {
+    for (const key of ['petShortcut', 'panelShortcut', 'fishingShortcut']) {
       if (typeof state.settings[key] !== 'string' || state.settings[key].length > 80) state.settings[key] = defaultSettings[key];
     }
+    state.autoCastPending = Boolean(value.autoCastPending) && state.settings.autoCastEnabled;
     state.collection = {};
     for (const [id, item] of Object.entries(value.collection || {})) {
       if (!FISH.some((fish) => fish.id === id)) continue;
@@ -429,9 +484,9 @@
     if (state.introductoryCast) {
       const candidates = available.filter(fish => fish.rarity === 'common');
       const fish = candidates[Math.min(candidates.length - 1, Math.floor(unitRandom(random) * candidates.length))];
-      if (fish) return { type: 'fish', encounterType: 'fish', packId: fish.pack, rarity: fish.rarity, fishId: fish.id, variant: 'normal', randomUnhook: false, probabilityVersion: PROBABILITY_VERSION, nextSpecialEventPity: probability.normalizeSpecialPity({ ...state.specialEventPity, nonSpecialStreak: state.specialEventPity.nonSpecialStreak + 1 }) };
+      if (fish) return { type: 'fish', encounterType: 'fish', packId: fish.pack, rarity: fish.rarity, fishId: fish.id, variant: 'normal', randomUnhook: false, baitId: state.castBaitId, probabilityVersion: PROBABILITY_VERSION, nextSpecialEventPity: probability.normalizeSpecialPity({ ...state.specialEventPity, nonSpecialStreak: state.specialEventPity.nonSpecialStreak + 1 }) };
     }
-    return probability.encounter(random, { habitat: state.activeHabitat, unlockedPacks: [...new Set(available.map((fish) => fish.pack))], fish: available, specialEvents: specialEvents.runtimeRegistry(), counters: state.pity, specialEventPity: state.specialEventPity, collection: state.specialEventCollection.entries });
+    return probability.encounter(random, { habitat: state.activeHabitat, unlockedPacks: [...new Set(available.map((fish) => fish.pack))], fish: available, specialEvents: specialEvents.runtimeRegistry(), counters: state.pity, specialEventPity: state.specialEventPity, collection: state.specialEventCollection.entries, baitId: state.castBaitId });
   }
 
   const achievementProgress = achievementSystem.achievementProgress;
@@ -440,33 +495,60 @@
   function unlockAchievements(input, now = Date.now()) { return achievementSystem.evaluate(input, now); }
   function applyAchievementAction(input, action, now = Date.now()) { return achievementSystem.applyAchievementAction(normalizeState(input, now), action); }
 
+  function autoCastAvailable(state) {
+    return Boolean(state?.settings?.autoCastEnabled)
+      && Array.isArray(state?.equipment?.ownedIds)
+      && state.equipment.ownedIds.includes(AUTO_CAST_ROD_ID);
+  }
+
+  function startCast(state, random = Math.random, now = Date.now(), payload = {}, timings = {}) {
+    const next = {
+      ...state,
+      fishingState: 'casting', stateStartedAt: now,
+      stateEndsAt: now + actionDuration(timings, 'cast', ACTION_DURATIONS.casting),
+      castCount: state.castCount + 1,
+      pendingCatch: null, currentResult: null, catchCommitAt: null, catchCommitted: false,
+      biteDeadlineAt: null, autoCastPending: false,
+      castBaitId: state.equipment.activeBaitId,
+      lastUpdated: now
+    };
+    next.castWaitDurationMs = durationFor(next, random, timings);
+    next.introductoryCast = state.firstCast && state.castCount === 0 && state.catches === 0;
+    next.firstCast = false;
+    next.castTimerStartedAt = now;
+    next.castTimerElapsedMs = 0;
+    next.lastMessage = '鱼线划过一小道弧线……';
+    if (achievementSystem.CORNERS.includes(payload.corner)) next.cornerCasts = { ...next.cornerCasts, [payload.corner]: now };
+    return unlockAchievements(next, now);
+  }
+
+  function finishFishingCycle(state, random = Math.random, now = Date.now(), timings = {}) {
+    const idle = {
+      ...state, fishingState: 'idle', stateStartedAt: now, stateEndsAt: null,
+      pendingCatch: null, currentResult: null, catchCommitAt: null, catchCommitted: false,
+      biteDeadlineAt: null, castBaitId: null, castTimerStartedAt: null, castTimerElapsedMs: 0,
+      lastUpdated: now, lastMessage: '准备好就抛竿吧。'
+    };
+    return idle.autoCastPending && autoCastAvailable(idle) ? startCast(idle, random, now, {}, timings) : { ...idle, autoCastPending: false };
+  }
+
   function transition(input, action, random = Math.random, now = Date.now(), payload = {}, timings = {}) {
     const state = normalizeState(input, now);
     if (state.isPaused) return state;
     const next = { ...state, lastUpdated: now };
     if (action === 'cast' && state.fishingState === 'idle') {
-      next.fishingState = 'casting';
-      next.stateStartedAt = now;
-      next.stateEndsAt = now + actionDuration(timings, 'cast', ACTION_DURATIONS.casting);
-      next.castCount += 1;
-      next.castWaitDurationMs = durationFor(next, random, timings);
-      next.introductoryCast = state.firstCast && state.castCount === 0 && state.catches === 0;
-      next.firstCast = false;
-      next.castTimerStartedAt = now;
-      next.castTimerElapsedMs = 0;
-      next.lastMessage = '鱼线划过一小道弧线……';
-      if (achievementSystem.CORNERS.includes(payload.corner)) next.cornerCasts = { ...next.cornerCasts, [payload.corner]: now };
-      return unlockAchievements(next, now);
+      return startCast(state, random, now, payload, timings);
     }
     if (action === 'reel' && ['bite_intro', 'bite_loop', 'bite_urgent', 'bite_ready'].includes(state.fishingState)) {
-      if (state.pendingCatch?.encounterType === 'fish' && state.pendingCatch?.randomUnhook) return { ...next, fishingState: 'empty_reel', stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'empty_reel', ACTION_DURATIONS.empty_reel), pendingCatch: null, currentResult: { type: 'random_unhook', encounterType: 'fish', probabilityVersion: state.pendingCatch.probabilityVersion, fishId: state.pendingCatch.fishId, iconPath: null, animationPath: null, at: now }, biteDeadlineAt: null, castTimerStartedAt: null, castTimerElapsedMs: 0, lastMessage: '鱼线一松，鱼脱钩了……' };
-      return { ...next, fishingState: 'reel_pull', stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'reel_pull', ACTION_DURATIONS.reel_pull), biteDeadlineAt: null, catchCommitAt: null, catchCommitted: false, currentResult: null, castTimerElapsedMs: next.castTimerStartedAt == null ? next.castTimerElapsedMs : Math.max(next.castTimerElapsedMs, now - next.castTimerStartedAt), castTimerStartedAt: null, lastMessage: '稳住，收杆！' };
+      const autoCastPending = autoCastAvailable(state);
+      if (state.pendingCatch?.encounterType === 'fish' && state.pendingCatch?.randomUnhook) return { ...next, fishingState: 'empty_reel', stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'empty_reel', ACTION_DURATIONS.empty_reel), pendingCatch: null, currentResult: { type: 'random_unhook', encounterType: 'fish', probabilityVersion: state.pendingCatch.probabilityVersion, fishId: state.pendingCatch.fishId, baitId: state.pendingCatch.baitId, iconPath: null, animationPath: null, at: now }, autoCastPending, biteDeadlineAt: null, castTimerStartedAt: null, castTimerElapsedMs: 0, lastMessage: '鱼线一松，鱼脱钩了……' };
+      return { ...next, fishingState: 'reel_pull', stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'reel_pull', ACTION_DURATIONS.reel_pull), biteDeadlineAt: null, catchCommitAt: null, catchCommitted: false, currentResult: null, autoCastPending, castTimerElapsedMs: next.castTimerStartedAt == null ? next.castTimerElapsedMs : Math.max(next.castTimerElapsedMs, now - next.castTimerStartedAt), castTimerStartedAt: null, lastMessage: '稳住，收杆！' };
     }
     if (action === 'early-reel' && ['waiting', 'casting'].includes(state.fishingState)) {
-      return { ...next, fishingState: 'empty_reel', stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'empty_reel', ACTION_DURATIONS.empty_reel), pendingCatch: null, castTimerStartedAt: null, castTimerElapsedMs: 0, lastMessage: '提前收杆，没有收获也没关系。' };
+      return { ...next, fishingState: 'empty_reel', stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'empty_reel', ACTION_DURATIONS.empty_reel), pendingCatch: null, autoCastPending: false, castBaitId: null, castTimerStartedAt: null, castTimerElapsedMs: 0, lastMessage: '提前收杆，没有收获也没关系。' };
     }
     if (action === 'dismiss-result' && ['catch_land', 'celebrating'].includes(state.fishingState)) {
-      return { ...next, fishingState: 'idle', stateStartedAt: now, stateEndsAt: null, currentResult: null, pendingCatch: null, catchCommitAt: null, catchCommitted: false, castTimerStartedAt: null, castTimerElapsedMs: 0, lastMessage: '准备好就抛竿吧。' };
+      return finishFishingCycle(next, random, now, timings);
     }
     return state;
   }
@@ -482,13 +564,13 @@
     if (state.fishingState === 'waiting') {
       const encounter = pickEncounter(random, state);
       const fish = encounter.fishId ? FISH.find((item) => item.id === encounter.fishId) : null;
-      if (encounter.encounterType === 'special') return { ...state, fishingState: 'bite_intro', pendingCatch: { encounterType: 'special', eventId: encounter.eventId, seriesId: encounter.seriesId, catchId: `special-${now}-${encounter.eventId}-${state.castCount}`, probabilityVersion: encounter.probabilityVersion, topLevelMode: encounter.topLevelMode, selectionMode: encounter.selectionMode, selectedAt: now }, specialEventPity: encounter.nextSpecialEventPity, stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'bite_intro', ACTION_DURATIONS.bite_intro), biteDeadlineAt: now + BITE_DURATION_MS, castTimerElapsedMs: state.castTimerStartedAt == null ? state.castTimerElapsedMs : Math.max(state.castTimerElapsedMs, now - state.castTimerStartedAt), castTimerStartedAt: null, lastUpdated: now, lastMessage: '发现了特别的东西！' };
+      if (encounter.encounterType === 'special') return { ...state, fishingState: 'bite_intro', pendingCatch: { encounterType: 'special', eventId: encounter.eventId, seriesId: encounter.seriesId, catchId: `special-${now}-${encounter.eventId}-${state.castCount}`, baitId: encounter.baitId, probabilityVersion: encounter.probabilityVersion, topLevelMode: encounter.topLevelMode, selectionMode: encounter.selectionMode, selectedAt: now }, specialEventPity: encounter.nextSpecialEventPity, stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'bite_intro', ACTION_DURATIONS.bite_intro), biteDeadlineAt: now + BITE_DURATION_MS, castTimerElapsedMs: state.castTimerStartedAt == null ? state.castTimerElapsedMs : Math.max(state.castTimerElapsedMs, now - state.castTimerStartedAt), castTimerStartedAt: null, lastUpdated: now, lastMessage: '发现了特别的东西！' };
       if (!fish) return { ...state, fishingState: 'waiting', stateStartedAt: now, stateEndsAt: now + durationFor(state, random), lastUpdated: now, lastMessage: '水面很安静，再等等。' };
       return {
         ...state, fishingState: 'bite_intro',
         pendingCatch: {
           encounterType: 'fish', fishId: fish.id, packId: encounter.packId, rarity: encounter.rarity, selectedAt: now, catchId: `catch-${now}-${fish.id}-${state.castCount}`,
-          randomUnhook: encounter.randomUnhook, variant: encounter.variant, probabilityVersion: encounter.probabilityVersion,
+          randomUnhook: encounter.randomUnhook, variant: encounter.variant, baitId: encounter.baitId, probabilityVersion: encounter.probabilityVersion,
           measurementRolls: [random(), random()]
         },
         specialEventPity: encounter.nextSpecialEventPity,
@@ -515,10 +597,10 @@
       const rarity = state.currentResult?.rarity || 'common';
       return { ...state, fishingState: 'celebrating', stateStartedAt: now, stateEndsAt: now + actionDuration(timings, `celebrate_${rarity}`, ACTION_DURATIONS[`celebrate_${rarity}`]), catchCommitAt: null, lastUpdated: now };
     }
-    if (state.fishingState === 'celebrating') return { ...state, fishingState: 'idle', stateStartedAt: now, stateEndsAt: null, pendingCatch: null, currentResult: null, catchCommitAt: null, catchCommitted: false, castTimerStartedAt: null, castTimerElapsedMs: 0, lastUpdated: now, lastMessage: '准备好就抛竿吧。' };
+    if (state.fishingState === 'celebrating') return finishFishingCycle(state, random, now, timings);
     if (state.fishingState === 'escaping') return { ...state, fishingState: 'sad_recover', stateStartedAt: now, stateEndsAt: now + actionDuration(timings, 'sad_recover', ACTION_DURATIONS.sad_recover), pendingCatch: null, lastUpdated: now };
     if (state.fishingState === 'sad_recover') return { ...state, fishingState: 'waiting', stateStartedAt: now, stateEndsAt: now + durationFor({ ...state, firstCast: false }, random), castTimerStartedAt: now, castTimerElapsedMs: 0, lastUpdated: now, lastMessage: '重新放好鱼线，继续安静等待。' };
-    if (state.fishingState === 'empty_reel') return { ...state, fishingState: 'idle', stateStartedAt: now, stateEndsAt: null, currentResult: null, castTimerStartedAt: null, castTimerElapsedMs: 0, lastUpdated: now, lastMessage: '准备好就抛竿吧。' };
+    if (state.fishingState === 'empty_reel') return finishFishingCycle(state, random, now, timings);
     return state;
   }
 
@@ -626,6 +708,40 @@
       lastUpdated: now, lastMessage: `已解锁鱼包：${definition.name}。`
     };
     return { ok: true, cost: definition.priceCoins, packId, state: unlockAchievements(next, now) };
+  }
+
+  function purchaseEquipment(input, equipmentId, now = Date.now()) {
+    const state = normalizeState(input, now);
+    const definition = EQUIPMENT_DEFINITIONS[equipmentId];
+    if (!definition) return { ok: false, reason: 'equipment-not-found', cost: 0, state };
+    if (state.equipment.ownedIds.includes(equipmentId)) return { ok: false, reason: 'already-owned', cost: definition.priceCoins, state };
+    if (definition.prerequisiteId && !state.equipment.ownedIds.includes(definition.prerequisiteId)) {
+      return { ok: false, reason: 'equipment-prerequisite', requiredEquipment: definition.prerequisiteId, cost: definition.priceCoins, state };
+    }
+    if (state.wallet.balance < definition.priceCoins) return { ok: false, reason: 'insufficient-funds', cost: definition.priceCoins, state };
+    const ownedIds = EQUIPMENT_ORDER.filter((id) => state.equipment.ownedIds.includes(id) || id === equipmentId);
+    const equipment = { ...state.equipment, ownedIds };
+    const settings = { ...state.settings };
+    if (definition.type === 'bait') equipment.activeBaitId = equipmentId;
+    if (equipmentId === AUTO_CAST_ROD_ID) settings.autoCastEnabled = true;
+    return {
+      ok: true, cost: definition.priceCoins, equipmentId,
+      state: {
+        ...state, equipment, settings,
+        wallet: { ...state.wallet, balance: state.wallet.balance - definition.priceCoins, totalSpent: state.wallet.totalSpent + definition.priceCoins },
+        lastUpdated: now, lastMessage: definition.type === 'bait' ? `已购买并使用${definition.name}。` : `已解锁${definition.name}。`
+      }
+    };
+  }
+
+  function equipBait(input, baitId, now = Date.now()) {
+    const state = normalizeState(input, now);
+    const normalized = probability.normalizeBaitId(baitId);
+    if (baitId != null && !normalized) return { ok: false, reason: 'equipment-not-found', state };
+    if (normalized && !BAIT_ORDER.includes(normalized)) return { ok: false, reason: 'not-bait', state };
+    if (normalized && !state.equipment.ownedIds.includes(normalized)) return { ok: false, reason: 'equipment-not-owned', state };
+    const name = normalized ? EQUIPMENT_DEFINITIONS[normalized].name : '不使用钓饵';
+    return { ok: true, baitId: normalized, state: { ...state, equipment: { ...state.equipment, activeBaitId: normalized }, lastUpdated: now, lastMessage: `已切换为${name}。` } };
   }
 
   function sortInventory(input, mode = 'newest') {
@@ -762,13 +878,13 @@
       const event = specialEvents.byId(state.pendingCatch.eventId);
       const specialCatchId = state.pendingCatch.catchId || `special-${state.pendingCatch.selectedAt || now}-${state.pendingCatch.eventId}-${state.castCount}`;
       if (state.achievementData.committedSpecialIds.includes(specialCatchId)) return { ...state, catchCommitted: true };
-      if (!event) return { ...state, catchCommitted: true, currentResult: { type: 'special', probabilityVersion: state.pendingCatch.probabilityVersion, catchId: state.pendingCatch.catchId || `special-${now}-${state.pendingCatch.eventId}`, eventId: state.pendingCatch.eventId, iconPath: null, animationPath: null, at: now } };
+      if (!event) return { ...state, catchCommitted: true, currentResult: { type: 'special', probabilityVersion: state.pendingCatch.probabilityVersion, catchId: state.pendingCatch.catchId || `special-${now}-${state.pendingCatch.eventId}`, eventId: state.pendingCatch.eventId, baitId: state.pendingCatch.baitId, iconPath: null, animationPath: null, at: now } };
       const old = state.specialEventCollection.entries[event.id];
       const entry = { count: Math.min(Number.MAX_SAFE_INTEGER, (old?.count || 0) + 1), firstFoundAt: old?.firstFoundAt || now, lastFoundAt: now };
       const collection = { ...state.specialEventCollection, schemaVersion: 1, entries: { ...state.specialEventCollection.entries, [event.id]: entry } };
       const duplicate = old?.count > 0;
       state.achievementData = { ...state.achievementData, committedSpecialIds: [...state.achievementData.committedSpecialIds, specialCatchId].slice(-128) };
-      return unlockAchievements({ ...state, catchCommitted: true, currentResult: { type: 'special', encounterType: 'special', probabilityVersion: state.pendingCatch.probabilityVersion, catchId: state.pendingCatch.catchId || `special-${now}-${event.id}`, seriesId: event.seriesId, seriesName: event.seriesName, eventId: event.id, title: event.title, description: event.description, iconPath: event.iconPath, animationPath: event.animationPath, count: entry.count, firstFoundAt: entry.firstFoundAt, lastFoundAt: entry.lastFoundAt, first: !duplicate }, specialEventCollection: collection, specialEventPity: { ...state.specialEventPity, duplicateSpecialStreak: duplicate ? Math.min(probability.DUPLICATE_SPECIAL_STREAK_LIMIT, state.specialEventPity.duplicateSpecialStreak + 1) : 0 }, lastUpdated: now, lastMessage: `发现了：${event.title}` }, now);
+      return unlockAchievements({ ...state, catchCommitted: true, currentResult: { type: 'special', encounterType: 'special', probabilityVersion: state.pendingCatch.probabilityVersion, catchId: state.pendingCatch.catchId || `special-${now}-${event.id}`, seriesId: event.seriesId, seriesName: event.seriesName, eventId: event.id, title: event.title, description: event.description, iconPath: event.iconPath, animationPath: event.animationPath, baitId: state.pendingCatch.baitId, count: entry.count, firstFoundAt: entry.firstFoundAt, lastFoundAt: entry.lastFoundAt, first: !duplicate }, specialEventCollection: collection, specialEventPity: { ...state.specialEventPity, duplicateSpecialStreak: duplicate ? Math.min(probability.DUPLICATE_SPECIAL_STREAK_LIMIT, state.specialEventPity.duplicateSpecialStreak + 1) : 0 }, lastUpdated: now, lastMessage: `发现了：${event.title}` }, now);
     }
     const fish = FISH.find((item) => item.id === state.pendingCatch?.fishId) || pickResult(random, getAvailableFish(state));
     const rolls = [...(state.pendingCatch?.measurementRolls || [])];
@@ -795,7 +911,7 @@
       lengthCm: measurement.lengthCm, weightKg: measurement.weightKg,
       size: `${measurement.lengthCm.toFixed(1)} cm`, weight: formatWeight(measurement.weightKg),
       displayClass: measurement.displayClass, first: !old.count,
-      variant, variantVersion: VARIANT_VERSION, probabilityVersion: state.pendingCatch?.probabilityVersion || PROBABILITY_VERSION,
+      variant, variantVersion: VARIANT_VERSION, baitId: state.pendingCatch?.baitId || null, probabilityVersion: state.pendingCatch?.probabilityVersion || PROBABILITY_VERSION,
       locked: isFirstRareVariant, autoLocked: isFirstRareVariant,
       recordLength: measurement.lengthCm > finite(old.maxLengthCm, old.maxSize),
       recordWeight: measurement.weightKg > finite(old.maxWeightKg, old.maxWeight), measurementVersion: 5,
@@ -865,12 +981,13 @@
     const allowed = Object.keys(defaultSettings);
     const sanitized = Object.fromEntries(Object.entries(patch || {}).filter(([key]) => allowed.includes(key)));
     const settings = { ...state.settings, ...sanitized };
-    for (const key of ['muted', 'sounds', 'alwaysOnTop', 'launchAtLogin', 'showCastTimer']) settings[key] = Boolean(settings[key]);
+    for (const key of ['muted', 'sounds', 'alwaysOnTop', 'launchAtLogin', 'showCastTimer', 'autoCastEnabled']) settings[key] = Boolean(settings[key]);
+    if (!state.equipment.ownedIds.includes(AUTO_CAST_ROD_ID)) settings.autoCastEnabled = false;
     settings.petScale = Math.min(1.35, Math.max(0.75, finite(settings.petScale, 1)));
-    for (const key of ['petShortcut', 'panelShortcut']) {
+    for (const key of ['petShortcut', 'panelShortcut', 'fishingShortcut']) {
       if (typeof settings[key] !== 'string' || settings[key].length > 80) settings[key] = state.settings[key];
     }
-    return { ...state, settings, lastUpdated: now };
+    return { ...state, settings, autoCastPending: settings.autoCastEnabled ? state.autoCastPending : false, lastUpdated: now };
   }
 
   function aquariumAction(input, action, payload = {}, now = Date.now()) {
@@ -927,13 +1044,14 @@
 
   const api = {
     STATES, PACKS, PACK_ORDER, PACK_PRICES, PACK_PREREQUISITES, PACK_DEFINITIONS, PACK_HABITATS, HABITATS,
+    AUTO_CAST_ROD_ID, BAIT_ORDER, EQUIPMENT_ORDER, EQUIPMENT_DEFINITIONS,
     RARITIES, RARITY_BASE_VALUES, PACK_MULTIPLIERS, rarityNames, FISH, ALL_RESULTS: FISH, ACHIEVEMENTS,
     SAVE_SCHEMA_VERSION, ECONOMY_VERSION, HISTORY_LIMIT, BITE_DURATION_MS, URGENT_DURATION_MS,
     ACTION_DURATIONS, defaultSettings, createInitialState, normalizeState, durationFor,
-    transition, tick, suspend, resume, commitCatch, pickResult, getAvailableFish, canSwitchHabitat, switchHabitat,
+    transition, tick, suspend, resume, commitCatch, pickResult, getAvailableFish, canSwitchHabitat, switchHabitat, autoCastAvailable,
     generateMeasurement, repairLegacyMeasurements, getFishBaseValue, calculateCatchValue, getPackPrice,
-    purchasePack, sortInventory, sellInventory, setInventoryLocked, pickEncounter,
-    formatWeight, unlockAchievements, achievementProgress, achievementSummary, achievementDetails, applyAchievementAction, ACHIEVEMENT_SERIES, applySettings,
+    purchasePack, purchaseEquipment, equipBait, sortInventory, sellInventory, setInventoryLocked, pickEncounter,
+    formatWeight, personalRecordSummary, unlockAchievements, achievementProgress, achievementSummary, achievementDetails, applyAchievementAction, ACHIEVEMENT_SERIES, applySettings,
     aquariumState, AQUARIUM_CATALOG: aquariumState?.DEFAULT_CATALOG || null, aquariumAction, applyAquariumAction,
     safeAssetPath, safeFishIconPath, fishManifestMap, PROBABILITY_VERSION, VARIANT_VERSION
   };

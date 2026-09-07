@@ -54,7 +54,7 @@ test('当前发布资源与UI图标通过尺寸校验', () => {
   const ui = snapshot.diagnostics.ui.find((item) => item.id === 'ui');
   const achievements = snapshot.diagnostics.ui.find((item) => item.id === 'achievements');
   assert.equal(ui.valid, true);
-  assert.equal(ui.count, 19);
+  assert.equal(ui.count, 23);
   assert.equal(achievements.valid, true);
   assert.equal(achievements.count, 71);
 });

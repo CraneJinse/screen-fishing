@@ -21,7 +21,7 @@ test('资产未齐时整套特殊事件不可抽取且不消耗随机流', () =>
 test('V3旧档长空窗立即兑现并保留动态重复权重', () => {
   const event = P.encounter(() => 0, { habitat: 'freshwater', specialEvents: Events.REGISTRY, specialEventPity: { nonSpecialStreak: 12 }, collection: {} });
   assert.equal(event.encounterType, 'special');
-  assert.equal(event.probabilityVersion, 3);
+  assert.equal(event.probabilityVersion, 4);
   assert.equal(event.topLevelMode, 'scheduled_interval');
   assert.equal(event.rollTrace.rngVersion, 'mulberry32-named-v1');
   assert.equal(event.rollTrace.special.seriesResult, event.seriesId);

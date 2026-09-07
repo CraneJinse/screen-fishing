@@ -44,11 +44,20 @@ test('pack prices, rarity and actual soft/hard pity boundaries match mechanics',
     const base=probability.variantWeights({})[variant];assert.equal(probability.variantWeights({[counter]:soft-2})[variant],base);assert(probability.variantWeights({[counter]:soft-1})[variant]>base);
     assert(probability.pityMinimum({[counter]:hard-2})<level);assert(probability.pityMinimum({[counter]:hard-1})>=level);
   }
+  for(const item of Object.values(game.EQUIPMENT_DEFINITIONS))assert(rows.some(r=>r[0]===item.name&&r[1]===(item.type==='bait'?'钓饵':'鱼竿')&&r[2]===String(item.priceCoins)));
+  for(const [id,label] of [[null,'不使用钓饵'],['bait-fresh','鲜香饵团'],['bait-moon','月光磷虾'],['bait-star','星虹秘饵']]){
+    const rarity=probability.rarityWeights(id),variant=probability.variantWeights({}, {baitId:id});
+    assert(rows.some(r=>r[0]===label&&r.slice(1).join('/')===game.RARITIES.map(key=>compact(rarity[key]/100)+'%').join('/')));
+    assert(rows.some(r=>r[0]===label&&r.slice(1).join('/')===['normal','alternate','golden','iridescent'].map(key=>compact(variant[key]/100)+'%').join('/')));
+  }
 });
 test('version and UI navigation match current game and obsolete claims are absent',()=>{
   assert(content.includes(`当前游戏版本：${require('../package.json').version}`));assert(content.includes(`声明${game.STATES.length}个状态`));
   const panel=fs.readFileSync(path.join(__dirname,'../src/panel.js'),'utf8');const home=panel.slice(panel.indexOf('function renderHome()'),panel.indexOf('function homeButton('));
   const names=[...home.matchAll(/homeButton\('[^']+', '[^']+', '([^']+)'\)/g)].map(m=>m[1]);assert.equal(names.length,9);for(const name of names)assert(content.includes(name));
+  assert(content.includes('标题区显示个人最长与最沉记录'));
+  assert(content.includes('Ctrl+Shift+Space按当前状态执行抛竿或收杆'));
+  assert(content.includes('schema 14 新增永久装备库'));
   for(const stale of ['鱼类超时仍计入','特殊事件超时仍算','首页保留8个入口','按账号全局','空闲时按需销毁面板','同种鱼聚合并按尺寸从小到大','可爱角色 Peiqi'])assert(!content.includes(stale),stale);
   assert.match(content,/0\.825–1\.175/);assert.match(content,/每个物种首次获得的纯金/);assert.match(content,/摸鱼搭子\.exe/);
 });

@@ -45,11 +45,12 @@
   }
 
   function validateShortcutChange(kind, value, current) {
-    if (!['pet', 'panel', 'aquarium'].includes(kind)) return { ok: false, error: '未知快捷键类型' };
+    const kinds = ['pet', 'panel', 'fishing', 'aquarium'];
+    if (!kinds.includes(kind)) return { ok: false, error: '未知快捷键类型' };
     const accelerator = normalizeAccelerator(value);
     if (!accelerator) return { ok: false, error: '请输入组合键，例如 Ctrl+Shift+M' };
-    const duplicated = ['pet', 'panel', 'aquarium'].some((otherKind) => otherKind !== kind && accelerator === current?.[otherKind]);
-    if (duplicated) return { ok: false, error: '三个功能不能使用同一个快捷键' };
+    const duplicated = kinds.some((otherKind) => otherKind !== kind && accelerator === current?.[otherKind]);
+    if (duplicated) return { ok: false, error: '不同功能不能使用同一个快捷键' };
     return { ok: true, accelerator };
   }
 

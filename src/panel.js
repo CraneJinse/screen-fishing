@@ -13,6 +13,7 @@
   let variantObserver = null;
   let pageVisible = true;
   let pendingPackId = null;
+  let pendingEquipmentId = null;
   let pendingAquariumItemId = null;
   let shopTab = 'packs';
   let aquariumHabitat = 'freshwater';
@@ -159,7 +160,8 @@
   function statsCard(value, label) { return `<div class="stat"><strong>${escapeHtml(value)}</strong><small>${escapeHtml(label)}</small></div>`; }
   function renderHome() {
     const state = snapshot.state;
-    return `${header('安静钓一会儿', '', `<strong class="page-balance">${escapeHtml(coinText(state.wallet?.balance))}</strong>`)}<section class="stats-strip home-stats">${statsCard(`${state.stats.uniqueSpeciesCount}/152`, '已发现')}${statsCard(state.stats.totalCatchCount, '总捕获')}${statsCard(state.history[0]?.name || '—', '最近收获')}</section><section class="home-grid">
+    const records = PondGame.personalRecordSummary(state);
+    return `${header('个人记录', `最长记录 ${records.longest} · 最沉记录 ${records.heaviest}`, `<strong class="page-balance">${escapeHtml(coinText(state.wallet?.balance))}</strong>`)}<section class="stats-strip home-stats">${statsCard(`${state.stats.uniqueSpeciesCount}/152`, '已发现')}${statsCard(state.stats.totalCatchCount, '总捕获')}${statsCard(state.history[0]?.name || '—', '最近收获')}</section><section class="home-grid">
       ${homeButton('encyclopedia', 'catalog', '鱼类图鉴')}${homeButton('warehouse', 'warehouse', '鱼类仓库')}${homeButton('shop', 'shop', '商店')}${homeButton('special-events', 'special-event', '特殊事件')}${homeButton('achievements', 'achievements', '成就')}${homeButton('characters', 'characters', '角色库')}${homeButton('history', 'history', '历史收获')}${homeButton('settings', 'settings', '设置')}${homeButton('help', 'help', '玩法帮助')}
     </section>`;
   }
@@ -533,6 +535,8 @@
   }
   function renderShop() {
     const owned = new Set(snapshot.state.ownedPacks || ['F1']);
+    const equipment = snapshot.state.equipment || { ownedIds: [], activeBaitId: null };
+    const ownedEquipment = new Set(equipment.ownedIds || []);
     const balance = Number(snapshot.state.wallet?.balance) || 0;
     const packs = CATALOG_PACK_ORDER.map((packId) => {
       const definition = packDefinition(packId);
@@ -544,10 +548,28 @@
       const prerequisiteName = requiredPack ? (snapshot.packs[requiredPack] || requiredPack) : '';
       const note = isOwned ? '已加入对应垂钓池' : missingPrerequisite ? `需先解锁 ${prerequisiteName}` : `${habitatName}鱼包 · 38 种鱼`;
       const buyLabel = missingPrerequisite ? `需先解锁 ${prerequisiteName}` : affordable ? '购买' : '金币不足';
-      return `<article class="shop-card ${isOwned ? 'owned' : ''} ${missingPrerequisite ? 'prerequisite-locked' : ''}"><img src="../assets/ui/icons/${definition.habitat}.svg" alt=""><div><h2>${escapeHtml(definition.name)}</h2><p>${escapeHtml(note)}</p>${!isOwned && definition.habitat === 'saltwater' ? '<small>按 F1 → F2 → S1 → S2 顺序解锁鱼包</small>' : ''}</div><div class="shop-action"><strong>${isOwned ? '已拥有' : escapeHtml(coinText(definition.priceCoins))}</strong>${isOwned ? '<span class="owned-mark">✓</span>' : `<button class="pixel-button" data-buy-pack="${packId}" type="button" ${affordable && !missingPrerequisite ? '' : 'disabled'}>${escapeHtml(buyLabel)}</button>`}</div></article>`;
+      return `<article class="shop-card ${isOwned ? 'owned' : ''} ${missingPrerequisite ? 'prerequisite-locked' : ''}"><div class="shop-icon-frame"><img src="../assets/ui/icons/${definition.habitat}.svg" alt="${escapeHtml(definition.name)}"></div><h3>${escapeHtml(definition.name)}</h3><strong class="shop-price">${isOwned ? '已拥有' : escapeHtml(coinText(definition.priceCoins))}</strong><p>${escapeHtml(note)}</p>${!isOwned && definition.habitat === 'saltwater' ? '<small>按 F1 → F2 → S1 → S2 顺序解锁</small>' : ''}<div class="shop-action">${isOwned ? '<span class="owned-mark" aria-label="已拥有">✓</span>' : `<button class="pixel-button compact" data-buy-pack="${packId}" type="button" ${affordable && !missingPrerequisite ? '' : 'disabled'}>${escapeHtml(buyLabel)}</button>`}</div></article>`;
     }).join('');
-    if (!aquariumEnabled()) return `${header('鱼包商店', '鱼包永久解锁，购买失败不会扣款')}<div class="shop-balance">当前余额 <strong>${escapeHtml(coinText(balance))}</strong></div><section class="shop-list">${packs}</section>`;
-    return `${header('商店', '所有商品永久解锁，失败不会扣款')}<div class="shop-header"><div class="pixel-tabs" role="tablist"><button class="pixel-button ${shopTab === 'packs' ? 'active' : ''}" data-action="shop-tab" data-tab="packs" type="button">鱼包</button><button class="pixel-button ${shopTab === 'aquarium' ? 'active' : ''}" data-action="shop-tab" data-tab="aquarium" type="button">鱼缸装饰</button></div><div class="shop-balance">当前余额 <strong>${escapeHtml(coinText(balance))}</strong></div></div>${shopTab === 'packs' ? `<section class="shop-list">${packs}</section>` : renderAquariumShop(balance)}`;
+    const equipmentCards = (PondGame.EQUIPMENT_ORDER || []).map((equipmentId) => {
+      const definition = PondGame.EQUIPMENT_DEFINITIONS[equipmentId];
+      const isOwned = ownedEquipment.has(equipmentId);
+      const isActive = definition.type === 'bait' && equipment.activeBaitId === equipmentId;
+      const missingPrerequisite = !isOwned && definition.prerequisiteId && !ownedEquipment.has(definition.prerequisiteId);
+      const prerequisiteName = definition.prerequisiteId ? PondGame.EQUIPMENT_DEFINITIONS[definition.prerequisiteId]?.name : '';
+      const affordable = balance >= definition.priceCoins;
+      const buyLabel = missingPrerequisite ? `需先购买${prerequisiteName}` : affordable ? '购买' : '金币不足';
+      const action = !isOwned
+        ? `<button class="pixel-button compact" data-buy-equipment="${escapeHtml(equipmentId)}" type="button" ${affordable && !missingPrerequisite ? '' : 'disabled'}>${escapeHtml(buyLabel)}</button>`
+        : definition.type === 'bait'
+          ? `<button class="pixel-button compact ${isActive ? 'active' : ''}" data-equip-bait="${escapeHtml(equipmentId)}" type="button" ${isActive ? 'disabled' : ''}>${isActive ? '使用中' : '使用'}</button>`
+          : '<span class="owned-mark" aria-label="已拥有">✓</span>';
+      return `<article class="shop-card equipment-card ${isOwned ? 'owned' : ''} ${isActive ? 'equipped' : ''} ${missingPrerequisite ? 'prerequisite-locked' : ''}"><div class="shop-icon-frame"><img src="../assets/ui/icons/${escapeHtml(definition.icon)}" alt="${escapeHtml(definition.name)}"></div><h3>${escapeHtml(definition.name)}</h3><strong class="shop-price">${isOwned ? (isActive ? '已装备' : '已拥有') : escapeHtml(coinText(definition.priceCoins))}</strong><p>${escapeHtml(missingPrerequisite ? `需先购买${prerequisiteName}` : definition.description)}</p><div class="shop-action">${action}</div></article>`;
+    }).join('');
+    const noBait = (PondGame.BAIT_ORDER || []).some((id) => ownedEquipment.has(id))
+      ? `<button class="pixel-button compact ${equipment.activeBaitId ? '' : 'active'}" data-equip-bait="" type="button" ${equipment.activeBaitId ? '' : 'disabled'}>不使用钓饵${equipment.activeBaitId ? '' : ' · 当前'}</button>` : '';
+    const coreShop = `<section class="shop-section" aria-labelledby="shopPacksTitle"><div class="shop-section-heading"><h2 id="shopPacksTitle">鱼包</h2><small>永久扩展淡水与咸水鱼池</small></div><div class="shop-grid">${packs}</div></section><section class="shop-section" aria-labelledby="shopEquipmentTitle"><div class="shop-section-heading"><div><h2 id="shopEquipmentTitle">装备</h2><small>永久解锁；同一时间只使用一种钓饵</small></div>${noBait}</div><div class="shop-grid">${equipmentCards}</div></section>`;
+    if (!aquariumEnabled()) return `${header('商店', '鱼包与装备均为永久解锁，购买失败不会扣款')}<div class="shop-balance">当前余额 <strong>${escapeHtml(coinText(balance))}</strong></div>${coreShop}`;
+    return `${header('商店', '所有商品永久解锁，失败不会扣款')}<div class="shop-header"><div class="pixel-tabs" role="tablist"><button class="pixel-button ${shopTab === 'packs' ? 'active' : ''}" data-action="shop-tab" data-tab="packs" type="button">钓鱼商品</button><button class="pixel-button ${shopTab === 'aquarium' ? 'active' : ''}" data-action="shop-tab" data-tab="aquarium" type="button">鱼缸装饰</button></div><div class="shop-balance">当前余额 <strong>${escapeHtml(coinText(balance))}</strong></div></div>${shopTab === 'packs' ? coreShop : renderAquariumShop(balance)}`;
   }
   function cloneLayout(value) { return JSON.parse(JSON.stringify(value)); }
   function defaultLayout(tankId) {
@@ -693,12 +715,13 @@
   function settingRow(label, note, control) { return `<label class="setting-row"><span><strong>${label}</strong><small>${note}</small></span>${control}</label>`; }
   function shortcutRow(kind, label) {
     const shortcuts = snapshot.app?.shortcuts || {};
-    const value = kind === 'pet' ? shortcuts.pet : shortcuts.panel;
-    const registered = kind === 'pet' ? shortcuts.petRegistered : shortcuts.panelRegistered;
+    const value = shortcuts[kind] || '';
+    const registered = Boolean(shortcuts[`${kind}Registered`]);
     return `<div class="setting-row shortcut-row"><span><strong>${label}</strong><small>${registered ? '当前已注册；修改后立即验证' : '当前注册失败，可输入新组合键'}</small></span><div class="shortcut-control"><img src="../assets/ui/icons/settings.svg" alt=""><input id="${kind}Shortcut" value="${escapeHtml(value)}" aria-label="${label}" spellcheck="false"><button class="pixel-button compact" data-shortcut="${kind}" type="button">应用</button></div></div>`;
   }
   function renderSettings() {
     const settings = snapshot.state.settings;
+    const autoCastOwned = (snapshot.state.equipment?.ownedIds || []).includes(PondGame.AUTO_CAST_ROD_ID);
     const aquariumSettings = aquariumEnabled() ? aquariumData().settings : null;
     const aquariumSection = aquariumEnabled() ? `<h2 class="settings-section-title">桌面鱼缸</h2><section class="settings-list">
       ${settingRow('鱼缸大小', '75%～125%，视觉缩放不改变 8 条/12 负载容量', `<span class="range-control"><input id="aquariumScale" type="range" min="0.75" max="1.25" step="0.01" value="${Number(aquariumSettings.scale) || 1}"><output id="aquariumScaleValue">${Math.round((Number(aquariumSettings.scale) || 1) * 100)}%</output></span>`)}
@@ -715,14 +738,16 @@
       ${settingRow('静音', '默认开启，不打扰工作', checkbox('muted', settings.muted))}
       ${settingRow('轻微水泡声', '仅在未静音时播放克制提示', checkbox('sounds', settings.sounds))}
       ${settingRow('显示抛竿计时', '在船只下方显示本次等待秒表', checkbox('showCastTimer', settings.showCastTimer !== false))}
+      ${settingRow('自动再次抛竿', autoCastOwned ? '中鱼并收杆后，在本轮动画结束时自动抛下一杆' : '在商店购买自动抛竿鱼竿后可用', checkbox('autoCastEnabled', autoCastOwned && settings.autoCastEnabled, !autoCastOwned))}
       ${shortcutRow('pet', '显示 / 隐藏快捷键')}
       ${shortcutRow('panel', '打开面板快捷键')}
+      ${shortcutRow('fishing', '抛竿 / 收杆快捷键')}
     </section>${aquariumSection}<div class="button-row"><button class="pixel-button" data-action="export" type="button">导出存档</button><button class="pixel-button" data-action="import" type="button">导入存档</button><button class="pixel-button" data-action="reset-settings" type="button">恢复默认设置</button><button class="pixel-button" data-action="quit" type="button">退出游戏</button></div>`;
   }
-  function checkbox(id, checked) { return `<input id="${id}" class="switch" type="checkbox" ${checked ? 'checked' : ''}>`; }
+  function checkbox(id, checked, disabled = false) { return `<input id="${id}" class="switch" type="checkbox" ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''}>`; }
   function renderHelp() {
     const shortcuts = snapshot.app?.shortcuts || {};
-    return `${header('玩法帮助')}<article class="detail-card"><h2>随时玩，随时停</h2><p>右键单击人物或船体，打开抛竿、收杆、垂钓场景和面板四个快捷按钮。10 秒没有操作会自动隐藏。未购买咸水鱼包时，咸水场景不可选。</p><p>鱼上钩后，直接左键单击桌宠即可快速收杆。前 30 秒播放上钩提醒，之后恢复平缓持竿动画，静止的黄色叹号表示可以收杆。鱼获和特殊事件会保留，不会因为没及时点击而逃脱。</p><p>新存档首杆从抛竿到中鱼共 10 秒；第 2–5 杆等待 30–90 秒；第 6 杆起等待 5–10 分钟。重开游戏不会重置新手阶段。</p><p>按住左键移动超过 6 像素即可拖动桌宠；拖动不会触发收杆，也不会拉长水面波纹。</p><div class="facts">${fact('显示/隐藏', shortcuts.pet || '未注册')}${fact('打开面板', shortcuts.panel || '未注册')}${fact('关闭/返回', 'Esc')}${fact('隐私', '纯本地，不读取屏幕与其他应用')}</div></article>`;
+    return `${header('玩法帮助')}<article class="detail-card"><h2>随时玩，随时停</h2><p>右键单击人物或船体，打开抛竿、收杆、垂钓场景和面板四个快捷按钮。10 秒没有操作会自动隐藏。未购买咸水鱼包时，咸水场景不可选。</p><p>鱼上钩后，直接左键单击桌宠或使用抛竿/收杆快捷键即可收杆。前 30 秒播放上钩提醒，之后恢复平缓持竿动画，静止的黄色叹号表示可以收杆。鱼获和特殊事件会保留，不会因为没及时点击而逃脱。</p><p>新存档首杆从抛竿到中鱼共 10 秒；第 2–5 杆等待 30–90 秒；第 6 杆起等待 5–10 分钟。重开游戏不会重置新手阶段。</p><p>商店钓饵会提高稀有鱼和异色鱼概率，并在每次抛竿时锁定本杆效果。自动抛竿鱼竿可在成功收杆后开始下一杆，也可随时在设置中关闭。</p><p>按住左键移动超过 6 像素即可拖动桌宠；拖动不会触发收杆，也不会拉长水面波纹。</p><div class="facts">${fact('显示/隐藏', shortcuts.pet || '未注册')}${fact('打开面板', shortcuts.panel || '未注册')}${fact('抛竿/收杆', shortcuts.fishing || '未注册')}${fact('关闭/返回', 'Esc')}${fact('隐私', '纯本地，不读取屏幕与其他应用')}</div></article>`;
   }
   function empty(message) { return `<div class="empty-state"><p>${escapeHtml(message)}</p></div>`; }
   function renderCharacters() {
@@ -833,7 +858,7 @@
       bindLayoutDrag();
     }
     if (page === 'settings') {
-      for (const key of ['alwaysOnTop', 'launchAtLogin', 'muted', 'sounds', 'showCastTimer']) {
+      for (const key of ['alwaysOnTop', 'launchAtLogin', 'muted', 'sounds', 'showCastTimer', 'autoCastEnabled']) {
         $(key).onchange = (event) => updateSettings({ [key]: event.target.checked });
       }
       $('petScale').oninput = (event) => {
@@ -923,7 +948,7 @@
     try {
       const result = await window.desktopPond.updateShortcut(kind, input.value);
       snapshot = result.snapshot || snapshot;
-      if (!result.ok) { input.value = kind === 'pet' ? snapshot.app.shortcuts.pet : kind === 'panel' ? snapshot.app.shortcuts.panel : snapshot.app.shortcuts.aquarium; toast(result.error || '快捷键注册失败', true); }
+      if (!result.ok) { input.value = snapshot.app.shortcuts[kind] || ''; toast(result.error || '快捷键注册失败', true); }
       else toast('快捷键已更新');
       render();
     } catch { toast('快捷键更新失败，原设置保持不变', true); render(); }
@@ -948,17 +973,28 @@
     $('modalContent').innerHTML = `<h2>确认购买</h2><div class="pack-confirm"><img src="../assets/ui/icons/${definition.habitat}.svg" alt=""><div><strong>${escapeHtml(definition.name)}</strong><small>${definition.habitat === 'saltwater' ? '咸水' : '淡水'}鱼包 · 38 种鱼</small></div></div><p>花费 <strong class="coin-text">${escapeHtml(coinText(definition.priceCoins))}</strong>永久解锁；完成本级后才能继续购买下一鱼包，并会自动加入对应垂钓池。</p><button class="pixel-button" data-modal-action="confirm-pack" type="button">确认购买</button>`;
     $('detailModal').showModal();
   }
+  function showEquipmentConfirmation(equipmentId) {
+    const definition = PondGame.EQUIPMENT_DEFINITIONS[equipmentId];
+    if (!definition) return toast('装备资料不存在', true);
+    pendingEquipmentId = equipmentId;
+    $('modalContent').innerHTML = `<h2>确认购买</h2><div class="pack-confirm"><img src="../assets/ui/icons/${escapeHtml(definition.icon)}" alt=""><div><strong>${escapeHtml(definition.name)}</strong><small>${definition.type === 'bait' ? '永久钓饵 · 购买后自动使用' : '永久鱼竿 · 购买后默认开启'}</small></div></div><p>花费 <strong class="coin-text">${escapeHtml(coinText(definition.priceCoins))}</strong>永久解锁。${escapeHtml(definition.description)}</p><button class="pixel-button" data-modal-action="confirm-equipment" type="button">确认购买</button>`;
+    $('detailModal').showModal();
+  }
   function economyError(reason, result = {}) {
     if (reason === 'previous-pack-required' || reason === 'prerequisite') {
       return `需先解锁 ${snapshot.packs[result.requiredPack] || result.requiredPack || '前置鱼包'}`;
     }
+    if (reason === 'equipment-prerequisite') return `需先购买${PondGame.EQUIPMENT_DEFINITIONS[result.requiredEquipment]?.name || '前置装备'}`;
     return ({
       'empty-selection': '请先选择要出售的鱼',
       'inventory-not-found': '鱼已不在仓库中，请刷新后重试',
       'inventory-not-valued': '鱼获价值数据异常',
       'insufficient-funds': '金币不足',
-      'already-owned': '已经拥有该鱼包',
-      'not-purchasable': '该鱼包无需购买'
+      'already-owned': '已经拥有该商品',
+      'not-purchasable': '该鱼包无需购买',
+      'equipment-not-found': '装备资料不存在',
+      'equipment-not-owned': '请先购买该钓饵',
+      'not-bait': '该装备不能作为钓饵使用'
     })[reason] || '操作未完成，请稍后重试';
   }
   function aquariumError(reason, result = {}) {
@@ -1155,6 +1191,12 @@
       return;
     }
     if (target.dataset.buyPack) return showPackConfirmation(target.dataset.buyPack);
+    if (target.dataset.buyEquipment) return showEquipmentConfirmation(target.dataset.buyEquipment);
+    if (Object.hasOwn(target.dataset, 'equipBait')) {
+      const result = await runEconomyAction('equip-bait', { baitId: target.dataset.equipBait || null });
+      if (result.ok) { toast(target.dataset.equipBait ? `已使用${PondGame.EQUIPMENT_DEFINITIONS[target.dataset.equipBait]?.name || '钓饵'}，下一杆生效` : '已停用钓饵，下一杆生效'); render(); }
+      return;
+    }
     if (target.dataset.inventory) {
       if (inventoryBulkMode) {
         const entry = (snapshot.state.inventory || []).find((item) => item.inventoryId === target.dataset.inventory);
@@ -1172,12 +1214,14 @@
     if (target.dataset.action === 'import') { const result = await window.desktopPond.importSave(); return !result.canceled && toast(result.ok ? '存档已导入，并创建了备份' : result.error || '导入失败', !result.ok); }
     if (target.dataset.shortcut) return updateShortcut(target.dataset.shortcut);
     if (target.dataset.action === 'reset-settings') {
-      const { petShortcut, panelShortcut, ...settings } = PondGame.defaultSettings;
+      const { petShortcut, panelShortcut, fishingShortcut, ...settings } = PondGame.defaultSettings;
       snapshot = await window.desktopPond.updateSettings(settings);
       const petResult = await window.desktopPond.updateShortcut('pet', petShortcut);
       const panelResult = await window.desktopPond.updateShortcut('panel', panelShortcut);
-      snapshot = panelResult.snapshot || petResult.snapshot || snapshot;
-      toast(petResult.ok && panelResult.ok ? '已恢复默认设置' : '常规设置已恢复，快捷键因冲突保持原值', !(petResult.ok && panelResult.ok)); render();
+      const fishingResult = await window.desktopPond.updateShortcut('fishing', fishingShortcut);
+      snapshot = fishingResult.snapshot || panelResult.snapshot || petResult.snapshot || snapshot;
+      const shortcutsOk = petResult.ok && panelResult.ok && fishingResult.ok;
+      toast(shortcutsOk ? '已恢复默认设置' : '常规设置已恢复，快捷键因冲突保持原值', !shortcutsOk); render();
     }
     if (target.dataset.action === 'quit') window.desktopPond.quit();
   });
@@ -1212,6 +1256,15 @@
       pendingPackId = null;
       $('detailModal').close();
       toast(`已解锁${snapshot.packs[packId] || '鱼包'}`);
+      render();
+    }
+    if (target.dataset.modalAction === 'confirm-equipment') {
+      const equipmentId = pendingEquipmentId;
+      const result = await runEconomyAction('purchase-equipment', { equipmentId });
+      if (!result.ok) { target.disabled = false; return; }
+      pendingEquipmentId = null;
+      $('detailModal').close();
+      toast(`已购买${PondGame.EQUIPMENT_DEFINITIONS[equipmentId]?.name || '装备'}`);
       render();
     }
     if (target.dataset.modalAction === 'confirm-tank-habitat') {
@@ -1250,7 +1303,7 @@
     layoutDraft = null; layoutUndo = []; layoutRedo = []; selectedDecorInstanceId = null;
     window.desktopPond.closePanel();
   };
-  $('closeModal').onclick = () => { pendingSaleIds = []; pendingPackId = null; pendingAquariumItemId = null; pendingTankHabitat = null; $('detailModal').close(); };
+  $('closeModal').onclick = () => { pendingSaleIds = []; pendingPackId = null; pendingEquipmentId = null; pendingAquariumItemId = null; pendingTankHabitat = null; $('detailModal').close(); };
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       if ($('detailModal').open) $('detailModal').close(); else back();

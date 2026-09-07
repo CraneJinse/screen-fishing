@@ -1,7 +1,7 @@
 # 第一次下载与游玩
 
-1. 打开 https://github.com/CraneJinse/screen-fishing/releases/tag/v1.11.2 。
-2. 在 Assets（附件）中点击 **ScreenFishing-1.11.2-windows-x64.zip**，约200 MB。Source code 是源码，普通玩家无需下载。
+1. 打开 https://github.com/CraneJinse/screen-fishing/releases/tag/v1.12.1 。
+2. 在 Assets（附件）中点击 **ScreenFishing-1.12.1-windows-x64.zip**。Source code 是源码，普通玩家无需下载。
 3. 将压缩包完整解压到自己的可写文件夹，例如桌面“摸鱼搭子”；不要只取出一个EXE，也不要在压缩包里直接运行。
 4. 双击 **ScreenFishing.exe**。这是“摸鱼搭子”的启动程序；不需要安装Node.js或注册游戏账号。
 5. 右键人物/船，点击“抛竿”。信息面板可从右键菜单或 Ctrl+Shift+F 打开。

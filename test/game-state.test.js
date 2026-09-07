@@ -55,6 +55,14 @@ test('提前收杆播放空杆并回到 idle', () => {
   assert.equal(state.history.length, 0);
 });
 
+test('个人记录摘要使用持久统计并为空存档提供占位', () => {
+  assert.deepEqual(G.personalRecordSummary(G.createInitialState(0)), { longest: '—', heaviest: '—' });
+  const state = G.createInitialState(0);
+  state.stats.largestLengthCm = 128.46;
+  state.stats.largestWeightKg = 0.00012;
+  assert.deepEqual(G.personalRecordSummary(state), { longest: '128.5 cm', heaviest: '120 mg' });
+});
+
 test('首杆10秒含动画，新手30–90秒，常规5–10分钟且中心更密集', () => {
  const state=G.createInitialState();assert.equal(G.durationFor(state),10000-G.ACTION_DURATIONS.casting);
  let seed=19;const rng=()=>((seed=Math.imul(seed,1664525)+1013904223>>>0)/4294967296);

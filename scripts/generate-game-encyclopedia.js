@@ -130,14 +130,28 @@ const specialSeriesNames = Object.fromEntries(specialEvents.series.map((series) 
 const specialEventRows = eventsRuntime.REGISTRY.map((item) => [
   item.id, specialSeriesNames[item.seriesId], item.title, item.description
 ]);
+const baitLabels = { none: '不使用钓饵', 'bait-fresh': '鲜香饵团', 'bait-moon': '月光磷虾', 'bait-star': '星虹秘饵' };
+const baitIds = ['none', ...game.BAIT_ORDER];
+const rarityProbabilityRows = baitIds.map((id) => {
+  const weights = probability.rarityWeights(id === 'none' ? null : id);
+  return [baitLabels[id], ...game.RARITIES.map((rarity) => `${compact(weights[rarity] / 100)}%`)];
+});
+const variantProbabilityRows = baitIds.map((id) => {
+  const weights = probability.variantWeights({}, { baitId: id === 'none' ? null : id });
+  return [baitLabels[id], ...['normal', 'alternate', 'golden', 'iridescent'].map((variant) => `${compact(weights[variant] / 100)}%`)];
+});
+const equipmentRows = game.EQUIPMENT_ORDER.map((id) => {
+  const item = game.EQUIPMENT_DEFINITIONS[id];
+  return [item.name, item.type === 'bait' ? '钓饵' : '鱼竿', item.priceCoins, item.prerequisiteId ? game.EQUIPMENT_DEFINITIONS[item.prerequisiteId].name : '无', item.description];
+});
 
 const docs = `# 《摸鱼搭子》游戏百科全书
 
 状态：持续维护的项目权威总览。  
-当前游戏版本：${require('../package.json').version}（Electron ${require('../package.json').devDependencies.electron}）；存档 schema ${game.SAVE_SCHEMA_VERSION}；尺寸模型 ${measurements.measurementVersion}；经济模型 ${game.ECONOMY_VERSION}。  
-百科生成方式：\`npm run docs:encyclopedia\`。鱼类、尺寸、动作、事件、成就、价格区间与保底阈值从当前运行代码和正式数据生成。2026-09-07逐章核对；此文是对应游戏版本的快照，不承诺未来版本相同。
+当前游戏版本：${require('../package.json').version}（Electron ${require('../package.json').devDependencies.electron}）；存档 schema ${game.SAVE_SCHEMA_VERSION}；尺寸模型 ${measurements.measurementVersion}；经济模型 ${game.ECONOMY_VERSION}。
+百科生成方式：\`npm run docs:encyclopedia\`。鱼类、尺寸、动作、事件、成就、价格区间、装备概率与保底阈值从当前运行代码和正式数据生成。2026-09-07逐章核对；此文是对应游戏版本的快照，不承诺未来版本相同。
 
-> 标记说明：本百科以 ${require('../package.json').version} 钓鱼核心版、正式 manifest 和验证报告为真源；桌面鱼缸已按 1.5.5 完成状态封存，不进入当前运行包。特殊事件三个系列与 60 项收藏使用概率 V3 和新版高清物件图案。
+> 标记说明：本百科以 ${require('../package.json').version} 钓鱼核心版、正式 manifest 和验证报告为真源；桌面鱼缸已按 1.5.5 完成状态封存，不进入当前运行包。整体概率为V${probability.PROBABILITY_VERSION}，特殊事件三个系列与60项收藏继续使用3–7次间隔的V3节奏。
 
 ## 1. 游戏总览
 
@@ -167,15 +181,15 @@ const docs = `# 《摸鱼搭子》游戏百科全书
 - 当前运行模块声明${game.STATES.length}个状态，其中bite_urgent、escaping、sad_recover用于旧流程兼容；正常流程使用其余11个。资源契约仍保留22组主体动作、152个时序帧，资源数量不等于现行玩法状态数量。
 - 四包 152 种鱼、四颜色模板、每种 64×64 图鉴图和四模板空中动作。
 - 1824 个异色运行图层：原色/异色/纯金图标与空中条，以及炫彩银白底、遮罩、细节三分层图标与空中条。
-- 现实尺寸模型、71 项成就、1000 条历史、自适应列数仓库、单卖/批量卖出、商店和淡咸水场景。
-- 分层概率、1% 随机脱钩、全局三档保底、变体价值、首次珍稀形态自动锁定及显式解锁。
+- 现实尺寸模型、71 项成就、1000 条历史、自适应列数仓库、单卖/批量卖出、分区商店和淡咸水场景。
+- 分层概率、1% 随机脱钩、三档永久钓饵、自动抛竿鱼竿、全局三档保底、变体价值、首次珍稀形态自动锁定及显式解锁。
 - 漂流瓶 30、科研标记 10、生态守护 20，共 60 项特殊事件收藏；概率 V3 为均匀随机 3–7 次有效上钩间隔，平均每 5 次出现一次，长期约 20%；动态去重与新内容保底保持不变。
 - 三张原系列封面、34 张 256×256 事件物件图、34 套 1536×256 六帧上钩动画，以及随机脱钩专用结果图案。漂流瓶采用同款瓶型与四类瓶身徽记，科研 10 件、生态 20 件逐项独立。
 - 可靠本地存档、旧档迁移、快捷键、声音、发布门禁与 portable 包。
 
 ### 2.2 当前界面精简
 
-- 信息面板首页有9个入口：鱼类图鉴、鱼类仓库、商店、特殊事件、成就、角色库、历史收获、设置、玩法帮助。无隐藏桌宠按钮，余额位于右上角；统计为已发现、总捕获、最近收获。图鉴只保留图鉴顺序，仓库以单个下拉按钮提供捕获、图鉴、稀有度和异色四种排序。
+- 信息面板首页有9个入口：鱼类图鉴、鱼类仓库、商店、特殊事件、成就、角色库、历史收获、设置、玩法帮助。无隐藏桌宠按钮，标题区显示个人最长与最沉记录，空存档显示“—”，余额位于右上角；下方统计为已发现、总捕获、最近收获。图鉴只保留图鉴顺序，仓库以单个下拉按钮提供捕获、图鉴、稀有度和异色四种排序。
 - 面板字号、按钮和图标采用固定 CSS 像素尺寸；窗口宽高独立调整时自动换列、换行。仓库排序、筛选、搜索与批量出售在窄窗口允许换行，不再整体缩放或强制同排。
 
 ### 2.3 已封存
@@ -194,7 +208,7 @@ const docs = `# 《摸鱼搭子》游戏百科全书
 
 当前EXE文件、任务栏与托盘统一使用图鉴锦鲤原色图案；打包时写入多尺寸ICO资源。黄色/红色叹号使用透明像素SVG，无方框，30秒后黄色静止；红色仅保留兼容样式，不恢复超时逃脱。1.9.4 的信息面板首次打开等待页面与渲染就绪，显示后检查实际可见性，兼容 Windows 隐藏启动参数。
 
-默认Ctrl+Shift+M显示/隐藏桌宠，Ctrl+Shift+F打开信息面板，可在设置中修改。关闭信息面板只隐藏该面板，不暂停桌宠；隐藏桌宠会暂停钓鱼并收起面板及结果卡。真正退出使用托盘或设置中的“退出游戏”。
+默认Ctrl+Shift+M显示/隐藏桌宠，Ctrl+Shift+F打开信息面板，Ctrl+Shift+Space按当前状态执行抛竿或收杆，三组快捷键均可在设置中修改。关闭信息面板只隐藏该面板，不暂停桌宠；隐藏桌宠会暂停钓鱼并收起面板及结果卡。真正退出使用托盘或设置中的“退出游戏”。
 
 ## 4. 钓鱼状态与时间系统
 
@@ -207,6 +221,7 @@ const docs = `# 《摸鱼搭子》游戏百科全书
 - 等待/抛竿中提前收杆：\`empty_reel → idle\`。
 - 从中鱼开始累计30秒未收杆：转为\`bite_ready\`，使用waiting平缓持竿动作和静止黄色叹号，原鱼或事件保留，随时可进入reel_pull。
 - 随机脱钩：上钩时已经决定，玩家收杆时复用empty_reel空杆表现并显示独立“鱼已挣脱”结果卡；与收杆早晚无关，不结算鱼类变体、尺寸或价值，特殊事件不走随机脱钩。
+- 购买并开启自动抛竿鱼竿后，有效上钩的鱼或特殊事件经玩家收杆并完成落船/庆祝动画后自动开始下一杆；随机脱钩也会在空杆动画结束后重抛。上钩前主动提前收杆不会触发自动重抛。
 
 新存档首杆从抛竿到中鱼共10秒（含抛竿动画），保证普通原色鱼；第2–5杆等待30–90秒；第6杆起等待5–10分钟，使用Beta(3,3)中部更密集分布。等待时长在抛竿时确定并存档，取消重抛消耗新手杆数。前30秒为提醒期，之后原地待收杆，不逃脱、不自动入库或继续钓下一条。
 
@@ -226,7 +241,7 @@ ${table(['鱼包', '名称', '水域', '物种数', '价格（金币）', '前�
 
 ${table(['名称', '代码', '每包数量', '当前概率', '经济基础价'], rarityRows)}
 
-1.3 已统一采用 70/20/7/2.5/0.5；先抽稀有度，再在选中鱼包的同稀有度物种中等概率选择。
+无钓饵时采用70/20/7/2.5/0.5；三档钓饵使用第8章V4表。先抽稀有度，再在选中鱼包的同稀有度物种中等概率选择。
 
 ### 5.3 尺寸与重量
 
@@ -266,13 +281,21 @@ ${game.PACK_ORDER.map(fishCatalogSection).join('\n\n')}
 
 每个物种首次获得的纯金、首次获得的炫彩分别自动锁定，玩家显式解锁后才能出售；后续同物种同颜色不重复自动锁定。普通鱼获也可手动锁定保护。
 
+### 7.3 商店装备
+
+商店固定分为“鱼包”和“装备”两板块，所有商品使用上图标、下名称与金额的方形商品卡。鱼包和装备都是永久解锁，购买失败不扣款。
+
+${table(['名称', '类型', '价格（金币）', '前置', '效果'], equipmentRows)}
+
+三档钓饵按鲜香饵团→月光磷虾→星虹秘饵依次购买；购买后自动装备，同一时间只使用一种，也可选择“不使用钓饵”。钓饵不消耗。自动抛竿鱼竿购买后默认开启，可在设置关闭；未购买前该开关固定关闭。
+
 ## 8. 概率系统与特殊事件
 
 抽取顺序固定为：\`encounterType → packId → rarity → fishId → randomUnhook → variant → measurement → valueCoins\`。
 
 ### 8.1 顶层事件
 
-- 概率V${probability.PROBABILITY_VERSION}每段均匀随机选择${probability.SPECIAL_INTERVAL_MIN}–${probability.SPECIAL_INTERVAL_MAX}次有效上钩间隔，平均间隔为5次，长期特殊事件率约${compact(probability.SPECIAL_RATE * 100)}%。例如间隔3表示“鱼、鱼、特殊”，正常序列不会连发，最多连续${probability.NON_SPECIAL_STREAK_LIMIT}次非特殊上钩；这不是每杆独立20%投骰。
+- 整体概率V${probability.PROBABILITY_VERSION}继续沿用特殊事件V3节奏：每段均匀随机选择${probability.SPECIAL_INTERVAL_MIN}–${probability.SPECIAL_INTERVAL_MAX}次有效上钩间隔，平均间隔为5次，长期特殊事件率约${compact(probability.SPECIAL_RATE * 100)}%。例如间隔3表示“鱼、鱼、特殊”，正常序列不会连发，最多连续${probability.NON_SPECIAL_STREAK_LIMIT}次非特殊上钩；这不是每杆独立20%投骰。
 - 计数依据上钩已经出现，不依据成功收取：鱼类随机脱钩仍计入非特殊次数；特殊事件上钩即开始下一段间隔，但收杆落船时才增加收藏和重复计数。30秒提醒结束不丢弃待收鱼/事件，也不会因此再抽一次。
 - 下一段间隔在特殊事件出现时即保存，暂停、隐藏和重启不重抽。旧档保留已等次数，已等 6 次以上下一次有效上钩立即兑现；已有 pendingCatch 保留选定结果和原概率版本。
 - 按长期20%计算，鱼类事件约80%；非首杆鱼类事件有${compact(probability.RANDOM_UNHOOK_RATE * 100)}%条件概率随机脱钩，上钩时已经选定，及时或晚收杆都不会改变它。
@@ -281,7 +304,11 @@ ${game.PACK_ORDER.map(fishCatalogSection).join('\n\n')}
 
 ### 8.2 鱼包、稀有度与物种
 
-先确定是否特殊事件；普通鱼类分支中，同一水域的已解锁鱼包等概率抽取。只有两包均已解锁时，淡水F1/F2或咸水S1/S2才各50%；仅拥有一包时该包100%。选定鱼包后按70/20/7/2.5/0.5抽稀有度，再在该稀有度内等概率抽具体鱼种。首杆普通原色保底是独立例外。
+先确定是否特殊事件；普通鱼类分支中，同一水域的已解锁鱼包等概率抽取。只有两包均已解锁时，淡水F1/F2或咸水S1/S2才各50%；仅拥有一包时该包100%。选定鱼包后按当前杆的钓饵表抽稀有度，再在该稀有度内等概率抽具体鱼种。首杆普通原色保底是独立例外。
+
+${table(['本杆钓饵', '普通', '稀有', '史诗', '传说', '神话'], rarityProbabilityRows)}
+
+钓饵在抛竿时写入本杆快照；等待中切换钓饵只影响下一杆。钓饵不改变特殊事件3–7次间隔、1%随机脱钩、鱼包等概率、同稀有度物种等概率或尺寸价值算法。
 
 ### 8.3 颜色概率与全局保底
 
@@ -292,7 +319,9 @@ ${table(['变体', '代码', '基础概率', '价值倍率', '软保底', '硬�
   ['炫彩', 'iridescent', `${compact(naturalVariantWeights.iridescent / totalVariantWeight * 100)}%`, `${variantMultipliers.iridescent}×`, `第${firstBoostAttempt('iridescentMisses', 'iridescent')}条开始有实际权重增加`, `第${hardPityAttempt('iridescentMisses', 3)}条保证炫彩`]
 ])}
 
-表内基础概率是四种互斥颜色的自然权重，不包含软/硬保底；“异色或更高”自然合计12%，“纯金或更高”合计2%。软保底按此前连续未出目标等级的成功入库鱼计数：纯金公式在45次未中后增加权重；炫彩公式在180次未中后开始计算加成，但以整数基点取整，第186条候选才首次增加实际权重。以上“第N条”均指该保底周期内第N条将成功入库的鱼，不是游戏总抛竿次数。
+${table(['本杆钓饵', '原色', '异色', '纯金', '炫彩'], variantProbabilityRows)}
+
+第一张表的“基础概率”是无钓饵状态；第二张表给出全部钓饵的四种互斥自然权重，均不包含软/硬保底。无钓饵时“异色或更高”自然合计12%，“纯金或更高”合计2%。软保底按此前连续未出目标等级的成功入库鱼计数：纯金公式在45次未中后增加权重；炫彩公式在180次未中后开始计算加成，但以整数基点取整，第186条候选才首次增加实际权重。以上“第N条”均指该保底周期内第N条将成功入库的鱼，不是游戏总抛竿次数。
 
 保底在当前存档内跨鱼种、鱼包和水域累计，游戏没有账号系统。异色及以上重置异色保底，纯金及以上重置纯金保底，炫彩重置炫彩保底；特殊事件、随机脱钩和未收取的待收杆鱼获不增加或清空颜色保底。最终颜色等级只能被保底抬高，不能把自然抽中的更高等级降级。
 
@@ -348,13 +377,13 @@ ${table(['动作 ID', '帧数', '播放', '单帧 ms', '类型', '状态'], acti
 
 ## 11. 信息面板系统
 
-- 首页：已发现物种、总捕获、最近收获三个统计；金币另置标题右上角，九个功能入口含角色库和玩法帮助。
+- 首页：标题区显示个人最长与最沉记录；下方保留已发现物种、总捕获、最近收获三个统计；金币另置标题右上角，九个功能入口含角色库和玩法帮助。
 - 图鉴：筛选和搜索在宽屏同排、窄屏换行；固定图标尺寸并自动换列；按包分区与稀有度排序；详情显示首次捕获和累计次数。
 - 仓库：按可用宽度自动换列的鱼获实例，显示种类、稀有度、尺寸、价值和余额；支持排序、详情、右键和批量出售。
 - 成就：一行一条，左侧高清图标、中间条件、右侧进度；固定字号和图标尺寸，支持系列/状态/搜索/排序、3项关注与补发摘要。
 - 历史：每行一条，小鱼图在左，种类、稀有度、时间在右；详情显示尺寸、重量和价值。
-- 商店：显示鱼包、价格、前置与水域；未满足条件时灰显并解释原因。
-- 设置：静音、水泡声、置顶、开机启动、75%–135%桌宠大小、快捷键、正向秒表、导出/导入存档、恢复默认设置和退出；不保留“减少动态”和“紧急阶段提示”的游戏内开关。恢复默认设置不清空鱼获进度。默认静音开启、水泡声关闭、置顶开启、开机启动关闭。
+- 商店：按鱼包、装备分区，方形图标卡从上到下显示图标、名称、金额、说明和操作；未满足前置或金币不足时灰显并解释原因。
+- 设置：静音、水泡声、置顶、开机启动、75%–135%桌宠大小、三组快捷键、正向秒表、自动再次抛竿、导出/导入存档、恢复默认设置和退出；不保留“减少动态”和“紧急阶段提示”的游戏内开关。恢复默认设置不清空鱼获进度。默认静音开启、水泡声关闭、置顶开启、开机启动关闭；自动抛竿未购买前关闭，购买后默认开启。
 
 ## 12. 成就系统
 
@@ -379,6 +408,7 @@ ${table(['ID', '名称', '条件', '目标值', '统计字段'], achievementRows
 - 暂停、隐藏和恢复会冻结并平移剩余计时，不制造离开惩罚。
 - schema 8 已新增 probability/variant 版本、三层保底计数和逐形态图鉴统计；旧鱼获迁移为原色，旧 \`valueCoins\` 原样保留，不凭空解锁异色。
 - schema 11 新增独立的 \`specialEventPity\` 与 \`specialEventCollection\`；旧档只做加法迁移，不改写鱼获、金币、历史或鱼类保底。
+- schema 14 新增永久装备库、本杆钓饵快照、自动抛竿队列与抛竿/收杆快捷键；旧档迁移为空装备、无钓饵、自动抛竿关闭。
 
 旧尺寸版本（measurementVersion低于5）修复是价值保留的例外：历史/库存会按当前物种资料恢复尺寸、重量，缺失价值或需要V5修复的条目会重新计算价值。不能承诺所有年代旧档的重量和valueCoins都逐字不变；钱包、收藏和已购鱼包按迁移规则保留。角色包和角色选择存于同一数据目录的characters及characters/selection.json，与主存档分开；跨目录保留全部数据时复制完整user-data，单独导入游戏JSON不能搬运自定义角色图片。
 
@@ -427,7 +457,7 @@ ${table(['ID', '名称', '条件', '目标值', '统计字段'], achievementRows
 2. 鱼类身份与原色路径以 \`src/game-state.js\`、\`assets/fish/runtime-manifest.json\` 为真源；四模板路径、V2.2 珍珠参数、方案 B 结构层规则和图鉴等比缩放参数以 \`assets/fish/variants/manifest.json\` 为真源。
 3. 尺寸以 \`data/fish-measurements.json\` 为真源，证据位于 \`docs/research/measurement-snapshots/\`。
 4. 动作以 \`assets/pet/v1-runtime/action-manifest.json\` 为真源。
-5. 鱼类概率和异色合同以 \`docs/specifications/probability/PROBABILITY_VARIANT_SYSTEM_SPEC_1_3.md\` 为设计真源；特殊事件内容以 \`docs/specifications/events/SPECIAL_EVENT_SYSTEM_DESIGN_DRAFT.md\` 为依据，当前触发与迁移合同以 \`docs/specifications/probability/SPECIAL_EVENT_PROBABILITY_SPEC_V3.md\` 为准；以 \`src/probability-system.js\`、\`src/special-events.js\`、\`src/fish-variants.js\`、事件 manifest 和验证报告为实现真源。
+5. 鱼类概率和异色基线以 \`docs/specifications/probability/PROBABILITY_VARIANT_SYSTEM_SPEC_1_3.md\` 为依据，当前钓饵与装备概率以 \`docs/specifications/probability/BAIT_EQUIPMENT_PROBABILITY_SPEC_V4.md\` 为设计真源；特殊事件内容以 \`docs/specifications/events/SPECIAL_EVENT_SYSTEM_DESIGN_DRAFT.md\` 为依据，触发与迁移合同继续以 \`docs/specifications/probability/SPECIAL_EVENT_PROBABILITY_SPEC_V3.md\` 为准；以 \`src/probability-system.js\`、\`src/special-events.js\`、\`src/fish-variants.js\`、事件 manifest 和验证报告为实现真源。
 6. 1.5.5 鱼缸以 \`docs/plans/DEVELOPMENT_PLAN_1_5.md\` 为封存设计真源，以 \`release/archive/aquarium-1.5.5/\` 为可运行恢复点；1.6+ 钓鱼核心版通过 \`src/fishing-core.js\` 执行无损封存与展示锁释放。
 7. 每次鱼表、尺寸、动作、成就或经济常量变化后运行 \`npm run docs:encyclopedia\` 并提交百科差异检查。
 8. 历史报告不得覆盖当前代码事实；发生冲突时，应在百科中明确“当前/计划/废弃”状态。
