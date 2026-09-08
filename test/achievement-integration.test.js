@@ -35,18 +35,19 @@ for (const htmlName of ['index.html', 'panel.html']) test(`${htmlName} actual br
 function mainDispatch() {
   const source = fs.readFileSync(path.join(root, 'main.js'), 'utf8');
   const dispatch = source.slice(source.indexOf('function dispatch('), source.indexOf('function economyAction('));
-  let saves = 0, broadcasts = 0, lookups = 0;
+  let saves = 0, broadcasts = 0, lookups = 0, achievementQueues = 0;
   const context = vm.createContext({
     Game: G, gameState: G.createInitialState(), assets: {}, resultCardOverride: null,
     bounds: { x: -1900, y: 120, width: 192, height: 208 },
     area: { x: -1920, y: 40, width: 1920, height: 1000 },
     saveGame() { saves++; return true; }, broadcastAll() { broadcasts++; }, updateTrayMenu() {}, showResult() {},
+    queueAchievementUnlocks() { achievementQueues++; }, showNextAchievementPopup() {},
     petBodyBounds() { lookups++; return context.bounds; },
     cornerIdForBounds(bounds) { return PetLayout.cornerIdForBounds(bounds, context.area); },
     publicSnapshot() { return { state: context.gameState }; }
   });
   vm.runInContext(dispatch, context);
-  return { context, counts: () => ({ saves, broadcasts, lookups }) };
+  return { context, counts: () => ({ saves, broadcasts, lookups, achievementQueues }) };
 }
 
 test('real main dispatch overwrites stale renderer corner using current negative-monitor bounds', () => {
@@ -58,6 +59,7 @@ test('real main dispatch overwrites stale renderer corner using current negative
   assert.ok(!Object.hasOwn(context.gameState.cornerCasts, 'bottom-right'));
   assert.equal(counts().lookups, 1);
   assert.equal(counts().saves, 1);
+  assert.equal(counts().achievementQueues, 1);
 });
 
 test('real main achievement actions save once, reject fourth track without write, and acknowledge once', () => {

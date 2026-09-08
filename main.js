@@ -12,6 +12,7 @@ const StorageLocation = require('./src/storage-location');
 const ShortcutSettings = require('./src/shortcut-settings');
 const PetLayout = require('./src/pet-layout');
 const FishingCore = require('./src/fishing-core');
+const AchievementPopup = require('./src/achievement-popup');
 const PACKAGE_VERSION = require('./package.json').version;
 const APP_DISPLAY_NAME = '摸鱼搭子';
 app.setName(APP_DISPLAY_NAME);
@@ -72,6 +73,9 @@ let tray;
 let gameState;
 let tickTimer;
 let resultHideTimer;
+let activeResultPresentation = null;
+let activeAchievementPopup = null;
+const achievementPopupQueue = [];
 let windowSaveTimer;
 let isQuitting = false;
 let shortcutRegistered = false;
@@ -516,7 +520,7 @@ function createResultWindow() {
   });
   resultWindow.setAlwaysOnTop(true, 'floating');
   resultWindow.loadFile(path.join(__dirname, 'src', 'result.html'));
-  resultWindow.on('close', (event) => { if (!isQuitting) { event.preventDefault(); resultWindow.hide(); } });
+  resultWindow.on('close', (event) => { if (!isQuitting) { event.preventDefault(); hideResult(); } });
 }
 function sendAquariumLayout() {
   if (!aquariumWindow || aquariumWindow.isDestroyed()) return false;
@@ -631,15 +635,21 @@ function dispatch(action, payload = {}) {
   // Resolve position at the actual cast, including first load, restored bounds
   // and tool-side changes; renderer move notifications are only advisory.
   if (action === 'cast') payload = { ...payload, corner: cornerIdForBounds(petBodyBounds()) };
+  const previousState = gameState;
   const beforeJson = JSON.stringify(gameState);
   gameState = Game.transition(gameState, action, Math.random, Date.now(), payload, assets?.timings);
   if (JSON.stringify(gameState) === beforeJson) return { ok: false, reason: 'invalid-state', snapshot: publicSnapshot() };
-  if (gameState.fishingState === 'empty_reel' && gameState.currentResult?.type === 'random_unhook') { resultCardOverride = gameState.currentResult; showResult(); }
-  else if (gameState.currentResult?.type === 'special') { resultCardOverride = null; }
+  queueAchievementUnlocks(previousState, gameState);
+  const showsPrimaryResult = gameState.fishingState === 'empty_reel' && gameState.currentResult?.type === 'random_unhook';
+  if (showsPrimaryResult) resultCardOverride = gameState.currentResult;
+  else if (gameState.currentResult?.type === 'special') resultCardOverride = null;
   saveGame(); broadcastAll(); updateTrayMenu();
+  if (showsPrimaryResult) showResult();
+  else showNextAchievementPopup();
   return { ok: true, snapshot: publicSnapshot() };
 }
 function economyAction(action, payload = {}) {
+  const previousState = gameState;
   let result;
   if (action === 'switch-habitat') result = Game.switchHabitat(gameState, payload.habitat);
   else if (action === 'purchase-pack') result = Game.purchasePack(gameState, payload.packId);
@@ -650,7 +660,9 @@ function economyAction(action, payload = {}) {
   else return { ok: false, reason: 'unknown-action', snapshot: publicSnapshot() };
   if (!result?.ok) return { ...result, state: undefined, snapshot: publicSnapshot() };
   gameState = result.state;
+  queueAchievementUnlocks(previousState, gameState);
   saveGame(); broadcastAll(); updateTrayMenu();
+  showNextAchievementPopup();
   return { ...result, state: undefined, snapshot: publicSnapshot() };
 }
 function aquariumLayoutModePayload(active) {
@@ -784,17 +796,22 @@ function loadMeasurementMap() {
   return data.entries || data || {};
 }
 function tick() {
+  const previousState = gameState;
   const beforeState = gameState.fishingState;
   const beforeCatchId = gameState.currentResult?.catchId;
   gameState = Game.tick(gameState, Date.now(), Math.random, measurementMap, assets?.timings);
   if (gameState.fishingState === beforeState && gameState.currentResult?.catchId === beforeCatchId) return;
-  if (gameState.fishingState === 'empty_reel' && gameState.currentResult?.type === 'random_unhook') { resultCardOverride = gameState.currentResult; showResult(); }
+  queueAchievementUnlocks(previousState, gameState);
+  let showsPrimaryResult = false;
+  if (gameState.fishingState === 'empty_reel' && gameState.currentResult?.type === 'random_unhook') { resultCardOverride = gameState.currentResult; showsPrimaryResult = true; }
   else if (gameState.currentResult) resultCardOverride = null;
   saveGame(); broadcastAll();
   const catchId = gameState.currentResult?.catchId || gameState.currentResult?.eventId;
   if (gameState.fishingState === 'catch_land' && catchId && catchId !== lastResultCatchId) {
-    lastResultCatchId = catchId; resultCardOverride = null; showResult();
+    lastResultCatchId = catchId; resultCardOverride = null; showsPrimaryResult = true;
   }
+  if (showsPrimaryResult) showResult();
+  else showNextAchievementPopup();
   updateTrayMenu();
 }
 function cornerIdForBounds(bounds) {
@@ -881,11 +898,56 @@ async function showPanel(route) {
   }
 }
 function togglePanel() { if (panelWindow?.isVisible()) panelWindow.hide(); else showPanel(); }
-function showResult() {
+function queueAchievementUnlocks(previousState, nextState) {
+  const queuedIds = new Set(achievementPopupQueue.map((item) => item.achievementId));
+  if (activeAchievementPopup?.achievementId) queuedIds.add(activeAchievementPopup.achievementId);
+  for (const popup of AchievementPopup.newlyUnlocked(previousState, nextState, Game.ACHIEVEMENTS)) {
+    if (!queuedIds.has(popup.achievementId)) {
+      achievementPopupQueue.push(popup);
+      queuedIds.add(popup.achievementId);
+    }
+  }
+  return achievementPopupQueue.length;
+}
+function showNextAchievementPopup() {
+  if (isQuitting || petExplicitlyHidden || activeResultPresentation || resultWindow?.isVisible() || !achievementPopupQueue.length) return false;
+  activeAchievementPopup = achievementPopupQueue.shift();
+  activeResultPresentation = 'achievement';
+  resultCardOverride = activeAchievementPopup;
+  showResultWindow();
+  return true;
+}
+function showResultWindow() {
   if (!resultWindow || resultWindow.isDestroyed()) createResultWindow();
   resultWindow.setBounds(resultBounds()); resultWindow.showInactive(); broadcastAll(); scheduleResultHide(RESULT_AUTO_HIDE_MS);
 }
-function hideResult() { clearTimeout(resultHideTimer); resultWindow?.hide(); return true; }
+function showResult() {
+  if (activeResultPresentation === 'achievement' && activeAchievementPopup) achievementPopupQueue.unshift(activeAchievementPopup);
+  activeAchievementPopup = null;
+  activeResultPresentation = 'result';
+  showResultWindow();
+}
+function hideResult() {
+  clearTimeout(resultHideTimer);
+  const completedPresentation = activeResultPresentation;
+  resultWindow?.hide();
+  activeResultPresentation = null;
+  if (completedPresentation === 'achievement') {
+    activeAchievementPopup = null;
+    resultCardOverride = null;
+  }
+  setImmediate(showNextAchievementPopup);
+  return true;
+}
+function suspendResultPresentation() {
+  clearTimeout(resultHideTimer);
+  if (activeResultPresentation === 'achievement' && activeAchievementPopup) achievementPopupQueue.unshift(activeAchievementPopup);
+  resultWindow?.hide();
+  activeResultPresentation = null;
+  activeAchievementPopup = null;
+  resultCardOverride = null;
+  return true;
+}
 function scheduleResultHide(delay = RESULT_AUTO_HIDE_MS) { clearTimeout(resultHideTimer); resultHideTimer = setTimeout(hideResult, delay); }
 function clearPetPresentationRecovery() {
   for (const timer of petPresentationRecoveryTimers) clearTimeout(timer);
@@ -925,7 +987,7 @@ function hidePet() {
   if (!petWindow?.isVisible()) return;
   petExplicitlyHidden = true;
   clearPetPresentationRecovery();
-  gameState = Game.suspend(gameState); saveGame(); panelWindow?.hide(); hideResult(); petWindow.hide(); broadcastAll(); updateTrayMenu();
+  gameState = Game.suspend(gameState); saveGame(); panelWindow?.hide(); suspendResultPresentation(); petWindow.hide(); broadcastAll(); updateTrayMenu();
 }
 function showPet({ forceRefresh = false } = {}) {
   petExplicitlyHidden = false;
@@ -935,7 +997,7 @@ function showPet({ forceRefresh = false } = {}) {
   if (forceRefresh && petWindow.isVisible()) petWindow.hide();
   petWindow.showInactive();
   restorePetPresentation();
-  saveGame(); broadcastAll(); updateTrayMenu();
+  saveGame(); broadcastAll(); updateTrayMenu(); showNextAchievementPopup();
 }
 function togglePet() { if (petWindow && !petWindow.isDestroyed() && petWindow.isVisible()) hidePet(); else showPet(); }
 function clearAquariumPresentationRecovery() {
@@ -1188,6 +1250,12 @@ function runSmokeTest() {
       && gameState === beforeFailureState;
     saveWriteAllowed = beforeWriteAllowed;
     gameState = beforeCornerState;
+    clearTimeout(resultHideTimer);
+    resultWindow?.hide();
+    activeResultPresentation = null;
+    activeAchievementPopup = null;
+    achievementPopupQueue.length = 0;
+    resultCardOverride = null;
     movePet(preEdgeBodyX, preEdgeBounds.y);
     saveGame(); broadcastAll();
     const stateBeforeActionSwitch = gameState;
@@ -1899,6 +1967,12 @@ function runSmokeTest() {
       variantVisualScreenshots = await captureSmokePng(petWindow, path.join(artifacts, 'pet-iridescent-airborne-1.3-smoke.png')) && variantVisualScreenshots;
     } catch { variantVisualScreenshots = false; }
     gameState = preVariantFlightState;
+    clearTimeout(resultHideTimer);
+    resultWindow?.hide();
+    activeResultPresentation = null;
+    activeAchievementPopup = null;
+    achievementPopupQueue.length = 0;
+    resultCardOverride = null;
     gameState = {
       ...gameState,
       collection: { ...gameState.collection, [fish.id]: { count: 1, firstAt: Date.now(), lastAt: Date.now(), maxLengthCm: 12.3, maxWeightKg: .12 } },
@@ -1972,6 +2046,55 @@ function runSmokeTest() {
     const resultRemainsVisibleAfterFiveSeconds = resultWindow.isVisible();
     await new Promise((resolve) => setTimeout(resolve, RESULT_AUTO_HIDE_MS - 5200 + 200));
     const resultAutoHidden = !resultWindow.isVisible();
+    const preAchievementPopupState = gameState;
+    const popupDefinitions = Game.ACHIEVEMENTS.slice(0, 2);
+    const popupIds = new Set(popupDefinitions.map((item) => item.id));
+    const achievementBefore = { ...gameState, achievements: gameState.achievements.filter((id) => !popupIds.has(id)) };
+    gameState = { ...achievementBefore, achievements: [...achievementBefore.achievements, ...popupDefinitions.map((item) => item.id)] };
+    panelWindow.hide();
+    queueAchievementUnlocks(achievementBefore, gameState);
+    resultCardOverride = null;
+    broadcastAll();
+    showResult();
+    await resultWindow.webContents.executeJavaScript("document.getElementById('closeResult').click()", true);
+    await new Promise((resolve) => setTimeout(resolve, 180));
+    const firstAchievementPopupContract = await resultWindow.webContents.executeJavaScript(`(() => {
+      const card = document.getElementById('catchCard');
+      return card.dataset.resultType === 'achievement'
+        && document.getElementById('rarity').textContent === ${JSON.stringify(popupDefinitions[0].seriesName)}
+        && document.getElementById('fishName').textContent === ${JSON.stringify(popupDefinitions[0].name)}
+        && document.getElementById('measure').textContent === ${JSON.stringify(popupDefinitions[0].description)}
+        && document.querySelector('.catch-card small').textContent === '解锁新成就！'
+        && document.getElementById('badges').hidden
+        && document.getElementById('fishImage').src.includes(${JSON.stringify(popupDefinitions[0].iconPath)});
+    })()`, true);
+    await new Promise((resolve) => setTimeout(resolve, 180));
+    let achievementPopupCaptured = false;
+    try {
+      const artifacts = path.join(__dirname, 'artifacts');
+      fs.mkdirSync(artifacts, { recursive: true });
+      achievementPopupCaptured = await captureSmokePng(resultWindow, path.join(artifacts, 'result-achievement-unlock-1.12.2-smoke.png'));
+    } catch { achievementPopupCaptured = false; }
+    await resultWindow.webContents.executeJavaScript("document.getElementById('catchCard').click()", true);
+    await new Promise((resolve) => setTimeout(resolve, 180));
+    const secondAchievementPopupContract = await resultWindow.webContents.executeJavaScript(`(() => {
+      const card = document.getElementById('catchCard');
+      return card.dataset.resultType === 'achievement'
+        && document.getElementById('fishName').textContent === ${JSON.stringify(popupDefinitions[1].name)}
+        && document.querySelector('.catch-card small').textContent === '解锁新成就！';
+    })()`, true);
+    const achievementPopupQueueOrder = firstAchievementPopupContract && secondAchievementPopupContract;
+    const achievementPopupDoesNotOpenPanel = !panelWindow.isVisible();
+    await new Promise((resolve) => setTimeout(resolve, 5200));
+    const achievementPopupRemainsVisibleAfterFiveSeconds = resultWindow.isVisible();
+    await new Promise((resolve) => setTimeout(resolve, RESULT_AUTO_HIDE_MS - 5200 + 200));
+    const achievementPopupAutoHidden = !resultWindow.isVisible();
+    gameState = preAchievementPopupState;
+    resultCardOverride = null;
+    activeResultPresentation = null;
+    activeAchievementPopup = null;
+    achievementPopupQueue.length = 0;
+    broadcastAll();
     let specialResultCardContract = false;
     let specialResultClickOpenedSeries = false;
     let specialResultCardCaptured = false;
@@ -2095,6 +2218,7 @@ function runSmokeTest() {
       resultCreated: Boolean(resultWindow && !resultWindow.isDestroyed()), resultAutoHidden, resultNonOverlapping: !intersects(petBodyBounds(), resultWindow.getBounds()), resultAboveAndCentered, resultCompact, resultFishArtEnlarged, resultLayoutScalesWithWindow,
       resultDidNotTakeFocus, resultCloseButtonWorks, resultClickOpenedPanel, resultHiddenAfterDetail, shortcutRegistered, panelShortcutRegistered, fishingShortcutRegistered, shortcutUpdateApplied, shortcutDuplicateRejected, edgeLayoutFlipped, edgeContinuousDrag, dragSizeInvariant, scaleSliderContinuous, noBlankDuringActionSwitch,
       resultRemainsVisibleAfterFiveSeconds, resultTenSecondTimeout: RESULT_AUTO_HIDE_MS === 10000,
+      achievementPopupQueueOrder, achievementPopupDoesNotOpenPanel, achievementPopupRemainsVisibleAfterFiveSeconds, achievementPopupAutoHidden, achievementPopupCaptured,
       trayIconDecoded: !createTrayIcon().isEmpty(), trayCreated: Boolean(tray && !tray.isDestroyed()),
       menuActionOverride, menuActionStartsAtFirstFrame, menuActionAdvanced, clickActionStartsAtFirstFrame, clickActionAdvanced, passiveClickFeedbackRemoved, visualOverridePreservedTimers, deprecatedSettingsRemoved,
       castTimerVisible, castTimerToggleApplied, panelFirstOpenRendered, panelPersistsAfterBlur,

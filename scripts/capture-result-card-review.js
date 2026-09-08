@@ -65,6 +65,21 @@ function snapshotFor(sample, variant, assets, flags = {}) {
   };
 }
 
+function achievementSnapshot(assets) {
+  const definition = Game.ACHIEVEMENTS.find((item) => item.id === 'all-rarities') || Game.ACHIEVEMENTS[0];
+  return {
+    state: Game.createInitialState(Date.now()),
+    resultCard: {
+      type: 'achievement', achievementId: definition.id, title: definition.name,
+      description: definition.description, seriesName: definition.seriesName,
+      iconPath: definition.iconPath, points: definition.points
+    },
+    catalog: Game.FISH, packs: Game.PACKS, rarities: Game.RARITIES,
+    rarityNames: Game.rarityNames, achievements: Game.ACHIEVEMENTS, assets,
+    app: { persistenceError: null, shortcuts: {} }
+  };
+}
+
 async function capturePng(file) {
   let error;
   for (let attempt = 0; attempt < 3; attempt += 1) {
@@ -184,6 +199,20 @@ async function run() {
     runtimeParityFiles.push({ file, ...size });
   }
   const runtimeParityMatrix = buildHorizontalSheet(runtimeParityFiles, 'runtime-parity-100-vs-135.png');
+  reviewWindow.setSize(cardSize.width, cardSize.height);
+  currentSnapshot = achievementSnapshot(assets);
+  reviewWindow.webContents.send('game:update', currentSnapshot);
+  await reviewWindow.webContents.executeJavaScript(`Promise.all([...document.images].map((image) => image.decode?.().catch(() => {})))`, true);
+  await new Promise((resolve) => setTimeout(resolve, 380));
+  const achievementLayout = await reviewWindow.webContents.executeJavaScript(`(() => {
+    const card = document.getElementById('catchCard').getBoundingClientRect();
+    const nodes = ['rarity', 'fishImage', 'fishName', 'measure'].map((id) => document.getElementById(id).getBoundingClientRect());
+    nodes.push(document.querySelector('.catch-card small').getBoundingClientRect());
+    return { valid: nodes.every((rect) => rect.left >= card.left && rect.right <= card.right && rect.top >= card.top && rect.bottom <= card.bottom), card: { width: card.width, height: card.height }, nodes: nodes.map((rect) => ({ top: rect.top, bottom: rect.bottom })) };
+  })()`, true);
+  if (!achievementLayout.valid) throw new Error(`Achievement popup content overflowed: ${JSON.stringify(achievementLayout)}`);
+  const achievementFile = path.join(outputDir, 'achievement-unlock.png');
+  await capturePng(achievementFile);
   const index = {
     generatedAt: new Date().toISOString(),
     applicationVersion: require('../package.json').version,
@@ -196,7 +225,8 @@ async function run() {
       state: { variant: 'iridescent', first: true, recordLength: true },
       files: runtimeParityFiles.map(({ file, name, width, height }) => ({ file: path.basename(file), name, width, height })),
       matrix: path.basename(runtimeParityMatrix)
-    }
+    },
+    achievement: { file: path.basename(achievementFile), id: currentSnapshot.resultCard.achievementId, layout: achievementLayout }
   };
   fs.writeFileSync(path.join(outputDir, 'index.json'), `${JSON.stringify(index, null, 2)}\n`);
   process.stdout.write(`RESULT_CARD_REVIEW:${JSON.stringify({ outputDir, matrix, cards: files.length })}\n`);

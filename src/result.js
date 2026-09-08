@@ -1,17 +1,101 @@
-(function resultRenderer(){
+(function resultRenderer() {
   'use strict';
-  const $=id=>document.getElementById(id);let latest=null,snapshot=null;
-  const rootAsset=relative=>`../${relative.replace(/\\/g,'/')}`;
-  function manifest(id){return snapshot?.assets?.manifests?.find(item=>item.id===id)}
-  const variantNames={normal:'原色',alternate:'异色',golden:'纯金',iridescent:'炫彩'};
-  function fishIcon(fishId,variant='normal'){for(const bundle of (snapshot?.assets?.manifests||[]).filter(item=>item.id==='fish'||item.id.startsWith('fish-'))){const entry=(bundle.data.entries||[]).find(item=>(item.fishId||item.id||`fish-${item.catalogIndex}`)===fishId);if(!entry)continue;const data=entry.variants?.[variant];const icon=data?.icon||(variant==='normal'&&(entry.icon||entry.path));if(icon)return rootAsset(`${bundle.basePath}/${icon}`)}return'ui-assets/fish-unknown.svg'}
-  function fishVariant(fishId,variant){for(const bundle of (snapshot?.assets?.manifests||[]).filter(item=>item.id==='fish-variants')){const entry=(bundle.data.entries||[]).find(item=>item.fishId===fishId);const data=entry?.variants?.[variant];if(data)return {bundle,data}}return null}
-  // Keep the layered variant contract available to the shared result card.
-  function layeredVariantAsset(fishId, variant){const found=fishVariant(fishId,variant);const data=found?.data;return data?.baseIcon&&data?.bodyMask&&data?.detailOverlay?found:null}
-  function render(){if(!latest)return;const card=$('catchCard');const type=latest.randomUnhook?'random_unhook':latest.type||latest.kind||'fish';const variant=variantNames[latest.variant]?latest.variant:'normal';const special=type==='special';const unhook=type==='random_unhook'||latest.randomUnhook;card.dataset.rarity=latest.rarity||'common';card.dataset.variant=variant;card.dataset.resultType=type;$('rarity').textContent=special?(latest.seriesName||'特殊事件'):unhook?'鱼线事件':(latest.rarityName||'鱼获');$('fishName').textContent=special?(latest.title||latest.name||'特殊事件'):unhook?'鱼已挣脱':(latest.name||'未知鱼获');$('measure').textContent=special?(latest.description||'发现了一件特别的东西。'):unhook?'这次没有带回鱼获':`${latest.size||''}${latest.weight?' · '+latest.weight:''}`;$('badges').textContent=special?`${latest.first?'首次发现':'重复发现'} · ×${Math.max(1,Number(latest.count)||1)}`:unhook?'':[variantNames[variant],latest.first?'首次发现':'',latest.recordLength||latest.recordWeight?'新纪录':''].filter(Boolean).join(' · ');$('badges').hidden=unhook;const hint=document.querySelector('.catch-card small');if(hint){hint.hidden=special;hint.textContent=special?'':unhook?'本次没有收获':'点击查看详情'}card.setAttribute('aria-label',special?'查看'+(latest.title||'特殊事件')+'收藏':unhook?'关闭脱钩提示':'查看鱼获详情');const layers=variant==='iridescent'&&!special&&!unhook&&layeredVariantAsset(latest.resultId,variant);const eventPath=latest.iconPath||latest.icon;const icon=special&&eventPath?rootAsset(eventPath.startsWith('assets/')?eventPath:`assets/events/${eventPath}`):unhook?'../assets/events/shared/random-escape-pattern.png':layers?rootAsset(`${layers.bundle.basePath}/${layers.data.baseIcon}`):fishIcon(latest.resultId,variant);$('fishImage').src=icon;$('detailOverlay').removeAttribute('src');card.classList.toggle('has-pearl-layers',Boolean(layers));if(layers){const mask=rootAsset(`${layers.bundle.basePath}/${layers.data.bodyMask}`);$('detailOverlay').src=rootAsset(`${layers.bundle.basePath}/${layers.data.detailOverlay}`);document.querySelectorAll('.pearl-layer').forEach((node)=>node.style.setProperty('--mask',`url("${mask}")`))}$('fishImage').alt=$('fishName').textContent;$('fishImage').onerror=()=>{$('fishImage').src=special?'../assets/ui/icons/special-event.svg':unhook?'../assets/events/shared/random-escape-pattern.png':fishIcon(latest.resultId,'normal')}}
-  function update(value){snapshot=value;const candidate=value.resultCard||value.state.currentResult;if(candidate)latest=candidate;render()}
-  $('catchCard').onclick=async()=>{if(!latest)return;await window.desktopPond.closeResult();if((latest.type||latest.kind)==='special')return window.desktopPond.openPanel({page:'special-event-detail',seriesId:latest.seriesId});if((latest.type||latest.kind)==='random_unhook'||latest.randomUnhook)return;await window.desktopPond.openPanel({page:'fish-detail',fishId:latest.resultId})};
-  $('closeResult').onclick=()=>window.desktopPond.closeResult();
-  document.addEventListener('visibilitychange',()=>document.body.classList.toggle('page-hidden',document.hidden));
-  window.desktopPond.onUpdate(update);window.desktopPond.getSnapshot().then(update);
+  const $ = (id) => document.getElementById(id);
+  let latest = null;
+  let snapshot = null;
+  const rootAsset = (relative) => `../${relative.replace(/\\/g, '/')}`;
+  const variantNames = { normal: '原色', alternate: '异色', golden: '纯金', iridescent: '炫彩' };
+
+  function fishIcon(fishId, variant = 'normal') {
+    for (const bundle of (snapshot?.assets?.manifests || []).filter((item) => item.id === 'fish' || item.id.startsWith('fish-'))) {
+      const entry = (bundle.data.entries || []).find((item) => (item.fishId || item.id || `fish-${item.catalogIndex}`) === fishId);
+      if (!entry) continue;
+      const data = entry.variants?.[variant];
+      const icon = data?.icon || (variant === 'normal' && (entry.icon || entry.path));
+      if (icon) return rootAsset(`${bundle.basePath}/${icon}`);
+    }
+    return 'ui-assets/fish-unknown.svg';
+  }
+
+  function fishVariant(fishId, variant) {
+    for (const bundle of (snapshot?.assets?.manifests || []).filter((item) => item.id === 'fish-variants')) {
+      const entry = (bundle.data.entries || []).find((item) => item.fishId === fishId);
+      const data = entry?.variants?.[variant];
+      if (data) return { bundle, data };
+    }
+    return null;
+  }
+
+  function layeredVariantAsset(fishId, variant) {
+    const found = fishVariant(fishId, variant);
+    const data = found?.data;
+    return data?.baseIcon && data?.bodyMask && data?.detailOverlay ? found : null;
+  }
+
+  function render() {
+    if (!latest) return;
+    const card = $('catchCard');
+    const type = latest.randomUnhook ? 'random_unhook' : latest.type || latest.kind || 'fish';
+    const variant = variantNames[latest.variant] ? latest.variant : 'normal';
+    const special = type === 'special';
+    const achievement = type === 'achievement';
+    const unhook = type === 'random_unhook' || latest.randomUnhook;
+    card.dataset.rarity = achievement ? 'achievement' : latest.rarity || 'common';
+    card.dataset.variant = achievement ? 'achievement' : variant;
+    card.dataset.resultType = type;
+    $('rarity').textContent = achievement ? (latest.seriesName || '成就') : special ? (latest.seriesName || '特殊事件') : unhook ? '鱼线事件' : (latest.rarityName || '鱼获');
+    $('fishName').textContent = achievement ? (latest.title || latest.name || '新成就') : special ? (latest.title || latest.name || '特殊事件') : unhook ? '鱼已挣脱' : (latest.name || '未知鱼获');
+    $('measure').textContent = achievement ? (latest.description || '完成了一项目标') : special ? (latest.description || '发现了一件特别的东西。') : unhook ? '这次没有带回鱼获' : `${latest.size || ''}${latest.weight ? ` · ${latest.weight}` : ''}`;
+    $('badges').textContent = special ? `${latest.first ? '首次发现' : '重复发现'} · ×${Math.max(1, Number(latest.count) || 1)}` : unhook || achievement ? '' : [variantNames[variant], latest.first ? '首次发现' : '', latest.recordLength || latest.recordWeight ? '新纪录' : ''].filter(Boolean).join(' · ');
+    $('badges').hidden = unhook || achievement;
+    const hint = document.querySelector('.catch-card small');
+    if (hint) {
+      hint.hidden = special;
+      hint.textContent = special ? '' : achievement ? '解锁新成就！' : unhook ? '本次没有收获' : '点击查看详情';
+    }
+    card.setAttribute('aria-label', achievement ? '关闭成就解锁提示' : special ? `查看${latest.title || '特殊事件'}收藏` : unhook ? '关闭脱钩提示' : '查看鱼获详情');
+    const layers = variant === 'iridescent' && !special && !achievement && !unhook && layeredVariantAsset(latest.resultId, variant);
+    const eventPath = latest.iconPath || latest.icon;
+    const icon = achievement && eventPath
+      ? rootAsset(eventPath)
+      : special && eventPath
+        ? rootAsset(eventPath.startsWith('assets/') ? eventPath : `assets/events/${eventPath}`)
+        : unhook
+          ? '../assets/events/shared/random-escape-pattern.png'
+          : layers
+            ? rootAsset(`${layers.bundle.basePath}/${layers.data.baseIcon}`)
+            : fishIcon(latest.resultId, variant);
+    $('fishImage').src = icon;
+    $('detailOverlay').removeAttribute('src');
+    card.classList.toggle('has-pearl-layers', Boolean(layers));
+    if (layers) {
+      const mask = rootAsset(`${layers.bundle.basePath}/${layers.data.bodyMask}`);
+      $('detailOverlay').src = rootAsset(`${layers.bundle.basePath}/${layers.data.detailOverlay}`);
+      document.querySelectorAll('.pearl-layer').forEach((node) => node.style.setProperty('--mask', `url("${mask}")`));
+    }
+    $('fishImage').alt = $('fishName').textContent;
+    $('fishImage').onerror = () => {
+      $('fishImage').src = achievement ? '../assets/ui/icons/achievements.svg' : special ? '../assets/ui/icons/special-event.svg' : unhook ? '../assets/events/shared/random-escape-pattern.png' : fishIcon(latest.resultId, 'normal');
+    };
+  }
+
+  function update(value) {
+    snapshot = value;
+    const candidate = value.resultCard || value.state.currentResult;
+    if (candidate) latest = candidate;
+    render();
+  }
+
+  $('catchCard').onclick = async () => {
+    if (!latest) return;
+    await window.desktopPond.closeResult();
+    if ((latest.type || latest.kind) === 'achievement') return;
+    if ((latest.type || latest.kind) === 'special') return window.desktopPond.openPanel({ page: 'special-event-detail', seriesId: latest.seriesId });
+    if ((latest.type || latest.kind) === 'random_unhook' || latest.randomUnhook) return;
+    await window.desktopPond.openPanel({ page: 'fish-detail', fishId: latest.resultId });
+  };
+  $('closeResult').onclick = () => window.desktopPond.closeResult();
+  document.addEventListener('visibilitychange', () => document.body.classList.toggle('page-hidden', document.hidden));
+  window.desktopPond.onUpdate(update);
+  window.desktopPond.getSnapshot().then(update);
 })();
